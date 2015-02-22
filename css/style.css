@@ -4,7 +4,7 @@
 	background-color: grey;
 }
 .troop-tile {
-	margin-bottom: 2%;
+	margin-bottom: 1%;
 }
 
 .image-container {
@@ -24,6 +24,10 @@
 .troop-level-text {
 	text-align: center;
 	font-size: 3em;
+}
+
+.icon-box {
+	text-align: center;
 }
 
 .level-header-text {
