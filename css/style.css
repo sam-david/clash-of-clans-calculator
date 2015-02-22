@@ -1,0 +1,12 @@
+.troop-tile {
+	margin-bottom: 2%;
+}
+
+.troop-image {
+	padding: 10%;
+	width: 80%;
+}
+
+.troop-image-border {
+	border: solid black 1px;
+}
