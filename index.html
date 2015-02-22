@@ -9,17 +9,130 @@
     <script src="app.js"></script>
   </head>
   <body ng-app="clashCalc" ng-controller="TroopCtrl">
-    <button ng-click="addPost()">Post</button>
-    <div ng-repeat="troop in troops | orderBy: '-name'">
-      <div class="row troop-tile">
-        <div class="large-2 columns troop-image-border">
-          <img src="{{troop.imageUrl}}" class="troop-image">
+    <div class="row">
+      <div class="large-12 columns">
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>My Troops</h1>
+      </div>
+    </div>
+    <div class="troop-box">
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="row">
+            <form ng-submit="addTroop()">
+              <div class="large-4 columns">
+                <select ng-model="type">
+                  <option ng-repeat="troopType in troopTypes" value="{{troopType}}">{{$index + 1}}: {{troopType}}</option>
+                </select>
+              </div>
+              <div class="large-2 columns">
+                <button type="submit">Add Troop</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="large-4 columns">
-          <h2> {{troop.name}} </h2>
-        </div>
-        <div class="large-1 columns">
-          <h3> {{troop.level}} <h3>
+      </div>
+      <div ng-repeat="troop in troops | orderBy: '-name'">
+        <div class="row troop-tile">
+          <div class="large-2 columns troop-image-border">
+            <div class="row">
+              <div class="large-12 columns image-container">
+                <img src="{{troop.imageUrl}}" class="troop-image">
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <h4 class="troop-header-text"> {{troop.name}} </h4>
+              </div>
+            </div>
+          </div>
+          <div class="large-2 columns">
+            <div class="row">
+              <div class="large-12 columns">
+                <h5 class="level-header-text"> Level </h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <h2 class="troop-level-text"> {{troop.level}} </h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-6 columns">
+                <span ng-click="levelUp(troop)" class="troop-text-small">Up Lvl</span>
+              </div>
+              <div class="large-6 columns">
+                <span ng-click="levelDown(troop)" class="troop-text-small">Down Lvl</span>
+              </div>
+            </div>
+          </div>
+          <div class="large-2 columns">
+            <div class="row">
+              <div class="large-12 columns">
+                <h4>DPS:  {{troop.damagePerSecond}}</h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <h4>HS:  {{troop.housingSpace}}</h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <h4>EC: {{troop.elixirCost}} </h4>
+              </div>
+            </div>
+          </div>
+          <div class="large-2 columns">
+            <div class="row">
+              <div class="large-12 columns">
+                <h5 class="troop-text-small">Total Health:  {{troop.totalHealth}}</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <h5 class="troop-text-small">Total DPS:  {{troop.totalDps}}</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <h5 class="troop-text-small">Training time: {{troop.trainingTime}} mins </h5>
+              </div>
+            </div>
+          </div>
+          <div class="large-2 columns">
+            <div class="row">
+              <div class="large-12 columns">
+                <h5 class="troop-text-small">Upgrades</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <h5 class="troop-text-small">Upgrade Cost:  {{troop.upgradeCost}}</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <h5 class="troop-text-small">Damage Upgrade: {{troop.damageUpgrade}}</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <h5 class="troop-text-small">HP Upgrade: {{troop.hpUpgrade}}</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <h5 class="troop-text-small">Upgrade Time: {{troop.upgradeTime}}</h5>
+              </div>
+            </div>
+          </div>
+          <div class="large-2 columns">
+            <input type="range" value="0" min="0" max="40" step="1" onchange="console.log(this.value)">
+          </div>
         </div>
       </div>
     </div>
