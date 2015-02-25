@@ -6,6 +6,13 @@ function($scope, $log){
 	$scope.troopTypes = ["Barbarian","Archer","Goblin","Giant","Wall Breaker", "Balloon","Wizard","Healer","Dragon","P.E.K.K.A"];
 	$scope.townHall = {level: 0, imageUrl: "images/town-hall/Town_hall10.png"};
   $scope.troops = [];
+  $scope.army = {
+    totalDPS: 0,
+    totalHP: 0,
+    totalHS: 0,
+    totalEC: 0,
+    totalTrainingTime: 0
+  }
   $scope.addTroop = function() {
     for(var troop in troopInfo) {
       if($scope.type === troopInfo[troop].name) {
@@ -17,12 +24,13 @@ function($scope, $log){
   $scope.updateTroop = function(troop) {
     console.log('updating', troop);
     for (var troops in troopInfo) {
-      if (troop.level === troopInfo[troops].level.length) {
+      if (troop.name === troopInfo[troops].name && troop.level === troopInfo[troops].level.length) {
+        console.log(troop.level, troopInfo[troops].level.length);
         console.log("max reached");
         troop.damagePerSecond = troopInfo[troops].level[troop.level - 1].dps;
         troop.elixirCost = troopInfo[troops].level[troop.level - 1].ec;
         troop.hp = troopInfo[troops].level[troop.level - 1].hp;
-        troop.researchCost = "MAX LEVEL";
+        troop.researchCost = "MAX Level";
         troop.damageUpgrade = "N/A";
         troop.hpUpgrade = "N/A";
         troop.researchTime = "N/A";
@@ -45,11 +53,19 @@ function($scope, $log){
     }
   };
   $scope.changeTroopQuantity = function(troop) {
+    $scope.army.totalDPS -= troop.totalDps;
+    $scope.army.totalHP -= troop.totalHealth;
+    $scope.army.totalHS -= troop.totalHousingSpace;
+    $scope.army.totalTrainingTime -= troop.totalTrainingTime;
   	troop.quantity = troop.quan;
   	troop.totalHealth = troop.quantity * troop.hp;
   	troop.totalDps = troop.quantity * troop.damagePerSecond; 
   	troop.totalTrainingTime = troop.quantity * troop.trainingTime;
   	troop.totalHousingSpace = troop.quantity * troop.housingSpace;
+    $scope.army.totalDPS += troop.totalDps;
+    $scope.army.totalHP += troop.totalHealth;
+    $scope.army.totalHS += troop.totalHousingSpace;
+    $scope.army.totalTrainingTime += troop.totalTrainingTime; 
   };
   $scope.levelUp = function(troop) {
     if(troop.level === troop.maxLevel) {return;}

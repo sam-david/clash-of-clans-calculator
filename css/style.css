@@ -7,6 +7,10 @@ Wood Brown: #4C0E04
 
 */
 
+body {
+	background-color: #2185C5 !important;
+}
+
 .top-bar {
 	background-color: #4C0E04;
 }
@@ -21,8 +25,16 @@ Wood Brown: #4C0E04
 	text-align: center;
 }
 
+.townhall-row {
+	margin-top: 2%;
+	padding: 2%;
+	background-color: #2E0C09;
+	border: solid #4C0E04 4px;
+}
+
 .townhall-text {
-	font-size: 1.8em;
+	font-size: 1.4em;
+	color: white;
 }
 
 .townhall-image {
@@ -30,10 +42,22 @@ Wood Brown: #4C0E04
 }
 
 .troop-tile {
-	margin-bottom: 1%;
-	background-color: grey;
+	background: linear-gradient(#5fbbd1, #2d7798);
 	padding: 1%;
+	border-left: solid #4C0E04 4px;
+	border-right: solid #4C0E04 4px;
+	border-top: solid #4C0E04 2px;
+	border-bottom: solid #4C0E04 2px;
 }
+
+.troop-select-row {
+	background-color: #2E0C09;
+	border-top: solid #4C0E04 4px;
+	border-right: solid #4C0E04 4px;
+	border-left: solid #4C0E04 4px;
+	padding-top: 2%;
+}
+
 
 .image-container {
  text-align: center;
@@ -41,12 +65,12 @@ Wood Brown: #4C0E04
 
 .troop-image {
 	padding: 2%;
-	width: 60%;
+	width: 70%;
 }
 
 .troop-image-border {
-	border: solid black 1px;
-	background: white;
+	/*border: solid black 1px;
+	background: white;*/
 }
 
 .level-header-text {
@@ -75,7 +99,7 @@ Wood Brown: #4C0E04
 }
 
 .elixir-text {
-	color: #B22E9E;
+	color: #C633B0;
 }
 
 .up {
@@ -112,4 +136,9 @@ Wood Brown: #4C0E04
 
 .troop-text-medium {
 	font-size: 1em;
+}
+
+.troop-total-text {
+	font-size: 1em;
+	text-align: center;
 }

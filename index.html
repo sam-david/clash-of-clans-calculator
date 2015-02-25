@@ -44,15 +44,9 @@
         <img src="images/pageitems/coc-header.jpg" class="header-image">
       </div>
     </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <h1 class="page-heading">My Troops</h1>
-        <i class="fi-cloud"></i>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-3 medium-3 large-offset-2 columns">
-        <h1 class="townhall-text">Townhall Level:</h1>
+    <div class="row townhall-row">
+      <div class="large-4 medium-3 large-offset-2 columns">
+        <h1 class="townhall-text">Select Town Hall Level:</h1>
       </div>
       <div class="large-2 medium-2 columns">
         <select ng-model="levelSelect" ng-change="changeTownHallLevel()">
@@ -73,6 +67,12 @@
       </div>
     </div>
     <div class="row">
+      <div class="large-12 columns">
+        <h1 class="page-heading">My Troops</h1>
+        <i class="fi-cloud"></i>
+      </div>
+    </div>
+    <div class="row troop-select-row">
       <div class="large-6 large-centered columns">
         <div class="row">
           <form ng-submit="addTroop()">
@@ -153,7 +153,7 @@
           </div>
           <div class="row">
             <div class="large-12 columns">
-              <h4>EC: {{troop.elixirCost}} <img src="images/troops/elixir.png" class="elixir-icon"></h4>
+              <h4>EC: <span class="elixir-text">{{troop.elixirCost}} </span></h4>
             </div>
           </div>
         </div>
@@ -192,7 +192,7 @@
           </div>
           <div class="row">
             <div class="large-12 columns">
-              <h5 class="troop-text-small">Research Cost:  {{troop.researchCost}}</h5>
+              <h5 class="troop-text-small">Res. Cost:  <span class="elixir-text">{{troop.researchCost}} </span></h5>
             </div>
           </div>
           <div class="row">
@@ -207,7 +207,7 @@
           </div>
           <div class="row">
             <div class="large-12 columns">
-              <h5 class="troop-text-small">Research Time: {{troop.researchTime}}</h5>
+              <h5 class="troop-text-small">Res. Time: {{troop.researchTime}}</h5>
             </div>
           </div>
         </div>
@@ -228,6 +228,23 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row troop-tile">
+      <div class="large-2 columns">
+        <h2 class="troop-total-text">DPS: {{ army.totalDPS }}</h2>
+      </div>
+      <div class="large-2 columns">
+        <h2 class="troop-total-text">HP: {{ army.totalHP }}</h2>
+      </div>
+      <div class="large-2 columns">
+        <h2 class="troop-total-text">HS: {{ army.totalHS }}</h2>
+      </div>
+      <div class="large-2 columns">
+        <h2 class="troop-total-text">EC: {{ army.totalEC }}</h2>
+      </div>
+      <div class="large-3 columns left">
+        <h2 class="troop-total-text">Train: {{ army.totalTrainingTime }}</h2>
       </div>
     </div>
     <script src="js/foundation.min.js"></script>
