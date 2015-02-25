@@ -1,10 +1,38 @@
+/*
+
+Wood Brown: #4C0E04
 
 
-.row {
-	background-color: grey;
+
+
+*/
+
+.top-bar {
+	background-color: #4C0E04;
 }
+
+.header-image {
+	border-left: solid #4C0E04 3px;
+	border-right: solid #4C0E04 3px;
+	border-bottom: solid #4C0E04 3px;
+}
+
+.page-heading {
+	text-align: center;
+}
+
+.townhall-text {
+	font-size: 1.8em;
+}
+
+.townhall-image {
+	width: 30%;
+}
+
 .troop-tile {
 	margin-bottom: 1%;
+	background-color: grey;
+	padding: 1%;
 }
 
 .image-container {
@@ -12,8 +40,8 @@
 }
 
 .troop-image {
-	padding: 10%;
-	width: 80%;
+	padding: 2%;
+	width: 60%;
 }
 
 .troop-image-border {
@@ -21,26 +49,65 @@
 	background: white;
 }
 
+.level-header-text {
+	text-align: center;
+	margin-bottom: 0px;
+}
+
 .troop-level-text {
 	text-align: center;
 	font-size: 3em;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+.arrow-icon {
+	font-size: 1.6em;
+	text-shadow: 0px 1px 0px #0092b3,0px 2px 0px #0087a6,0px 3px 0px #008099,0px 4px 0px #00758c,0px 5px 0px #555,0px 6px 0px #006a80,0px 0px 0px #006073,0px 8px 7px #005566;
+}
+
+.arrow-icon:hover {
+	color: yellow;
+}
+
+.elixir-icon {
+	width: 10%;
+}
+
+.elixir-text {
+	color: #B22E9E;
+}
+
+.up {
+	color: green;
+}
+
+.down {
+	color: red;
 }
 
 .icon-box {
-	text-align: center;
+	
 }
 
-.level-header-text {
-	padding-top: 10%;
-	text-align: center;
-}
+
 
 .troop-header-text {
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+.troop-remove-text {
+	font-size: .6em;
 	text-align: center;
 }
 
 .troop-text-small {
 	font-size: .8em;
+}
+.troop-text-small-heading {
+	font-size: .9em;
+	text-align: center;
 }
 
 .troop-text-medium {

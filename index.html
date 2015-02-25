@@ -10,163 +10,227 @@
     <script src="app.js"></script>
   </head>
   <body ng-app="clashCalc" ng-controller="TroopCtrl">
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="index.html" class="nav-title">Clash of Clans Calculator</a></h1>
+        </li>
+         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      </ul>
+
+      <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="left">
+        <div class="section-nav">
+          <li><a class="nav-text" href="#fuel-section" id="fuel-nav-button" disabled>Fuel</a></li>
+          <li><a class="nav-text" href="#performance-section" id="performance-nav-button" disabled>Performance</a></li>
+          <li><a class="nav-text" href="#teslaannual" id="tesla-cost-nav-button" disabled>Tesla</a></li>
+          <li><a class="nav-text" href="#compannual" id="comp-cost-nav-button" disabled>Comp</a></li>
+        </div>
+        </ul>
+
+        <ul class="right">
+          <li><a class="nav-button" href="contact.html">Contact</a></li>
+          <li><a class="nav-button" href="about.html">About</a></li>
+          <li><a class="nav-button" target="_blank" href="http://www.teslamotors.com/">Tesla Motors</a></li>
+          <li><a class="nav-button" target="_blank" href="http://www.edmunds.com/">Edmunds</a></li>
+        </ul>
+      </section>
+    </nav>
     <div class="row">
       <div class="large-12 columns">
+        <img src="images/pageitems/coc-header.jpg" class="header-image">
       </div>
     </div>
     <div class="row">
       <div class="large-12 columns">
-        <h1>My Troops</h1>
+        <h1 class="page-heading">My Troops</h1>
         <i class="fi-cloud"></i>
       </div>
     </div>
-
-    <div class="troop-box">
-      <div class="row">
-        <div class="large-6 large-centered columns">
-          <div class="row">
-            <form ng-submit="addTroop()">
-              <div class="large-6 columns">
-                <select ng-model="type">
-                  <option ng-repeat="troopType in troopTypes" value="{{troopType}}">{{$index + 1}}: {{troopType}}</option>
-                </select>
-              </div>
-              <div class="large-4 columns">
-                <select ng-model="level">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                </select>
-              </div>
-              <div class="large-2 columns">
-                <button type="submit">Add Troop</button>
-              </div>
-            </form>
-          </div>
+    <div class="row">
+      <div class="large-3 medium-3 large-offset-2 columns">
+        <h1 class="townhall-text">Townhall Level:</h1>
+      </div>
+      <div class="large-2 medium-2 columns">
+        <select ng-model="levelSelect" ng-change="changeTownHallLevel()">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="large-3 medium-3 columns left">
+        <img class="townhall-image" src="{{ townHall.imageUrl }}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-6 large-centered columns">
+        <div class="row">
+          <form ng-submit="addTroop()">
+            <div class="large-6 columns">
+              <select ng-model="type">
+                <option ng-repeat="troopType in troopTypes" value="{{troopType}}">- {{troopType}} -</option>
+              </select>
+            </div>
+            <div class="large-4 columns">
+              <select ng-model="level">
+                <option disabled selected>Troop Level</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+              </select>
+            </div>
+            <div class="large-2 columns">
+              <button type="submit">Add Troop</button>
+            </div>
+          </form>
         </div>
       </div>
-      <div ng-repeat="troop in troops | orderBy: '-name'">
-        <div class="row troop-tile">
-          <div class="large-2 columns troop-image-border">
-            <div class="row">
-              <div class="large-12 columns image-container">
-                <img src="{{troop.imageUrl}}" class="troop-image">
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <h4 class="troop-header-text"> {{troop.name}} </h4>
-              </div>
+    </div>
+    <div ng-repeat="troop in troops | orderBy: '-name'">
+      <div class="row troop-tile">
+        <div class="large-2 columns troop-image-border">
+          <div class="row">
+            <div class="large-12 columns image-container">
+              <img src="{{troop.imageUrl}}" class="troop-image">
             </div>
           </div>
-          <div class="large-2 columns">
-            <div class="row">
-              <div class="large-12 columns">
-                <h5 class="level-header-text"> Level </h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <h2 class="troop-level-text"> {{troop.level}} </h2>
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-6 columns icon-box">
-                <i ng-click="levelUp(troop)" class="fi-arrow-up"></i>
-              </div>
-              <div class="large-6 columns icon-box">
-                <i ng-click="levelDown(troop)" class="fi-arrow-down"></i>
-              </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h4 class="troop-header-text"> {{troop.name}} </h4>
             </div>
           </div>
-          <div class="large-2 columns">
-            <div class="row">
-              <div class="large-12 columns">
-                <h4>DPS:  {{troop.damagePerSecond}}</h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <h4>HS:  {{troop.housingSpace}}</h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <h4>EC: {{troop.elixirCost}} </h4>
-              </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h4 class="troop-remove-text">Remove</h4>
             </div>
           </div>
-          <div class="large-2 columns">
-            <div class="row">
-              <div class="large-12 columns">
-                <h5 class="troop-text-small">Total Health:  {{troop.totalHealth}}</h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <h5 class="troop-text-small">Total DPS:  {{troop.totalDps}}</h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <h5 class="troop-text-small">Training time: {{troop.trainingTime}} mins </h5>
-              </div>
+        </div>
+        <div class="large-2 columns">
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="level-header-text"> Level </h5>
             </div>
           </div>
-          <div class="large-2 columns">
-            <div class="row">
-              <div class="large-12 columns">
-                <h5 class="troop-text-small">Upgrades</h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <h5 class="troop-text-small">Upgrade Cost:  {{troop.upgradeCost}}</h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <h5 class="troop-text-small">Damage Upgrade: {{troop.damageUpgrade}}</h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <h5 class="troop-text-small">HP Upgrade: {{troop.hpUpgrade}}</h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <h5 class="troop-text-small">Upgrade Time: {{troop.upgradeTime}}</h5>
-              </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h2 class="troop-level-text"> {{troop.level}} </h2>
             </div>
           </div>
-          <div class="large-2 columns">
-            <div class="row">
-              <div class="large-12 columns">
-                <h5 class="troop-header-text">Quantity</h5>
-              </div>
+          <div class="row">
+            <div class="large-6 columns icon-box">
+              <i ng-click="levelUp(troop)" class="fi-arrow-up arrow-icon up right"></i>
             </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <h5 class="troop-level-text">{{troop.quantity}}</h5>
-              </div>
+            <div class="large-6 columns icon-box">
+              <i ng-click="levelDown(troop)" class="fi-arrow-down arrow-icon down"></i>
             </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <input  type="range" value="0" min="0" max="40" step="1"ng-model="troop.quan" ng-change="changeTroopQuantity(troop)">
-              </div>
+          </div>
+        </div>
+        <div class="large-2 columns">
+          <div class="row">
+            <div class="large-12 columns">
+              <h4>DPS:  {{troop.damagePerSecond}}</h4>
             </div>
-            
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h4>HS:  {{troop.housingSpace}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h4>EC: {{troop.elixirCost}} <img src="images/troops/elixir.png" class="elixir-icon"></h4>
+            </div>
+          </div>
+        </div>
+        <div class="large-2 columns">
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="troop-text-small-heading">Totals</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="troop-text-small">Health:  {{troop.totalHealth}}</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="troop-text-small">Housing:  {{troop.totalHousingSpace}}</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="troop-text-small">DPS:  {{troop.totalDps}}</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="troop-text-small">Training: {{troop.totalTrainingTime}} mins </h5>
+            </div>
+          </div>
+        </div>
+        <div class="large-2 columns">
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="troop-text-small-heading">Upgrades</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="troop-text-small">Research Cost:  {{troop.researchCost}}</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="troop-text-small">Damage Upgrade: {{troop.damageUpgrade}}</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="troop-text-small">HP Upgrade: {{troop.hpUpgrade}}</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="troop-text-small">Research Time: {{troop.researchTime}}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="large-2 columns">
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="troop-header-text">Quantity</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="troop-level-text">{{troop.quantity}}</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <input  type="range" value="0" min="0" max="40" step="1"ng-model="troop.quan" ng-change="changeTroopQuantity(troop)">
+            </div>
           </div>
         </div>
       </div>
     </div>
     <script src="js/foundation.min.js"></script>
+    <script src="js/foundation.topbar.js"></script>
     <script>$(document).foundation();</script>
   </body>
 </html>
