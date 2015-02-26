@@ -3,7 +3,7 @@ var app = angular.module('clashCalc', []);
 app.controller('TroopCtrl', [
 '$scope','$log',
 function($scope, $log){
-	$scope.troopTypes = ["Barbarian","Archer","Goblin","Giant","Wall Breaker", "Balloon","Wizard","Healer","Dragon","P.E.K.K.A","Minion"];
+	$scope.troopTypes = ["Barbarian","Archer","Goblin","Giant","Wall Breaker", "Balloon","Wizard","Healer","Dragon","P.E.K.K.A","Minion","Hog Rider","Valkyrie","Golem","Witch"];
 	$scope.townHall = {level: 0, imageUrl: "images/town-hall/Town_hall10.png", levels: [1,2,3,4,5,6,7,8,9,10]};
   $scope.troops = [];
   $scope.townHallLevels = [1,2,3,4,5,6,7,8,9,10];
@@ -104,6 +104,26 @@ function($scope, $log){
         sortedTroops.push($scope.troops[i]);
       }
     }
+    for (i = 0; i < $scope.troops.length; i++) {
+      if ($scope.troops[i].name === "Hog Rider") {
+        sortedTroops.push($scope.troops[i]);
+      }
+    }
+    for (i = 0; i < $scope.troops.length; i++) {
+      if ($scope.troops[i].name === "Valkyrie") {
+        sortedTroops.push($scope.troops[i]);
+      }
+    }
+    for (i = 0; i < $scope.troops.length; i++) {
+      if ($scope.troops[i].name === "Golem") {
+        sortedTroops.push($scope.troops[i]);
+      }
+    }
+    for (i = 0; i < $scope.troops.length; i++) {
+      if ($scope.troops[i].name === "Witch") {
+        sortedTroops.push($scope.troops[i]);
+      }
+    }
     $scope.troops = sortedTroops;
   };
   $scope.updateTroop = function(troop) {
@@ -157,7 +177,6 @@ function($scope, $log){
     } else {
       $scope.army.totalEC += troop.totalElixirCost;
     }
-    $scope.army.totalEC += troop.totalElixirCost;
     $scope.army.totalTrainingTime += troop.totalTrainingTime; 
   };
   $scope.changeTroopQuantity = function(troop) {
@@ -215,7 +234,7 @@ function($scope, $log){
     $('.troop-level-select').prop('disabled', false);
   };
   $scope.removeTroop = function(troop) {
-    alertify.log('Removed '+ troop.name + " from your army");
+    alertify.log('Removed '+ troop.name + "s from your army");
     var index = 0;
     for (i = 0; i < $scope.troops.length; i++) {
       if (troop.name === $scope.troops[i].name) {
