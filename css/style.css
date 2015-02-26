@@ -27,7 +27,7 @@ body {
 
 .townhall-row {
 	margin-top: 2%;
-	padding: 2%;
+	padding: 1.25%;
 	background-color: #2E0C09;
 	border: solid #4C0E04 4px;
 }
@@ -37,13 +37,21 @@ body {
 	color: white;
 }
 
+.townhall-text-box {
+	padding-top: 1.2%
+}
+
 .townhall-image {
 	width: 30%;
 }
 
+.townhall-select-box {
+	padding-top: 1.5%;
+}
+
 .troop-tile {
 	background: linear-gradient(#5fbbd1, #2d7798);
-	padding: 1%;
+	padding: .5%;
 	border-left: solid #4C0E04 4px;
 	border-right: solid #4C0E04 4px;
 	border-top: solid #4C0E04 2px;
@@ -58,6 +66,15 @@ body {
 	padding-top: 2%;
 }
 
+.troop-select-box {
+	padding-top: 1%;
+}
+
+.troop-button {
+	background-color: green;
+	padding: 25%;
+	text-align: center;
+}
 
 .image-container {
  text-align: center;
@@ -65,7 +82,7 @@ body {
 
 .troop-image {
 	padding: 2%;
-	width: 70%;
+	width: 50%;
 }
 
 .troop-image-border {
@@ -76,13 +93,15 @@ body {
 .level-header-text {
 	text-align: center;
 	margin-bottom: 0px;
+	margin-top: 0px;
 }
 
 .troop-level-text {
 	text-align: center;
-	font-size: 3em;
+	font-size: 2.5em;
 	margin-bottom: 0px;
 	margin-top: 0px;
+	padding: 0;
 }
 
 .arrow-icon {
@@ -119,26 +138,56 @@ body {
 .troop-header-text {
 	text-align: center;
 	margin-bottom: 0px;
+	margin-top: 0px;
 }
 
 .troop-remove-text {
 	font-size: .6em;
-	text-align: center;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	float: left;
+}
+.troop-remove-box {
+	margin: 0 auto;
 }
 
 .troop-text-small {
 	font-size: .8em;
+	margin-bottom: 0px;
+	margin-top: 0px;
 }
 .troop-text-small-heading {
 	font-size: .9em;
 	text-align: center;
+	margin-bottom: 0px;
+	margin-top: 0px;
 }
 
 .troop-text-medium {
 	font-size: 1em;
 }
 
+.troop-text-big {
+	font-size: 1.25em;
+	margin-bottom: 0px;
+	margin-top: 4%;
+}
+
 .troop-total-text {
 	font-size: 1em;
+	text-align: center;
+}
+
+.troop-close-icon {
+	width: 10%;
+	float: left;
+	color: red;
+}
+
+.troop-quantity-text {
+	color: white;
+}
+
+.troop-quantity-box {
 	text-align: center;
 }

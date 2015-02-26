@@ -4,10 +4,13 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/foundation.min.css" />
     <link rel="stylesheet" href="css/foundation-icons.css" />
+    <link href="css/alertify.core.css" rel="stylesheet" type="text/css" />
+    <link href="css/alertify.default.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <script src="js/data.js"></script>
     <script src="js/jquery-2.1.0.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+    <script src="js/alertify.js"></script>
     <script src="app.js"></script>
   </head>
   <body ng-app="clashCalc" ng-controller="TroopCtrl">
@@ -45,21 +48,12 @@
       </div>
     </div>
     <div class="row townhall-row">
-      <div class="large-4 medium-3 large-offset-2 columns">
+      <div class="large-4 medium-3 large-offset-2 columns townhall-text-box">
         <h1 class="townhall-text">Select Town Hall Level:</h1>
       </div>
-      <div class="large-2 medium-2 columns">
-        <select ng-model="levelSelect" ng-change="changeTownHallLevel()">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
+      <div class="large-2 medium-2 columns townhall-select-box">
+        <select ng-model="levelSelect" ng-change="changeTownHallLevel()" ng-options="level for level in townHallLevels" class="townhall-select">
+          <option value="">-- Level --</option>
         </select>
       </div>
       <div class="large-3 medium-3 columns left">
@@ -69,39 +63,35 @@
     <div class="row">
       <div class="large-12 columns">
         <h1 class="page-heading">My Troops</h1>
-        <i class="fi-cloud"></i>
       </div>
     </div>
     <div class="row troop-select-row">
-      <div class="large-6 large-centered columns">
+      <div class="large-10 large-centered columns">
         <div class="row">
           <form ng-submit="addTroop()">
-            <div class="large-6 columns">
-              <select ng-model="type">
+            <div class="large-4 columns">
+              <select ng-model="type" ng-change="renderTroopLevels()">
+                <option value="">-- Choose Troop --</option>
                 <option ng-repeat="troopType in troopTypes" value="{{troopType}}">- {{troopType}} -</option>
               </select>
             </div>
-            <div class="large-4 columns">
-              <select ng-model="level">
-                <option disabled selected>Troop Level</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
+            <div class="large-3 columns">
+              <select disabled ng-model="level" ng-options="level for level in currentTroopLevels" class="troop-level-select">
+                <option value="">-- Troop Level --</option>
               </select>
             </div>
+            <div class="large-3 columns troop-quantity-box">
+              <h4 class="troop-quantity-text">{{ selectedQuantity }} </h4>
+              <input  type="range" value="1" min="0" max="40" step="1" ng-model="selectedQuantity">
+            </div>
             <div class="large-2 columns">
-              <button type="submit">Add Troop</button>
+              <button type="submit" class="troop-button">Add Troop</button>
             </div>
           </form>
         </div>
       </div>
     </div>
-    <div ng-repeat="troop in troops | orderBy: '-name'">
+    <div ng-repeat="troop in troops">
       <div class="row troop-tile">
         <div class="large-2 columns troop-image-border">
           <div class="row">
@@ -115,8 +105,9 @@
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 columns troop-remove-box" ng-click="removeTroop(troop)">
               <h4 class="troop-remove-text">Remove</h4>
+              <i class="fi-x troop-close-icon"></i>
             </div>
           </div>
         </div>
@@ -143,17 +134,17 @@
         <div class="large-2 columns">
           <div class="row">
             <div class="large-12 columns">
-              <h4>DPS:  {{troop.damagePerSecond}}</h4>
+              <h4 class="troop-text-big">DPS:  {{troop.damagePerSecond}}</h4>
             </div>
           </div>
           <div class="row">
             <div class="large-12 columns">
-              <h4>HS:  {{troop.housingSpace}}</h4>
+              <h4 class="troop-text-big">HS:  {{troop.housingSpace}}</h4>
             </div>
           </div>
           <div class="row">
             <div class="large-12 columns">
-              <h4>EC: <span class="elixir-text">{{troop.elixirCost}} </span></h4>
+              <h4 class="troop-text-big">EC: <span class="elixir-text">{{troop.elixirCost}} </span></h4>
             </div>
           </div>
         </div>
@@ -181,6 +172,11 @@
           <div class="row">
             <div class="large-12 columns">
               <h5 class="troop-text-small">Training: {{troop.totalTrainingTime}} mins </h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <h5 class="troop-text-small">EC: <span class="elixir-text">{{troop.totalElixirCost}}</span> </h5>
             </div>
           </div>
         </div>
@@ -243,8 +239,16 @@
       <div class="large-2 columns">
         <h2 class="troop-total-text">EC: {{ army.totalEC }}</h2>
       </div>
-      <div class="large-3 columns left">
+      <div class="large-2 columns">
+        <h2 class="troop-total-text">DEC: {{ army.totalDarkEC }} </h2>
+      </div>
+      <div class="large-2 columns">
         <h2 class="troop-total-text">Train: {{ army.totalTrainingTime }}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <h1 class="page-heading">My Defenses</h1>
       </div>
     </div>
     <script src="js/foundation.min.js"></script>
