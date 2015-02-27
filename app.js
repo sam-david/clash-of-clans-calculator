@@ -244,3 +244,106 @@ function($scope, $log){
     $scope.troops.splice(index, 1);
   }
 }]);
+
+app.controller('DefenseCtrl', [
+'$scope','$log',
+function($scope, $log){
+  $scope.farts = "poop";
+  $scope.defenseTypes = ["Cannon","Mortar","Fart Machine"];
+  $scope.totalDefenseDps = 0;
+  $scope.totalDefenseHp = 0;
+  $scope.cannons = [];
+  $scope.archerTowers = [];
+  $scope.archerTowerTotalHp = 0;
+  $scope.archerTowerTotalDps = 0;
+  $scope.cannonLevels = [1,2,3,4,5,6,7,8,9,10,11,12]
+  $scope.cannonTotalDps = 0;
+  $scope.cannonTotalHp = 0;
+  $scope.selectedQuantity = 1;
+  $scope.army = {
+    totalDPS: 0,
+    totalHP: 0,
+    totalHS: 0,
+    totalEC: 0,
+    totalDarkEC: 0,
+    totalTrainingTime: 0
+  }
+  $scope.addDefense = function(type) {
+    console.log(type);
+    if (type === "Cannon") {
+      if ($scope.cannons.length >= 6) {return;}
+      alertify.log("Added Cannon to your army");
+      $scope.cannons.push({name: "Cannon", imageUrl: defenseInfo.cannon.level[0].imageUrl, level: 1, damagePerSecond: defenseInfo.cannon.level[0].dps, hp: defenseInfo.cannon.level[0].hp, upgradeCost: defenseInfo.cannon.level[1].cost, damageUpgrade: defenseInfo.cannon.level[1].dps - defenseInfo.cannon.level[0].dps, hpUpgrade: defenseInfo.cannon.level[1].hp - defenseInfo.cannon.level[0].hp, buildTime: defenseInfo.cannon.level[0].buildTime, maxLevel: defenseInfo.cannon.maxLevel})
+      $scope.cannonTotalDps += defenseInfo.cannon.level[0].dps;
+      $scope.cannonTotalHp += defenseInfo.cannon.level[0].hp;
+    } else if (type === "Archer Tower") {
+      if ($scope.archerTowers.length >= 6) {return;}
+      alertify.log("Added Archer Tower to your army");
+      $scope.archerTowers.push({name: "Archer Tower", imageUrl: defenseInfo.archerTower.level[0].imageUrl, level: 1, damagePerSecond: defenseInfo.archerTower.level[0].dps, hp: defenseInfo.archerTower.level[0].hp, upgradeCost: defenseInfo.archerTower.level[1].cost, damageUpgrade: defenseInfo.archerTower.level[1].dps - defenseInfo.archerTower.level[0].dps, hpUpgrade: defenseInfo.archerTower.level[1].hp - defenseInfo.archerTower.level[0].hp, buildTime: defenseInfo.archerTower.level[0].buildTime, maxLevel: defenseInfo.archerTower.maxLevel})
+      $scope.archerTowerTotalDps += defenseInfo.archerTower.level[0].dps;
+      $scope.archerTowerTotalHp += defenseInfo.archerTower.level[0].hp;
+    }
+  }
+  $scope.levelUpDefense = function(defense) {
+    console.log('level up', defense);
+    if(defense.level === defense.maxLevel) {return;}
+    defense.level += 1;
+    $scope.updateDefense(defense);
+  }
+  $scope.levelDownDefense = function(defense) {
+    console.log('level down', defense);
+    if(defense.level <= 1) {return;}
+    defense.level -= 1;
+    $scope.updateDefense(defense);
+  }
+  $scope.updateDefense = function(defense) {
+    console.log("updating", defense);
+    if (defense.name === "Cannon") {
+      $scope.cannonTotalDps -= defense.damagePerSecond;
+      $scope.cannonTotalHp -= defense.hp;
+    } else if (defense.name === "Archer Tower") {
+      $scope.archerTowerTotalDps -= defense.damagePerSecond;
+      $scope.archerTowerTotalHp -= defense.hp;
+    }
+    for (var defenses in defenseInfo) {
+      if (defense.name === defenseInfo[defenses].name && defense.level === defenseInfo[defenses].level.length) {
+        console.log("max reached");
+        defense.imageUrl = defenseInfo[defenses].level[defense.level - 1].imageUrl;
+        defense.damagePerSecond = defenseInfo[defenses].level[defense.level - 1].dps;
+        defense.hp = defenseInfo[defenses].level[defense.level - 1].hp;
+        defense.damageUpgrade = "N/A";
+        defense.hpUpgrade = "N/A";
+        defense.upgradeCost = "N/A";
+        defense.buildTime = "N/A";
+      } else if(defense.name === defenseInfo[defenses].name) {
+        defense.imageUrl = defenseInfo[defenses].level[defense.level - 1].imageUrl;
+        defense.damagePerSecond = defenseInfo[defenses].level[defense.level - 1].dps;
+        defense.hp = defenseInfo[defenses].level[defense.level - 1].hp;
+        defense.damageUpgrade = defenseInfo[defenses].level[defense.level].dps - defenseInfo[defenses].level[defense.level - 1].dps;
+        defense.hpUpgrade = defenseInfo[defenses].level[defense.level].hp - defenseInfo[defenses].level[defense.level - 1].hp;
+        defense.upgradeCost = defenseInfo[defenses].level[defense.level].cost - defenseInfo[defenses].level[defense.level - 1].cost;
+        defense.buildTime = defenseInfo[defenses].level[defense.level - 1].buildTime;
+      }
+    }
+    if (defense.name === "Cannon") {
+      $scope.cannonTotalDps += defense.damagePerSecond;
+      $scope.cannonTotalHp += defense.hp;
+    } else if (defense.name === "Archer Tower") {
+      $scope.archerTowerTotalDps += defense.damagePerSecond;
+      $scope.archerTowerTotalHp += defense.hp;
+    }
+  }
+  $scope.removeDefense = function(defense) {
+    alertify.log('Removed '+ defense.name + " from your army");
+    var index = 0;
+    if (defense.name === "Cannon") {
+      $scope.cannons.splice($scope.cannons.indexOf(defense), 1);
+      $scope.cannonTotalDps -= defense.damagePerSecond;
+      $scope.cannonTotalHp -= defense.hp;
+    } else if (defense.name === "Archer Tower") {
+      $scope.archerTowers.splice($scope.archerTowers.indexOf(defense), 1);
+      $scope.archerTowerTotalDps -= defense.damagePerSecond;
+      $scope.archerTowerTotalHp -= defense.hp;
+    }
+  }
+}]);

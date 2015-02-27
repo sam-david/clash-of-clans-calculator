@@ -129,10 +129,6 @@ body {
 	color: red;
 }
 
-.icon-box {
-	
-}
-
 
 
 .troop-header-text {
@@ -190,4 +186,82 @@ body {
 
 .troop-quantity-box {
 	text-align: center;
+}
+
+
+.defense-heading-row {
+	background-color: #2E0C09;
+	padding-top: 1.5%;
+}
+
+.defense-tile {
+	background: linear-gradient(#5fbbd1, #2d7798);
+	border-left: solid #4C0E04 4px;
+	border-right: solid #4C0E04 4px;
+	border-top: solid #4C0E04 2px;
+	border-bottom: solid #4C0E04 2px;
+}
+
+.defense-text-padding {
+	padding-top: 1%;
+}
+
+.defense-title {
+	color: white;
+	padding-left: 15%;
+}
+
+.defense-add {
+	color: white;
+	font-size: 1.6em;
+}
+
+.defense-text {
+	font-size: .8em;
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+.defense-text-small {
+	font-size: .4em;
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+.defense-image-box {
+	text-align: center;
+}
+
+.defense-image {
+	padding-top: 1%;
+}
+
+.add-box {
+	
+}
+
+.defense-level-row {
+	padding-top: 5%;
+	text-align: center;
+}
+
+.defense-level-text {
+	margin-bottom: 0px;
+	font-size: 1.3em;
+	line-height: normal;
+	text-align: center;
+}
+
+.defense-remove-icon {
+	padding-left: 65%;
+	font-size: 1.6em;
+	color: red;
+}
+
+.defense-arrow-padding {
+	padding-top: 4%;
+}
+
+.defense-upgrade-text {
+	font-size: 1.25em;
 }

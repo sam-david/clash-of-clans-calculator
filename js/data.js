@@ -854,3 +854,238 @@ var troopInfo = {
     ]
     }
 }
+
+var defenseInfo = {
+    cannon: {
+        name: "Cannon",
+        townhallLevelCounts: [2,2,2,2,3,3,5,5,5,6],
+        size: "3x3",
+        range: 9,
+        attackSpeed: .8,
+        damageType: "Single Shot",
+        unitTargeted: "Ground",
+        maxLevel: 13,
+        level: [
+            { /* Level 1 */
+            dps: 9,
+            hp: 420,
+            cost: 250,
+            buildTime: "1 Minute",
+            townHallRequired: 1,
+            imageUrl: "images/defenses/cannon/cannonlevel1.png"    
+            },
+            { /* Level 2 */
+            dps: 11,
+            hp: 470,
+            cost: 1000,
+            buildTime: "15 Minutes",
+            townHallRequired: 1,
+            imageUrl: "images/defenses/cannon/cannonlevel2.png"    
+            },
+            { /* Level 3 */
+            dps: 15,
+            hp: 520,
+            cost: 4000,
+            buildTime: "45 Minutes",
+            townHallRequired: 2,
+            imageUrl: "images/defenses/cannon/cannonlevel3.png"    
+            },
+            { /* Level 4 */
+            dps: 19,
+            hp: 570,
+            cost: 16000,
+            buildTime: "2 Hours",
+            townHallRequired: 3,
+            imageUrl: "images/defenses/cannon/cannonlevel4.png"    
+            },
+            { /* Level 5 */
+            dps: 25,
+            hp: 620,
+            cost: 50000,
+            buildTime: "6 Hours",
+            townHallRequired: 4,
+            imageUrl: "images/defenses/cannon/cannonlevel5.png"    
+            },
+            { /* Level 6 */
+            dps: 31,
+            hp: 670,
+            cost: 100000,
+            buildTime: "12 Hours",
+            townHallRequired: 5,
+            imageUrl: "images/defenses/cannon/cannonlevel6.png"    
+            },
+            { /* Level 7 */
+            dps: 40,
+            hp: 720,
+            cost: 200000,
+            buildTime: "1 Day",
+            townHallRequired: 6,
+            imageUrl: "images/defenses/cannon/cannonlevel7.png"    
+            },
+            { /* Level 8 */
+            dps: 48,
+            hp: 770,
+            cost: 400000,
+            buildTime: "2 Days",
+            townHallRequired: 7,
+            imageUrl: "images/defenses/cannon/cannonlevel8.png"    
+            },
+            { /* Level 9 */
+            dps: 56,
+            hp: 830,
+            cost: 800000,
+            buildTime: "3 Days",
+            townHallRequired: 8,
+            imageUrl: "images/defenses/cannon/cannonlevel9.png"    
+            },
+            { /* Level 10 */
+            dps: 65,
+            hp: 890,
+            cost: 1600000,
+            buildTime: "4 Days",
+            townHallRequired: 8,
+            imageUrl: "images/defenses/cannon/cannonlevel10.png"    
+            },
+            { /* Level 11 */
+            dps: 75,
+            hp: 970,
+            cost: 3200000,
+            buildTime: "5 Days",
+            townHallRequired: 9,
+            imageUrl: "images/defenses/cannon/cannonlevel11.png"    
+            },
+            { /* Level 12 */
+            dps: 86,
+            hp: 1070,
+            cost: 6400000,
+            buildTime: "6 Days",
+            townHallRequired: 10,
+            imageUrl: "images/defenses/cannon/cannonlevel12.png"    
+            },
+            { /* Level 13 */
+            dps: 98,
+            hp: 1170,
+            cost: 7500000,
+            buildTime: "7 Days",
+            townHallRequired: 10,
+            imageUrl: "images/defenses/cannon/cannonlevel12.png"    
+            }
+        ]
+    },
+    archerTower: {
+        name: "Archer Tower",
+        townhallLevelCounts: [0,1,1,2,3,3,4,5,6,7],
+        size: "3x3",
+        range: 10,
+        attackSpeed: .5,
+        damageType: "Single Shot",
+        unitTargeted: "Ground & Air",
+        maxLevel: 13,
+        level: [
+            { /* Level 1 */
+            dps: 11,
+            hp: 380,
+            cost: 1000,
+            buildTime: "15 Minutes",
+            townHallRequired: 2,
+            imageUrl: "images/defenses/archertower/archertowerlevel1.png"    
+            },
+            { /* Level 2 */
+            dps: 15,
+            hp: 420,
+            cost: 2000,
+            buildTime: "30 Minutes",
+            townHallRequired: 2,
+            imageUrl: "images/defenses/archertower/archertowerlevel2.png"    
+            },
+            { /* Level 3 */
+            dps: 19,
+            hp: 460,
+            cost: 5000,
+            buildTime: "45 Minutes",
+            townHallRequired: 2,
+            imageUrl: "images/defenses/archertower/archertowerlevel3.png"    
+            },
+            { /* Level 4 */
+            dps: 25,
+            hp: 500,
+            cost: 20000,
+            buildTime: "4 Hours",
+            townHallRequired: 3,
+            imageUrl: "images/defenses/archertower/archertowerlevel4.png"    
+            },
+            { /* Level 5 */
+            dps: 30,
+            hp: 540,
+            cost: 80000,
+            buildTime: "12 Hours",
+            townHallRequired: 4,
+            imageUrl: "images/defenses/archertower/archertowerlevel5.png"    
+            },
+            { /* Level 6 */
+            dps: 35,
+            hp: 580,
+            cost: 180000,
+            buildTime: "1 Day",
+            townHallRequired: 5,
+            imageUrl: "images/defenses/archertower/archertowerlevel6.png"    
+            },
+            { /* Level 7 */
+            dps: 42,
+            hp: 620,
+            cost: 360000,
+            buildTime: "2 Days",
+            townHallRequired: 6,
+            imageUrl: "images/defenses/archertower/archertowerlevel7.png"    
+            },
+            { /* Level 8 */
+            dps: 48,
+            hp: 660,
+            cost: 720000,
+            buildTime: "3 Days",
+            townHallRequired: 7,
+            imageUrl: "images/defenses/archertower/archertowerlevel8.png"    
+            },
+            { /* Level 9 */
+            dps: 56,
+            hp: 705,
+            cost: 1500000,
+            buildTime: "4 Days",
+            townHallRequired: 8,
+            imageUrl: "images/defenses/archertower/archertowerlevel9.png"    
+            },
+            { /* Level 10 */
+            dps: 65,
+            hp: 750,
+            cost: 2500000,
+            buildTime: "5 Days",
+            townHallRequired: 8,
+            imageUrl: "images/defenses/archertower/archertowerlevel10.png"    
+            },
+            { /* Level 11 */
+            dps: 75,
+            hp: 805,
+            cost: 4500000,
+            buildTime: "6 Days",
+            townHallRequired: 9,
+            imageUrl: "images/defenses/archertower/archertowerlevel11.png"    
+            },
+            { /* Level 12 */
+            dps: 86,
+            hp: 870,
+            cost: 6500000,
+            buildTime: "7 Days",
+            townHallRequired: 10,
+            imageUrl: "images/defenses/archertower/archertowerlevel12.png"    
+            },
+            { /* Level 13 */
+            dps: 98,
+            hp: 930,
+            cost: 7500000,
+            buildTime: "8 Days",
+            townHallRequired: 10,
+            imageUrl: "images/defenses/archertower/archertowerlevel12.png"    
+            }
+        ]
+    }
+}
