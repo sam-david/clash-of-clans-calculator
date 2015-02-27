@@ -191,7 +191,7 @@ body {
 
 .defense-heading-row {
 	background-color: #2E0C09;
-	padding-top: 1.5%;
+	padding-top: 1.2%;
 }
 
 .defense-tile {
@@ -203,17 +203,30 @@ body {
 }
 
 .defense-text-padding {
-	padding-top: 1%;
+	padding-top: .8%;
 }
 
 .defense-title {
 	color: white;
 	padding-left: 15%;
+	font-size: 1.3em;
+	margin-bottom: 0px;
+}
+
+.defense-sum-heading {
+	color: white;
+	font-size: 1em;
 }
 
 .defense-add {
 	color: white;
 	font-size: 1.6em;
+}
+
+.defense-add-text {
+	text-align: right;
+	color: white;
+	font-size: 1em;
 }
 
 .defense-text {
@@ -241,7 +254,7 @@ body {
 }
 
 .defense-level-row {
-	padding-top: 5%;
+	padding-top: 3%;
 	text-align: center;
 }
 
@@ -264,4 +277,8 @@ body {
 
 .defense-upgrade-text {
 	font-size: 1.25em;
+}
+
+.gold {
+	color: gold;
 }

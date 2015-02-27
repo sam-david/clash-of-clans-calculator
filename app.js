@@ -17,6 +17,13 @@ function($scope, $log){
     totalDarkEC: 0,
     totalTrainingTime: 0
   }
+  $scope.existingTroopsCookie = function() {
+    if ($.cookie('troop_cookie') != undefined) {
+      console.log(JSON.parse($.cookie('troop_cookie')));
+      $scope.troops = JSON.parse($.cookie('troop_cookie'));
+    }
+  }
+  $scope.existingTroopsCookie();
   $scope.addTroop = function() {
     for (var i = 0; i < $scope.troops.length; i++ ) {
       if ($scope.type === $scope.troops[i].name) {
@@ -44,9 +51,17 @@ function($scope, $log){
       }
     }
     $scope.sortTroops();
-    console.log($scope.troops)
+    $scope.cookieSaveTroops();
     $('.troop-level-select').prop('disabled', true);
   };
+  $scope.cookieSaveTroops = function() {
+    cookieTroops = $scope.troops;
+    for (i = 0; i < cookieTroops.length; i++) {
+      delete cookieTroops[i]['$$hashKey'];
+    }
+    $.cookie('troop_cookie', JSON.stringify(cookieTroops));
+    console.log(JSON.parse($.cookie('troop_cookie')));
+  }
   $scope.sortTroops = function() {
     var sortedTroops = [];
     for (i = 0; i < $scope.troops.length; i++) {
@@ -177,7 +192,8 @@ function($scope, $log){
     } else {
       $scope.army.totalEC += troop.totalElixirCost;
     }
-    $scope.army.totalTrainingTime += troop.totalTrainingTime; 
+    $scope.army.totalTrainingTime += troop.totalTrainingTime;
+    $scope.cookieSaveTroops(); 
   };
   $scope.changeTroopQuantity = function(troop) {
     $scope.army.totalDPS -= troop.totalDps;
@@ -203,7 +219,8 @@ function($scope, $log){
     } else {
       $scope.army.totalEC += troop.totalElixirCost;
     }
-    $scope.army.totalTrainingTime += troop.totalTrainingTime; 
+    $scope.army.totalTrainingTime += troop.totalTrainingTime;
+    $scope.cookieSaveTroops(); 
   };
   $scope.levelUp = function(troop) {
     if(troop.level === troop.maxLevel) {return;}
@@ -242,6 +259,7 @@ function($scope, $log){
       }
     }
     $scope.troops.splice(index, 1);
+    $scope.cookieSaveTroops();
   }
 }]);
 
@@ -249,16 +267,20 @@ app.controller('DefenseCtrl', [
 '$scope','$log',
 function($scope, $log){
   $scope.farts = "poop";
-  $scope.defenseTypes = ["Cannon","Mortar","Fart Machine"];
+  $scope.defenseTypes = ["Cannon","Archer Tower","Mortar","Air Defense","Wizard Tower","Hidden Tesla","X-Bow","Inferno Tower"];
   $scope.totalDefenseDps = 0;
   $scope.totalDefenseHp = 0;
   $scope.cannons = [];
-  $scope.archerTowers = [];
-  $scope.archerTowerTotalHp = 0;
-  $scope.archerTowerTotalDps = 0;
   $scope.cannonLevels = [1,2,3,4,5,6,7,8,9,10,11,12]
   $scope.cannonTotalDps = 0;
   $scope.cannonTotalHp = 0;
+  $scope.archerTowers = [];
+  $scope.archerTowerTotalHp = 0;
+  $scope.archerTowerTotalDps = 0;
+  $scope.mortars = [];
+  $scope.mortarTotalHp = 0;
+  $scope.mortarTotalDps = 0;
+
   $scope.selectedQuantity = 1;
   $scope.army = {
     totalDPS: 0,
@@ -268,21 +290,57 @@ function($scope, $log){
     totalDarkEC: 0,
     totalTrainingTime: 0
   }
+  $scope.existingDefensesCookie = function() {
+    if ($.cookie('defense_cookie') != undefined) {
+      console.log('Existing Defenses:', JSON.parse($.cookie('defense_cookie')));
+      $scope.cannons = JSON.parse($.cookie('defense_cookie')).cannons;
+      $scope.archerTowers = JSON.parse($.cookie('defense_cookie')).archerTowers;
+      $scope.mortars = JSON.parse($.cookie('defense_cookie')).mortars;
+    }
+  }
+  $scope.existingDefensesCookie();
+  $scope.cookieSaveDefenses = function() {
+    var cookieDefenses = {};
+    cookieDefenses.cannons = $scope.cannons;
+    cookieDefenses.archerTowers = $scope.archerTowers;
+    cookieDefenses.mortars = $scope.mortars;
+    for (var defense in cookieDefenses) {
+      for (i=0;i < cookieDefenses[defense].length; i++) {
+        delete cookieDefenses[defense][i]['$$hashKey'];
+      }
+    }
+    $.cookie('defense_cookie', JSON.stringify(cookieDefenses));
+    console.log("Saved Defenses:", JSON.parse($.cookie('defense_cookie')));
+  }
   $scope.addDefense = function(type) {
     console.log(type);
+    alertify.set({delay: 1500});
     if (type === "Cannon") {
-      if ($scope.cannons.length >= 6) {return;}
-      alertify.log("Added Cannon to your army");
+      if ($scope.cannons.length >= defenseInfo.cannon.townhallLevelCounts[defenseInfo.cannon.townhallLevelCounts.length-1]) {return;}
+      alertify.log("Added Cannon to Your Army");
       $scope.cannons.push({name: "Cannon", imageUrl: defenseInfo.cannon.level[0].imageUrl, level: 1, damagePerSecond: defenseInfo.cannon.level[0].dps, hp: defenseInfo.cannon.level[0].hp, upgradeCost: defenseInfo.cannon.level[1].cost, damageUpgrade: defenseInfo.cannon.level[1].dps - defenseInfo.cannon.level[0].dps, hpUpgrade: defenseInfo.cannon.level[1].hp - defenseInfo.cannon.level[0].hp, buildTime: defenseInfo.cannon.level[0].buildTime, maxLevel: defenseInfo.cannon.maxLevel})
       $scope.cannonTotalDps += defenseInfo.cannon.level[0].dps;
       $scope.cannonTotalHp += defenseInfo.cannon.level[0].hp;
+      $scope.totalDefenseDps += defenseInfo.cannon.level[0].dps;
+      $scope.totalDefenseHp += defenseInfo.cannon.level[0].hp;
     } else if (type === "Archer Tower") {
-      if ($scope.archerTowers.length >= 6) {return;}
-      alertify.log("Added Archer Tower to your army");
+      if ($scope.archerTowers.length >= defenseInfo.archerTower.townhallLevelCounts[defenseInfo.archerTower.townhallLevelCounts.length-1]) {return;}
+      alertify.log("Added Archer Tower to Your Army");
       $scope.archerTowers.push({name: "Archer Tower", imageUrl: defenseInfo.archerTower.level[0].imageUrl, level: 1, damagePerSecond: defenseInfo.archerTower.level[0].dps, hp: defenseInfo.archerTower.level[0].hp, upgradeCost: defenseInfo.archerTower.level[1].cost, damageUpgrade: defenseInfo.archerTower.level[1].dps - defenseInfo.archerTower.level[0].dps, hpUpgrade: defenseInfo.archerTower.level[1].hp - defenseInfo.archerTower.level[0].hp, buildTime: defenseInfo.archerTower.level[0].buildTime, maxLevel: defenseInfo.archerTower.maxLevel})
       $scope.archerTowerTotalDps += defenseInfo.archerTower.level[0].dps;
       $scope.archerTowerTotalHp += defenseInfo.archerTower.level[0].hp;
+      $scope.totalDefenseDps += defenseInfo.archerTower.level[0].dps;
+      $scope.totalDefenseHp += defenseInfo.archerTower.level[0].hp;
+    } else if (type === "Mortar") {
+      if ($scope.mortars.length >= defenseInfo.mortar.townhallLevelCounts[defenseInfo.mortar.townhallLevelCounts.length-1]) {return;}
+      alertify.log("Added Mortar to Your Army");
+      $scope.mortars.push({name: "Mortar", imageUrl: defenseInfo.mortar.level[0].imageUrl, level: 1, damagePerSecond: defenseInfo.mortar.level[0].dps, hp: defenseInfo.mortar.level[0].hp, upgradeCost: defenseInfo.mortar.level[1].cost, damageUpgrade: defenseInfo.mortar.level[1].dps - defenseInfo.mortar.level[0].dps, hpUpgrade: defenseInfo.mortar.level[1].hp - defenseInfo.mortar.level[0].hp, buildTime: defenseInfo.mortar.level[0].buildTime, maxLevel: defenseInfo.mortar.maxLevel})
+      $scope.mortarTotalDps += defenseInfo.mortar.level[0].dps;
+      $scope.mortarTotalHp += defenseInfo.mortar.level[0].hp;
+      $scope.totalDefenseDps += defenseInfo.mortar.level[0].dps;
+      $scope.totalDefenseHp += defenseInfo.mortar.level[0].hp;
     }
+    $scope.cookieSaveDefenses();
   }
   $scope.levelUpDefense = function(defense) {
     console.log('level up', defense);
@@ -304,7 +362,12 @@ function($scope, $log){
     } else if (defense.name === "Archer Tower") {
       $scope.archerTowerTotalDps -= defense.damagePerSecond;
       $scope.archerTowerTotalHp -= defense.hp;
+    } else if (defense.name === "Mortar") {
+      $scope.mortarTotalDps -= defense.damagePerSecond;
+      $scope.mortarTotalHp -= defense.hp;
     }
+    $scope.totalDefenseDps -= defense.damagePerSecond;
+    $scope.totalDefenseHp -= defense.hp;
     for (var defenses in defenseInfo) {
       if (defense.name === defenseInfo[defenses].name && defense.level === defenseInfo[defenses].level.length) {
         console.log("max reached");
@@ -331,7 +394,13 @@ function($scope, $log){
     } else if (defense.name === "Archer Tower") {
       $scope.archerTowerTotalDps += defense.damagePerSecond;
       $scope.archerTowerTotalHp += defense.hp;
+    } else if (defense.name === "Mortar") {
+      $scope.mortarTotalDps += defense.damagePerSecond;
+      $scope.mortarTotalHp += defense.hp;
     }
+    $scope.totalDefenseDps += defense.damagePerSecond;
+    $scope.totalDefenseHp += defense.hp;
+    $scope.cookieSaveDefenses();
   }
   $scope.removeDefense = function(defense) {
     alertify.log('Removed '+ defense.name + " from your army");
@@ -344,6 +413,13 @@ function($scope, $log){
       $scope.archerTowers.splice($scope.archerTowers.indexOf(defense), 1);
       $scope.archerTowerTotalDps -= defense.damagePerSecond;
       $scope.archerTowerTotalHp -= defense.hp;
+    } else if (defense.name === "Mortar") {
+      $scope.mortars.splice($scope.mortars.indexOf(defense), 1);
+      $scope.mortarTotalDps -= defense.damagePerSecond;
+      $scope.mortarTotalHp -= defense.hp;
     }
+    $scope.totalDefenseDps -= defense.damagePerSecond;
+    $scope.totalDefenseHp -= defense.hp;
+    $scope.cookieSaveDefenses();
   }
 }]);

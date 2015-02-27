@@ -1087,5 +1087,389 @@ var defenseInfo = {
             imageUrl: "images/defenses/archertower/archertowerlevel12.png"    
             }
         ]
+    },
+    mortar: {
+        name: "Mortar",
+        townhallLevelCounts: [0,0,1,1,1,2,3,4,4,4],
+        size: "3x3",
+        range: 11,
+        attackSpeed: 5,
+        damageType: "Splash - 1.5 tiles",
+        unitTargeted: "Ground",
+        maxLevel: 8,
+        level: [
+            { /* Level 1 */
+            dps: 4,
+            hp: 400,
+            cost: 8000,
+            buildTime: "8 Hours",
+            townHallRequired: 3,
+            imageUrl: "images/defenses/mortar/mortarlevel1.png"    
+            },
+            { /* Level 2 */
+            dps: 5,
+            hp: 450,
+            cost: 32000,
+            buildTime: "12 Hours",
+            townHallRequired: 4,
+            imageUrl: "images/defenses/mortar/mortarlevel2.png"    
+            },
+            { /* Level 3 */
+            dps: 6,
+            hp: 500,
+            cost: 120000,
+            buildTime: "1 Day",
+            townHallRequired: 5,
+            imageUrl: "images/defenses/mortar/mortarlevel3.png"    
+            },
+            { /* Level 4 */
+            dps: 7,
+            hp: 550,
+            cost: 400000,
+            buildTime: "2 Days",
+            townHallRequired: 6,
+            imageUrl: "images/defenses/mortar/mortarlevel4.png"    
+            },
+            { /* Level 5 */
+            dps: 8,
+            hp: 600,
+            cost: 800000,
+            buildTime: "4 Days",
+            townHallRequired: 7,
+            imageUrl: "images/defenses/mortar/mortarlevel5.png"    
+            },
+            { /* Level 6 */
+            dps: 9,
+            hp: 650,
+            cost: 160000,
+            buildTime: "5 Days",
+            townHallRequired: 8,
+            imageUrl: "images/defenses/mortar/mortarlevel6.png"    
+            },
+            { /* Level 7 */
+            dps: 11,
+            hp: 700,
+            cost: 3200000,
+            buildTime: "7 Days",
+            townHallRequired: 9,
+            imageUrl: "images/defenses/mortar/mortarlevel7.png"    
+            },
+            { /* Level 8 */
+            dps: 13,
+            hp: 750,
+            cost: 6400000,
+            buildTime: "10 Days",
+            townHallRequired: 10,
+            imageUrl: "images/defenses/mortar/mortarlevel8.png"    
+            }
+        ]
+    },
+    airDefense: {
+        name: "Air Defense",
+        townhallLevelCounts: [0,0,0,1,1,1,2,3,4,4],
+        size: "3x3",
+        range: 10,
+        attackSpeed: 1,
+        damageType: "Single Target",
+        unitTargeted: "Air",
+        maxLevel: 8,
+        level: [
+            { /* Level 1 */
+            dps: 80,
+            hp: 800,
+            cost: 22500,
+            buildTime: "5 Hours",
+            townHallRequired: 4,
+            imageUrl: "images/defenses/airdefense/airdefenselevel1.png"    
+            },
+            { /* Level 2 */
+            dps: 110,
+            hp: 850,
+            cost: 90000,
+            buildTime: "1 Day",
+            townHallRequired: 4,
+            imageUrl: "images/defenses/airdefense/airdefenselevel2.png"    
+            },
+            { /* Level 3 */
+            dps: 140,
+            hp: 900,
+            cost: 270000,
+            buildTime: "3 Days",
+            townHallRequired: 5,
+            imageUrl: "images/defenses/airdefense/airdefenselevel3.png"    
+            },
+            { /* Level 4 */
+            dps: 160,
+            hp: 950,
+            cost: 540000,
+            buildTime: "5 Days",
+            townHallRequired: 6,
+            imageUrl: "images/defenses/airdefense/airdefenselevel4.png"    
+            },
+            { /* Level 5 */
+            dps: 190,
+            hp: 1000,
+            cost: 1080000,
+            buildTime: "6 Days",
+            townHallRequired: 7,
+            imageUrl: "images/defenses/airdefense/airdefenselevel5.png"    
+            },
+            { /* Level 6 */
+            dps: 230,
+            hp: 1050,
+            cost: 2160000,
+            buildTime: "8 Days",
+            townHallRequired: 8,
+            imageUrl: "images/defenses/airdefense/airdefenselevel6.png"    
+            },
+            { /* Level 7 */
+            dps: 280,
+            hp: 1110,
+            cost: 4320000,
+            buildTime: "10 Days",
+            townHallRequired: 9,
+            imageUrl: "images/defenses/airdefense/airdefenselevel7.png"    
+            },
+            { /* Level 8 */
+            dps: 320,
+            hp: 1170,
+            cost: 7560000,
+            buildTime: "12 Days",
+            townHallRequired: 10,
+            imageUrl: "images/defenses/airdefense/airdefenselevel8.png"    
+            }
+        ]
+    },
+    wizardTower: {
+        name: "Wizard Tower",
+        townhallLevelCounts: [0,0,0,0,1,2,2,3,4,4],
+        size: "3x3",
+        range: 7,
+        attackSpeed: 1.3,
+        damageType: "Splash - 1 tile",
+        unitTargeted: "Ground & Air",
+        maxLevel: 8,
+        level: [
+            { /* Level 1 */
+            dps: 11,
+            hp: 620,
+            cost: 180000,
+            buildTime: "12 Hours",
+            townHallRequired: 5,
+            imageUrl: "images/defenses/wizardtower/wizardtowerlevel1.png"    
+            },
+            { /* Level 2 */
+            dps: 13,
+            hp: 650,
+            cost: 360000,
+            buildTime: "1 Day",
+            townHallRequired: 5,
+            imageUrl: "images/defenses/wizardtower/wizardtowerlevel2.png"    
+            },
+            { /* Level 3 */
+            dps: 16,
+            hp: 680,
+            cost: 720000,
+            buildTime: "2 Days",
+            townHallRequired: 6,
+            imageUrl: "images/defenses/wizardtower/wizardtowerlevel3.png"    
+            },
+            { /* Level 4 */
+            dps: 20,
+            hp: 710,
+            cost: 1280000,
+            buildTime: "3 Days",
+            townHallRequired: 7,
+            imageUrl: "images/defenses/wizardtower/wizardtowerlevel4.png"    
+            },
+            { /* Level 5 */
+            dps: 24,
+            hp: 750,
+            cost: 1960000,
+            buildTime: "4 Days",
+            townHallRequired: 8,
+            imageUrl: "images/defenses/wizardtower/wizardtowerlevel5.png"    
+            },
+            { /* Level 6 */
+            dps: 32,
+            hp: 790,
+            cost: 2680000,
+            buildTime: "5 Days",
+            townHallRequired: 8,
+            imageUrl: "images/defenses/wizardtower/wizardtowerlevel6.png"    
+            },
+            { /* Level 7 */
+            dps: 40,
+            hp: 840,
+            cost: 5360000,
+            buildTime: "7 Days",
+            townHallRequired: 9,
+            imageUrl: "images/defenses/wizardtower/wizardtowerlevel7.png"    
+            },
+            { /* Level 8 */
+            dps: 48,
+            hp: 900,
+            cost: 6480000,
+            buildTime: "10 Days",
+            townHallRequired: 10,
+            imageUrl: "images/defenses/wizardtower/wizardtowerlevel8.png"    
+            }
+        ]
+    },
+    hiddenTesla: {
+        name: "Hidden Tesla",
+        townhallLevelCounts: [0,0,0,0,0,0,2,3,4,4],
+        size: "2x2",
+        range: 7,
+        attackSpeed: .6,
+        damageType: "Single Target",
+        unitTargeted: "Ground & Air",
+        maxLevel: 8,
+        level: [
+            { /* Level 1 */
+            dps: 34,
+            hp: 600,
+            cost: 1000000,
+            buildTime: "1 Day",
+            townHallRequired: 7,
+            imageUrl: "images/defenses/hiddentesla/hiddenteslalevel1.png"    
+            },
+            { /* Level 2 */
+            dps: 40,
+            hp: 630,
+            cost: 1250000,
+            buildTime: "3 Days",
+            townHallRequired: 7,
+            imageUrl: "images/defenses/hiddentesla/hiddenteslalevel2.png"    
+            },
+            { /* Level 3 */
+            dps: 48,
+            hp: 660,
+            cost: 1500000,
+            buildTime: "5 Days",
+            townHallRequired: 7,
+            imageUrl: "images/defenses/hiddentesla/hiddenteslalevel3.png"    
+            },
+            { /* Level 4 */
+            dps: 55,
+            hp: 690,
+            cost: 2000000,
+            buildTime: "6 Days",
+            townHallRequired: 8,
+            imageUrl: "images/defenses/hiddentesla/hiddenteslalevel4.png"    
+            },
+            { /* Level 5 */
+            dps: 64,
+            hp: 730,
+            cost: 2500000,
+            buildTime: "8 Days",
+            townHallRequired: 8,
+            imageUrl: "images/defenses/hiddentesla/hiddenteslalevel5.png"    
+            },
+            { /* Level 6 */
+            dps: 75,
+            hp: 770,
+            cost: 3000000,
+            buildTime: "10 Days",
+            townHallRequired: 8,
+            imageUrl: "images/defenses/hiddentesla/hiddenteslalevel6.png"    
+            },
+            { /* Level 7 */
+            dps: 87,
+            hp: 810,
+            cost: 3500000,
+            buildTime: "12 Days",
+            townHallRequired: 9,
+            imageUrl: "images/defenses/hiddentesla/hiddenteslalevel7.png"    
+            },
+            { /* Level 8 */
+            dps: 99,
+            hp: 850,
+            cost: 5000000,
+            buildTime: "14 Days",
+            townHallRequired: 10,
+            imageUrl: "images/defenses/hiddentesla/hiddenteslalevel8.png"    
+            }
+        ]
+    },
+    xbow: {
+        name: "X-Bow",
+        townhallLevelCounts: [0,0,0,0,0,0,0,0,2,3],
+        size: "3x3",
+        range: 14,
+        attackSpeed: .128,
+        damageType: "Single Target",
+        unitTargeted: "Ground & Air",
+        maxLevel: 4,
+        level: [
+            { /* Level 1 */
+            dps: 50,
+            hp: 1500,
+            cost: 3000000,
+            buildTime: "7 Days",
+            townHallRequired: 9,
+            imageUrl: "images/defenses/xbow/xbowlevel1.png"    
+            },
+            { /* Level 2 */
+            dps: 60,
+            hp: 1900,
+            cost: 5000000,
+            buildTime: "10 Days",
+            townHallRequired: 9,
+            imageUrl: "images/defenses/xbow/xbowlevel2.png"    
+            },
+            { /* Level 3 */
+            dps: 75,
+            hp: 2300,
+            cost: 7000000,
+            buildTime: "14 Days",
+            townHallRequired: 9,
+            imageUrl: "images/defenses/xbow/xbowlevel3.png"    
+            },
+            { /* Level 4 */
+            dps: 80,
+            hp: 2700,
+            cost: 8000000,
+            buildTime: "14 Days",
+            townHallRequired: 10,
+            imageUrl: "images/defenses/xbow/xbowlevel4.png"    
+            }
+        ]
+    },
+    infernoTower: {
+        name: "Inferno Tower",
+        townhallLevelCounts: [0,0,0,0,0,0,0,0,0,2],
+        size: "2x2",
+        range: 9,
+        attackSpeed: .128,
+        damageType: "Single Target/Multiple Targets",
+        unitTargeted: "Ground & Air",
+        maxLevel: 3,
+        level: [
+            { /* Level 1 */
+            dps: 24,
+            hp: 1000,
+            cost: 5000000,
+            buildTime: "7 Days",
+            townHallRequired: 10,
+            imageUrl: "images/defenses/infernotower/infernotowerlevel1.png"    
+            },
+            { /* Level 2 */
+            dps: 30,
+            hp: 1250,
+            cost: 6500000,
+            buildTime: "10 Days",
+            townHallRequired: 10,
+            imageUrl: "images/defenses/infernotower/infernotowerlevel2.png"    
+            },
+            { /* Level 3 */
+            dps: 36,
+            hp: 1400,
+            cost: 8000000,
+            buildTime: "14 Days",
+            townHallRequired: 10,
+            imageUrl: "images/defenses/infernotower/infernotowerlevel3.png"    
+            }
+        ]
     }
 }
