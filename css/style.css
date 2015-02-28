@@ -192,6 +192,10 @@ body {
 .defense-heading-row {
 	background-color: #2E0C09;
 	padding-top: 1.2%;
+	border-left: solid #4C0E04 4px;
+	border-right: solid #4C0E04 4px;
+	border-top: solid #4C0E04 2px;
+	border-bottom: solid #4C0E04 2px;
 }
 
 .defense-tile {
@@ -241,12 +245,22 @@ body {
 	text-align: center;
 }
 
+.defense-text-totals {
+	text-align: center;
+	color: white;
+	padding-bottom: 2%;
+}
+
 .defense-image-box {
 	text-align: center;
 }
 
 .defense-image {
 	padding-top: 1%;
+}
+
+.defense-top-image {
+	width: 50%;
 }
 
 .add-box {
@@ -266,9 +280,10 @@ body {
 }
 
 .defense-remove-icon {
-	padding-left: 65%;
+	padding-left: 62%;
 	font-size: 1.6em;
 	color: red;
+	text-shadow: 0px 1px 0px #0092b3,0px 2px 0px #0087a6,0px 3px 0px #008099,0px 4px 0px #00758c,0px 5px 0px #555,0px 6px 0px #006a80,0px 0px 0px #006073,0px 8px 7px #005566;
 }
 
 .defense-arrow-padding {

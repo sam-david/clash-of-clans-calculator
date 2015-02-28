@@ -256,10 +256,17 @@
       </div>
     </div>
     <div class="row defense-heading-row">
-      <div class="large-3 columns">
-        <p class="defense-title"> Cannon </p>
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Cannon </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/defenses/cannon/cannontopimage.png">
+          </div>
+        </div>
       </div>
-      <div class="large-2 large-offset-1 columns">
+      <div class="large-2 columns">
         <p class="defense-sum-heading" ng-show="cannonTotalDps"> Total DPS: {{ cannonTotalDps }} </p>
       </div>
       <div class="large-2 columns">
@@ -317,10 +324,17 @@
       </div>
     </div>
     <div class="row defense-heading-row">
-      <div class="large-3 columns">
-        <p class="defense-title"> Archer Tower </p>
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Archer Tower </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/defenses/archertower/archertowertopimage.png">
+          </div>
+        </div>
       </div>
-      <div class="large-2 large-offset-1 columns">
+      <div class="large-2 columns">
         <p class="defense-sum-heading" ng-show="archerTowerTotalDps"> Total DPS: {{ archerTowerTotalDps }} </p>
       </div>
       <div class="large-2 columns">
@@ -378,10 +392,17 @@
       </div>
     </div>
     <div class="row defense-heading-row">
-      <div class="large-3 columns">
-        <p class="defense-title"> Mortar </p>
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Mortar </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/defenses/mortar/mortartopimage.png">
+          </div>
+        </div>
       </div>
-      <div class="large-2 large-offset-1 columns">
+      <div class="large-2 columns">
         <p class="defense-sum-heading" ng-show="mortarTotalDps"> Total DPS: {{ mortarTotalDps }} </p>
       </div>
       <div class="large-2 columns">
@@ -439,11 +460,494 @@
       </div>
     </div>
     <div class="row defense-heading-row">
-      <div class="large-6 columns">
-        {{totalDefenseDps}}
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Air Defense </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/defenses/airdefense/airdefensetopimage.png">
+          </div>
+        </div>
       </div>
-      <div class="large-6 columns">
-        {{totalDefenseHp}}
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="airDefenseTotalDps"> Total DPS: {{ airDefenseTotalDps }} </p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="airDefenseTotalHp"> Total HP: {{ airDefenseTotalHp }} </p>
+      </div>
+      <div ng-click="addDefense('Air Defense')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="airDefense in airDefenses">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ airDefense.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ airDefense.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpDefense(airDefense)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownDefense(airDefense)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">DPS:</p>
+          <p class="defense-level-text">{{ airDefense.damagePerSecond }}</p>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">HP:</p>
+          <p class="defense-level-text">{{ airDefense.hp }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Damage Upgrade:</span> <span class="defense-upgrade-text">{{ airDefense.damageUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">HP Upgrade:</span><span class="defense-upgrade-text"> {{ airDefense.hpUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text gold"> {{ airDefense.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ airDefense.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeDefense(airDefense)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Wizard Tower </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/defenses/wizardtower/wizardtowertopimage.png">
+          </div>
+        </div>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="wizardTowerTotalDps"> Total DPS: {{ wizardTowerTotalDps }} </p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="wizardTowerTotalHp"> Total HP: {{ wizardTowerTotalHp }} </p>
+      </div>
+      <div ng-click="addDefense('Wizard Tower')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="wizardTower in wizardTowers">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ wizardTower.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ wizardTower.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpDefense(wizardTower)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownDefense(wizardTower)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">DPS:</p>
+          <p class="defense-level-text">{{ wizardTower.damagePerSecond }}</p>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">HP:</p>
+          <p class="defense-level-text">{{ wizardTower.hp }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Damage Upgrade:</span> <span class="defense-upgrade-text">{{ wizardTower.damageUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">HP Upgrade:</span><span class="defense-upgrade-text"> {{ wizardTower.hpUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text gold"> {{ wizardTower.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ wizardTower.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeDefense(wizardTower)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Hidden Tesla </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/defenses/hiddentesla/hiddenteslatopimage.png">
+          </div>
+        </div>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="hiddenTeslaTotalDps"> Total DPS: {{ hiddenTeslaTotalDps }} </p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="hiddenTeslaTotalHp"> Total HP: {{ hiddenTeslaTotalHp }} </p>
+      </div>
+      <div ng-click="addDefense('Hidden Tesla')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="hiddenTesla in hiddenTeslas">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ hiddenTesla.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ hiddenTesla.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpDefense(hiddenTesla)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownDefense(hiddenTesla)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">DPS:</p>
+          <p class="defense-level-text">{{ hiddenTesla.damagePerSecond }}</p>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">HP:</p>
+          <p class="defense-level-text">{{ hiddenTesla.hp }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Damage Upgrade:</span> <span class="defense-upgrade-text">{{ hiddenTesla.damageUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">HP Upgrade:</span><span class="defense-upgrade-text"> {{ hiddenTesla.hpUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text gold"> {{ hiddenTesla.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ hiddenTesla.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeDefense(hiddenTesla)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> X-Bow </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/defenses/xbow/xbowtopimage.png">
+          </div>
+        </div>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="xbowTotalDps"> Total DPS: {{ xbowTotalDps }} </p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="xbowTotalHp"> Total HP: {{ xbowTotalHp }} </p>
+      </div>
+      <div ng-click="addDefense('X-Bow')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="xbow in xbows">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ xbow.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ xbow.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpDefense(xbow)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownDefense(xbow)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">DPS:</p>
+          <p class="defense-level-text">{{ xbow.damagePerSecond }}</p>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">HP:</p>
+          <p class="defense-level-text">{{ xbow.hp }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Damage Upgrade:</span> <span class="defense-upgrade-text">{{ xbow.damageUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">HP Upgrade:</span><span class="defense-upgrade-text"> {{ xbow.hpUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text gold"> {{ xbow.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ xbow.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeDefense(xbow)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Inferno Tower </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/defenses/infernotower/infernotowertopimage.png">
+          </div>
+        </div>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="infernoTowerTotalDps"> Total DPS: {{ infernoTowerTotalDps }} </p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="infernoTowerTotalHp"> Total HP: {{ infernoTowerTotalHp }} </p>
+      </div>
+      <div ng-click="addDefense('Inferno Tower')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="infernoTower in infernoTowers">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ infernoTower.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ infernoTower.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpDefense(infernoTower)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownDefense(infernoTower)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">DPS:</p>
+          <p class="defense-level-text">{{ infernoTower.damagePerSecond }}</p>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">HP:</p>
+          <p class="defense-level-text">{{ infernoTower.hp }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Damage Upgrade:</span> <span class="defense-upgrade-text">{{ infernoTower.damageUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">HP Upgrade:</span><span class="defense-upgrade-text"> {{ infernoTower.hpUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text gold"> {{ infernoTower.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ infernoTower.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeDefense(infernoTower)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-6 columns defense-text-totals">
+        Total Defense DPS: {{totalDefenseDps}}
+      </div>
+      <div class="large-6 columns defense-text-totals">
+        Total Defense HP: {{totalDefenseHp}}
+      </div>
+    </div>
+  </div>
+  <div ng-controller="ResourceCtrl">
+    <div class="row">
+      <div class="large-12 columns">
+        <h1 class="page-heading">My Resources</h1>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Gold Mine </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/resources/goldmine/goldminetopimage.png">
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <p class="defense-sum-heading" ng-show="goldMineTotalProductionRate"> Total Production Rate: <span class="gold">{{ goldMineTotalProductionRate }}/Hr </span></p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="goldMineTotalHp"> Total HP: {{ goldMineTotalHp }} </p>
+      </div>
+      <div ng-click="addResource('Gold Mine')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="goldMine in goldMines">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ goldMine.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ goldMine.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpResource(goldMine)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownResource(goldMine)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-2 columns defense-text-padding">
+          <p class="defense-text-small">Production Rate:</p>
+          <p class="defense-level-text">{{ goldMine.productionRate }}</p>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">Capacity:</p>
+          <p class="defense-level-text">{{ goldMine.capacity }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Prod. Rate Upgr.:</span> <span class="defense-upgrade-text">{{ goldMine.prUpgrade }}</span>/Hr <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">Cap. Upgrade:</span><span class="defense-upgrade-text"> {{ goldMine.capacityUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text elixir-text"> {{ goldMine.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ goldMine.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeResource(goldMine)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Elixir Collector </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/resources/elixircollector/elixircollectortopimage.png">
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <p class="defense-sum-heading" ng-show="elixirCollectorTotalProductionRate"> Total Production Rate: <span class="elixir-text">{{ elixirCollectorTotalProductionRate }}/Hr </span></p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="elixirCollectorTotalHp"> Total HP: {{ elixirCollectorTotalHp }} </p>
+      </div>
+      <div ng-click="addResource('Elixir Collector')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="elixirCollector in elixirCollectors">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ elixirCollector.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ elixirCollector.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpResource(elixirCollector)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownResource(elixirCollector)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-2 columns defense-text-padding">
+          <p class="defense-text-small">Production Rate:</p>
+          <p class="defense-level-text">{{ elixirCollector.productionRate }}</p>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">Capacity:</p>
+          <p class="defense-level-text">{{ elixirCollector.capacity }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Prod. Rate Upgr.:</span> <span class="defense-upgrade-text">{{ elixirCollector.prUpgrade }}</span>/Hr <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">Cap. Upgrade:</span><span class="defense-upgrade-text"> {{ elixirCollector.capacityUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text gold"> {{ elixirCollector.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ elixirCollector.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeResource(elixirCollector)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
       </div>
     </div>
   </div>

@@ -1473,3 +1473,238 @@ var defenseInfo = {
         ]
     }
 }
+
+var resourceInfo = {
+    goldMine: {
+        name: "Gold Mine",
+        townhallLevelCounts: [1,2,3,4,5,6,6,6,6,7],
+        size: "3x3",
+        maxLevel: 12,
+        level: [
+            { /* Level 1 */
+            cost: 150,
+            buildTime: "1 Minute",
+            capacity: 500,
+            productionRate: 200,
+            hp: 400,
+            townHallRequired: 1,
+            imageUrl: "images/resources/goldmine/goldminelevel1.png"    
+            },
+            { /* Level 2 */
+            cost: 300,
+            buildTime: "5 Minute",
+            capacity: 1000,
+            productionRate: 400,
+            hp: 440,
+            townHallRequired: 1,
+            imageUrl: "images/resources/goldmine/goldminelevel2.png"    
+            },
+            { /* Level 3 */
+            cost: 700,
+            buildTime: "15 Minutes",
+            capacity: 1500,
+            productionRate: 600,
+            hp: 480,
+            townHallRequired: 2,
+            imageUrl: "images/resources/goldmine/goldminelevel3.png"    
+            },
+            { /* Level 4 */
+            cost: 1400,
+            buildTime: "1 Hour",
+            capacity: 2500,
+            productionRate: 800,
+            hp: 520,
+            townHallRequired: 2,
+            imageUrl: "images/resources/goldmine/goldminelevel4.png"    
+            },
+            { /* Level 5 */
+            cost: 3000,
+            buildTime: "2 Hours",
+            capacity: 10000,
+            productionRate: 1000,
+            hp: 560,
+            townHallRequired: 3,
+            imageUrl: "images/resources/goldmine/goldminelevel5.png"    
+            },
+            { /* Level 6 */
+            cost: 7000,
+            buildTime: "6 Hours",
+            capacity: 20000,
+            productionRate: 1300,
+            hp: 600,
+            townHallRequired: 3,
+            imageUrl: "images/resources/goldmine/goldminelevel6.png"    
+            },
+            { /* Level 7 */
+            cost: 14000,
+            buildTime: "12 Hours",
+            capacity: 30000,
+            productionRate: 1600,
+            hp: 640,
+            townHallRequired: 4,
+            imageUrl: "images/resources/goldmine/goldminelevel7.png"    
+            },
+            { /* Level 8 */
+            cost: 28000,
+            buildTime: "1 Day",
+            capacity: 50000,
+            productionRate: 1900,
+            hp: 680,
+            townHallRequired: 4,
+            imageUrl: "images/resources/goldmine/goldminelevel8.png"    
+            },
+            { /* Level 9 */
+            cost: 56000,
+            buildTime: "2 Days",
+            capacity: 75000,
+            productionRate: 2200,
+            hp: 720,
+            townHallRequired: 5,
+            imageUrl: "images/resources/goldmine/goldminelevel9.png"    
+            },
+            { /* Level 10 */
+            cost: 84000,
+            buildTime: "3 Days",
+            capacity: 100000,
+            productionRate: 2500,
+            hp: 760,
+            townHallRequired: 5,
+            imageUrl: "images/resources/goldmine/goldminelevel10.png"    
+            },
+            { /* Level 11 */
+            cost: 168000,
+            buildTime: "4 Days",
+            capacity: 150000,
+            productionRate: 3000,
+            hp: 800,
+            townHallRequired: 7,
+            imageUrl: "images/resources/goldmine/goldminelevel11.png"    
+            },
+            { /* Level 12 */
+            cost: 336000,
+            buildTime: "5 Days",
+            capacity: 200000,
+            productionRate: 3500,
+            hp: 840,
+            townHallRequired: 8,
+            imageUrl: "images/resources/goldmine/goldminelevel11.png"    
+            }
+        ]
+    },
+    elixirCollector: {
+        name: "Elixir Collector",
+        townhallLevelCounts: [1,2,3,4,5,6,6,6,6,7],
+        size: "3x3",
+        maxLevel: 12,
+        level: [
+            { /* Level 1 */
+            cost: 150,
+            buildTime: "1 Minute",
+            capacity: 500,
+            productionRate: 200,
+            hp: 400,
+            townHallRequired: 1,
+            imageUrl: "images/resources/elixircollector/elixircollectorlevel1.png"    
+            },
+            { /* Level 2 */
+            cost: 300,
+            buildTime: "5 Minute",
+            capacity: 1000,
+            productionRate: 400,
+            hp: 440,
+            townHallRequired: 1,
+            imageUrl: "images/resources/elixircollector/elixircollectorlevel2.png"    
+            },
+            { /* Level 3 */
+            cost: 700,
+            buildTime: "15 Minutes",
+            capacity: 1500,
+            productionRate: 600,
+            hp: 480,
+            townHallRequired: 2,
+            imageUrl: "images/resources/elixircollector/elixircollectorlevel3.png"    
+            },
+            { /* Level 4 */
+            cost: 1400,
+            buildTime: "1 Hour",
+            capacity: 2500,
+            productionRate: 800,
+            hp: 520,
+            townHallRequired: 2,
+            imageUrl: "images/resources/elixircollector/elixircollectorlevel4.png"    
+            },
+            { /* Level 5 */
+            cost: 3500,
+            buildTime: "2 Hours",
+            capacity: 10000,
+            productionRate: 1000,
+            hp: 560,
+            townHallRequired: 3,
+            imageUrl: "images/resources/elixircollector/elixircollectorlevel5.png"    
+            },
+            { /* Level 6 */
+            cost: 7000,
+            buildTime: "6 Hours",
+            capacity: 20000,
+            productionRate: 1300,
+            hp: 600,
+            townHallRequired: 3,
+            imageUrl: "images/resources/elixircollector/elixircollectorlevel6.png"    
+            },
+            { /* Level 7 */
+            cost: 14000,
+            buildTime: "12 Hours",
+            capacity: 30000,
+            productionRate: 1600,
+            hp: 640,
+            townHallRequired: 4,
+            imageUrl: "images/resources/elixircollector/elixircollectorlevel7.png"    
+            },
+            { /* Level 8 */
+            cost: 28000,
+            buildTime: "1 Day",
+            capacity: 50000,
+            productionRate: 1900,
+            hp: 680,
+            townHallRequired: 4,
+            imageUrl: "images/resources/elixircollector/elixircollectorlevel8.png"    
+            },
+            { /* Level 9 */
+            cost: 56000,
+            buildTime: "2 Days",
+            capacity: 75000,
+            productionRate: 2200,
+            hp: 720,
+            townHallRequired: 5,
+            imageUrl: "images/resources/elixircollector/elixircollectorlevel9.png"    
+            },
+            { /* Level 10 */
+            cost: 84000,
+            buildTime: "3 Days",
+            capacity: 100000,
+            productionRate: 2500,
+            hp: 760,
+            townHallRequired: 5,
+            imageUrl: "images/resources/elixircollector/elixircollectorlevel10.png"    
+            },
+            { /* Level 11 */
+            cost: 168000,
+            buildTime: "4 Days",
+            capacity: 150000,
+            productionRate: 3000,
+            hp: 800,
+            townHallRequired: 7,
+            imageUrl: "images/resources/elixircollector/elixircollectorlevel11.png"    
+            },
+            { /* Level 12 */
+            cost: 336000,
+            buildTime: "5 Days",
+            capacity: 200000,
+            productionRate: 3500,
+            hp: 840,
+            townHallRequired: 8,
+            imageUrl: "images/resources/elixircollector/elixircollectorlevel11.png"    
+            }
+        ]
+    }
+}
