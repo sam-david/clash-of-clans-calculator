@@ -9,13 +9,23 @@ Wood Brown: #4C0E04
 
 body {
 	background-color: #2185C5 !important;
+	font-family: 'Source Sans Pro', sans-serif !important;
 }
+
+.wide-row {
+  min-width: 100% !important; 
+}
+
+.nav-button {
+	background-color: #4C0E04 !important;
+} 
 
 .top-bar {
 	background-color: #4C0E04;
 }
 
 .header-image {
+	width: 100%;
 	border-left: solid #4C0E04 3px;
 	border-right: solid #4C0E04 3px;
 	border-bottom: solid #4C0E04 3px;
@@ -139,16 +149,23 @@ body {
 
 .troop-remove-text {
 	font-size: .6em;
+	text-align: center;
 	margin-bottom: 0px;
 	margin-top: 0px;
-	float: left;
+	color: red;
 }
+.troop-close-icon {
+	width: 30%;
+	color: red;
+}
+
 .troop-remove-box {
-	margin: 0 auto;
+	text-align: center;
+	cursor: default;
 }
 
 .troop-text-small {
-	font-size: .8em;
+	font-size: .6em;
 	margin-bottom: 0px;
 	margin-top: 0px;
 }
@@ -157,6 +174,14 @@ body {
 	text-align: center;
 	margin-bottom: 0px;
 	margin-top: 0px;
+}
+
+.troop-text-stat {
+	font-size: 1em;
+}
+
+.troop-text-box {
+	margin-bottom: 0px;
 }
 
 .troop-text-medium {
@@ -174,11 +199,7 @@ body {
 	text-align: center;
 }
 
-.troop-close-icon {
-	width: 10%;
-	float: left;
-	color: red;
-}
+
 
 .troop-quantity-text {
 	color: white;
