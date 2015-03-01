@@ -37,16 +37,16 @@
         </ul>
 
         <ul class="right">
-          <li><a class="nav-button" href="contact.html">Contact</a></li>
           <li><a class="nav-button" href="about.html">About</a></li>
-          <li><a class="nav-button" target="_blank" href="http://www.teslamotors.com/">CoC Homepage</a></li>
+          <li><a class="nav-button" href="links.html">Links</a></li>
+          <li><a class="nav-button" href="contact.html">Contact</a></li>
         </ul>
       </section>
     </nav>
     </div>
     <div class="wide-row">
       <div class="large-12 columns">
-        <img src="images/pageitems/coc-header2.jpg" class="header-image">
+        <img src="images/pageitems/coc-header.jpg" class="header-image">
       </div>
     </div>
     <!-- <div class="row townhall-row">
@@ -837,7 +837,7 @@
         </div>
       </div>
       <div class="large-4 columns">
-        <p class="defense-sum-heading" ng-show="goldMineTotalProductionRate"> Total Production Rate: <span class="gold">{{ goldMineTotalProductionRate }}/Hr </span></p>
+        <p class="defense-sum-heading" ng-show="goldMineTotalProductionRate"> Total Production Rate: <span class="gold">{{ goldMineTotalProductionRate }}/Hr </span><img class="gold-icon" src="images/troops/gold.png"></p>
       </div>
       <div class="large-2 columns">
         <p class="defense-sum-heading" ng-show="goldMineTotalHp"> Total HP: {{ goldMineTotalHp }} </p>
@@ -905,7 +905,7 @@
         </div>
       </div>
       <div class="large-4 columns">
-        <p class="defense-sum-heading" ng-show="elixirCollectorTotalProductionRate"> Total Production Rate: <span class="elixir-text">{{ elixirCollectorTotalProductionRate }}/Hr </span></p>
+        <p class="defense-sum-heading" ng-show="elixirCollectorTotalProductionRate"> Total Production Rate: <span class="elixir-text">{{ elixirCollectorTotalProductionRate }}/Hr </span><img class="elixir-icon" src="images/troops/elixir.png"></p>
       </div>
       <div class="large-2 columns">
         <p class="defense-sum-heading" ng-show="elixirCollectorTotalHp"> Total HP: {{ elixirCollectorTotalHp }} </p>
@@ -957,6 +957,458 @@
           <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ elixirCollector.buildTime }}</span></p>
         </div>
         <div class="large-2 columns defense-text-padding" ng-click="removeResource(elixirCollector)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Dark Elixir Drill </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/resources/darkelixirdrill/darkelixirdrilltopimage.png">
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <p class="defense-sum-heading" ng-show="darkElixirDrillTotalProductionRate"> Total Production Rate: {{ darkElixirDrillTotalProductionRate }}/Hr  <img class="dark-elixir-icon" src="images/troops/dark_elixir.png"></p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="darkElixirDrillTotalHp"> Total HP: {{ darkElixirDrillTotalHp }} </p>
+      </div>
+      <div ng-click="addResource('Dark Elixir Drill')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="darkElixirDrill in darkElixirDrills">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ darkElixirDrill.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ darkElixirDrill.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpResource(darkElixirDrill)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownResource(darkElixirDrill)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-2 columns defense-text-padding">
+          <p class="defense-text-small">Production Rate:</p>
+          <p class="defense-level-text">{{ darkElixirDrill.productionRate }}</p>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">Capacity:</p>
+          <p class="defense-level-text">{{ darkElixirDrill.capacity }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Prod. Rate Upgr.:</span> <span class="defense-upgrade-text">{{ darkElixirDrill.prUpgrade }}</span>/Hr <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">Cap. Upgrade:</span><span class="defense-upgrade-text"> {{ darkElixirDrill.capacityUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text gold"> {{ darkElixirDrill.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ darkElixirDrill.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeResource(darkElixirDrill)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Gold Storage </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/resources/goldstorage/goldstoragetopimage.png">
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <p class="defense-sum-heading" ng-show="goldStorageTotalCapacity"> Total Capacity: <span class="gold">{{ goldStorageTotalCapacity | number }} </span><img class="gold-icon" src="images/troops/gold.png"></p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="goldStorageTotalHp"> Total HP: {{ goldStorageTotalHp | number }} </p>
+      </div>
+      <div ng-click="addResource('Gold Storage')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="goldStorage in goldStorages">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ goldStorage.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ goldStorage.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpResource(goldStorage)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownResource(goldStorage)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">Capacity:</p>
+          <p class="defense-level-text">{{ goldStorage.capacity }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Hp Upgrade:</span> <span class="defense-upgrade-text">{{ goldStorage.hpUpgrade }}</span>/Hr <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">Cap. Upgrade:</span><span class="defense-upgrade-text"> {{ goldStorage.capacityUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text elixir-text"> {{ goldStorage.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ goldStorage.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeResource(goldStorage)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Elixir Storage </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/resources/elixirstorage/elixirstoragetopimage.png">
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <p class="defense-sum-heading" ng-show="elixirStorageTotalCapacity"> Total Capacity: <span class="elixir-text">{{ elixirStorageTotalCapacity | number}} </span><img class="elixir-icon" src="images/troops/elixir.png"></p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="elixirStorageTotalHp"> Total HP: {{ elixirStorageTotalHp | number}} </p>
+      </div>
+      <div ng-click="addResource('Elixir Storage')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="elixirStorage in elixirStorages">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ elixirStorage.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ elixirStorage.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpResource(elixirStorage)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownResource(elixirStorage)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">Capacity:</p>
+          <p class="defense-level-text">{{ elixirStorage.capacity }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Hp Upgrade:</span> <span class="defense-upgrade-text">{{ elixirStorage.hpUpgrade }}</span>/Hr <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">Cap. Upgrade:</span><span class="defense-upgrade-text"> {{ elixirStorage.capacityUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text gold"> {{ elixirStorage.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ elixirStorage.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeResource(elixirStorage)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Dark Elixir Storage </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/resources/darkelixirstorage/darkelixirstoragetopimage.png">
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <p class="defense-sum-heading" ng-show="darkElixirStorageTotalCapacity"> Total Capacity: {{ darkElixirStorageTotalCapacity | number}}  <img class="elixir-icon" src="images/troops/dark_elixir.png"></p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="darkElixirStorageTotalHp"> Total HP: {{ darkElixirStorageTotalHp | number}} </p>
+      </div>
+      <div ng-click="addResource('Dark Elixir Storage')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="darkElixirStorage in darkElixirStorages">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ darkElixirStorage.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ darkElixirStorage.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpResource(darkElixirStorage)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownResource(darkElixirStorage)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">Capacity:</p>
+          <p class="defense-level-text">{{ darkElixirStorage.capacity }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Hp Upgrade:</span> <span class="defense-upgrade-text">{{ darkElixirStorage.hpUpgrade }}</span>/Hr <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">Cap. Upgrade:</span><span class="defense-upgrade-text"> {{ darkElixirStorage.capacityUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text elixir-text"> {{ darkElixirStorage.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ darkElixirStorage.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeResource(darkElixirStorage)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Army Camp </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/resources/armycamp/armycamptopimage.png">
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <p class="defense-sum-heading" ng-show="armyCampTotalTroopCapacity"> Total Troop Capacity: {{ armyCampTotalTroopCapacity | number}}  <img class="elixir-icon" src="images/troops/dark_elixir.png"></p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="armyCampTotalHp"> Total HP: {{ armyCampTotalHp | number}} </p>
+      </div>
+      <div ng-click="addResource('Army Camp')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="armyCamp in armyCamps">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ armyCamp.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ armyCamp.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpResource(armyCamp)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownResource(armyCamp)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">Troop Capacity:</p>
+          <p class="defense-level-text">{{ armyCamp.troopCapacity }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Hp Upgrade:</span> <span class="defense-upgrade-text">{{ armyCamp.hpUpgrade }}</span>/Hr <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">Cap. Upgrade:</span><span class="defense-upgrade-text"> {{ armyCamp.troopCapacityUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text elixir-text"> {{ armyCamp.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ armyCamp.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeResource(armyCamp)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Barracks </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/resources/barracks/barrackstopimage.png">
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <p class="defense-sum-heading" ng-show="barrackTotalQueueLength"> Total Queue Length: {{ barrackTotalQueueLength | number}}</p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="barracksTotalHp"> Total HP: {{ barracksTotalHp | number}} </p>
+      </div>
+      <div ng-click="addResource('Barracks')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="barrack in barracks">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ barrack.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ barrack.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpResource(barrack)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownResource(barrack)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">Queue Length:</p>
+          <p class="defense-level-text">{{ barrack.queueLength }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Hp Upgrade:</span> <span class="defense-upgrade-text">{{ barrack.hpUpgrade }}</span>/Hr <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">Cap. Upgrade:</span><span class="defense-upgrade-text"> {{ barrack.queueLengthUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text elixir-text"> {{ barrack.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ barrack.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeResource(barrack)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Dark Barracks </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/resources/darkbarracks/darkbarrackstopimage.png">
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <p class="defense-sum-heading" ng-show="darkBarrackTotalQueueLength"> Total Queue Length: {{ darkBarrackTotalQueueLength | number}}</p>
+      </div>
+      <div class="large-2 columns">
+        <p class="defense-sum-heading" ng-show="darkBarrackTotalHp"> Total HP: {{ darkBarrackTotalHp | number}} </p>
+      </div>
+      <div ng-click="addResource('Dark Barracks')" class="large-2 columns add-box">
+        <div class="row">
+          <div class="large-6 columns">
+            <p class="defense-add-text">Add</p>
+          </div>
+          <div class="large-6 columns">
+            <i class="fi-plus defense-add"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="darkBarrack in darkBarracks">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ darkBarrack.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ darkBarrack.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpResource(darkBarrack)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownResource(darkBarrack)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-1 columns defense-text-padding">
+          <p class="defense-text-small">Queue Length:</p>
+          <p class="defense-level-text">{{ darkBarrack.queueLength }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Hp Upgrade:</span> <span class="defense-upgrade-text">{{ darkBarrack.hpUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+          <p class="defense-text"><span class="defense-text-small">Queue Upgrade:</span><span class="defense-upgrade-text"> {{ darkBarrack.queueLengthUpgrade }}</span> <i class="fi-arrow-up up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text elixir-text"> {{ darkBarrack.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ darkBarrack.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeResource(darkBarrack)">
           <i class="fi-x defense-remove-icon"></i>
         </div>
       </div>

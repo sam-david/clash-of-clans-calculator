@@ -575,9 +575,6 @@ function($scope, $log){
   $scope.totalResourceElixirCapacity = 0;
   $scope.totalResourceDarkElixirCapacity = 0;
   $scope.totalResourceHp = 0;
-  $scope.goldStorages = [];
-  $scope.goldStorageTotalCapacity = 0;
-  $scope.goldStorageTotalHp = 0;
   $scope.goldMines = [];
   $scope.goldMineTotalCapacity = 0;
   $scope.goldMineTotalHp = 0;
@@ -586,14 +583,35 @@ function($scope, $log){
   $scope.elixirCollectorTotalCapacity = 0;
   $scope.elixirCollectorTotalHp = 0;
   $scope.elixirCollectorTotalProductionRate = 0;
+  $scope.darkElixirDrills = [];
+  $scope.darkElixirDrillTotalCapacity = 0;
+  $scope.darkElixirDrillTotalHp = 0;
+  $scope.darkElixirDrillTotalProductionRate = 0;
+  $scope.goldStorages = [];
+  $scope.goldStorageTotalCapacity = 0;
+  $scope.goldStorageTotalHp = 0;
+  $scope.elixirStorages = [];
+  $scope.elixirStorageTotalCapacity = 0;
+  $scope.elixirStorageTotalHp = 0;
+  $scope.darkElixirStorages = [];
+  $scope.darkElixirStorageTotalCapacity = 0;
+  $scope.darkElixirStorageTotalHp = 0;
+  $scope.armyCamps = [];
+  $scope.armyCampTotalTroopCapacity = 0;
+  $scope.armyCampTotalHp = 0;
+  $scope.barracks = [];
+  $scope.barrackTotalHp = 0;
+  $scope.barrackTotalQueueLength = 0;
+  $scope.darkBarracks = [];
+  $scope.darkBarrackTotalHp = 0;
+  $scope.darkBarrackTotalQueueLength = 0;
+  var cookieResources = {};
 
   $scope.existingResourcesCookie = function() {
     if ($.cookie('resource_cookie') != undefined) {
       console.log('Existing Resources:', JSON.parse($.cookie('resource_cookie')));
       $scope.goldStorages = JSON.parse($.cookie('resource_cookie')).goldStorages;
       $scope.goldMines = JSON.parse($.cookie('resource_cookie')).goldMines;
-      $scope.goldStorageTotalCapacity = JSON.parse($.cookie('resource_cookie')).goldStorageTotalCapacity;
-      $scope.goldStorageTotalHp = JSON.parse($.cookie('resource_cookie')).goldStorageTotalHp;
       $scope.goldMineTotalHp = JSON.parse($.cookie('resource_cookie')).goldMineTotalHp;
       $scope.goldMineTotalCapacity = JSON.parse($.cookie('resource_cookie')).goldMineTotalCapacity;
       $scope.goldMineTotalProductionRate = JSON.parse($.cookie('resource_cookie')).goldMineTotalProductionRate;
@@ -601,11 +619,32 @@ function($scope, $log){
       $scope.elixirCollectorTotalCapacity = JSON.parse($.cookie('resource_cookie')).elixirCollectorTotalCapacity;
       $scope.elixirCollectorTotalHp = JSON.parse($.cookie('resource_cookie')).elixirCollectorTotalHp;
       $scope.elixirCollectorTotalProductionRate = JSON.parse($.cookie('resource_cookie')).elixirCollectorTotalProductionRate;
+      $scope.darkElixirDrills = JSON.parse($.cookie('resource_cookie')).darkElixirDrills;
+      $scope.darkElixirDrillTotalCapacity = JSON.parse($.cookie('resource_cookie')).darkElixirDrillTotalCapacity;
+      $scope.darkElixirDrillTotalHp = JSON.parse($.cookie('resource_cookie')).darkElixirDrillTotalHp;
+      $scope.darkElixirDrillTotalProductionRate = JSON.parse($.cookie('resource_cookie')).darkElixirDrillTotalProductionRate;
+      $scope.goldStorages = JSON.parse($.cookie('resource_cookie')).goldStorages;
+      $scope.goldStorageTotalCapacity = JSON.parse($.cookie('resource_cookie')).goldStorageTotalCapacity;
+      $scope.goldStorageTotalHp = JSON.parse($.cookie('resource_cookie')).goldStorageTotalHp;
+      $scope.elixirStorages = JSON.parse($.cookie('resource_cookie')).elixirStorages;
+      $scope.elixirStorageTotalCapacity = JSON.parse($.cookie('resource_cookie')).elixirStorageTotalCapacity;
+      $scope.elixirStorageTotalHp = JSON.parse($.cookie('resource_cookie')).elixirStorageTotalHp;
+      $scope.darkElixirStorages = JSON.parse($.cookie('resource_cookie')).darkElixirStorages;
+      $scope.darkElixirStorageTotalCapacity = JSON.parse($.cookie('resource_cookie')).darkElixirStorageTotalCapacity;
+      $scope.darkElixirStorageTotalHp = JSON.parse($.cookie('resource_cookie')).darkElixirStorageTotalHp;
+      $scope.armyCamps = JSON.parse($.cookie('resource_cookie')).armyCamps;
+      $scope.armyCampTotalTroopCapacity = JSON.parse($.cookie('resource_cookie')).armyCampTotalTroopCapacity;
+      $scope.armyCampTotalHp = JSON.parse($.cookie('resource_cookie')).armyCampTotalHp;
+      $scope.barracks = JSON.parse($.cookie('resource_cookie')).barracks;
+      $scope.barrackTotalHp = JSON.parse($.cookie('resource_cookie')).barrackTotalHp;
+      $scope.barrackTotalQueueLength = JSON.parse($.cookie('resource_cookie')).barrackTotalQueueLength;
+      $scope.darkBarracks = JSON.parse($.cookie('resource_cookie')).darkBarracks;
+      $scope.darkBarrackTotalHp = JSON.parse($.cookie('resource_cookie')).darkBarrackTotalHp;
+      $scope.darkBarrackTotalQueueLength = JSON.parse($.cookie('resource_cookie')).darkBarrackTotalQueueLength;
     }
   }
   $scope.existingResourcesCookie();
   $scope.cookieSaveResources = function() {
-    var cookieResources = {};
     cookieResources.goldStorages = $scope.goldStorages;
     cookieResources.goldMines = $scope.goldMines;
     cookieResources.goldStorageTotalCapacity = $scope.goldStorageTotalCapacity;
@@ -617,22 +656,46 @@ function($scope, $log){
     cookieResources.elixirCollectorTotalCapacity = $scope.elixirCollectorTotalCapacity;
     cookieResources.elixirCollectorTotalHp = $scope.elixirCollectorTotalHp;
     cookieResources.elixirCollectorTotalProductionRate = $scope.elixirCollectorTotalProductionRate;
-    // clear hash keys from angular before saving cookie
-    // for (var goldMine in cookieResources.goldMines) {
-    //   console.log(goldMine);
-    //   for (var i = 0; i < cookieResources[goldMine].length; i++) {
-    //     delete cookieResources[goldMine][i]['$$hashKey'];
-    //   }
-    // }
-    for (i = 0; i < cookieResources.goldMines.length; i++) {
-      delete cookieResources.goldMines[i]['$$hashKey'];
-    }
-    for (i = 0; i < cookieResources.elixirCollectors.length; i++) {
-      delete cookieResources.elixirCollectors[i]['$$hashKey'];
-    }
+    cookieResources.darkElixirDrills = $scope.darkElixirDrills;
+    cookieResources.darkElixirDrillTotalCapacity = $scope.darkElixirDrillTotalCapacity;
+    cookieResources.darkElixirDrillTotalHp = $scope.darkElixirDrillTotalHp;
+    cookieResources.darkElixirDrillTotalProductionRate = $scope.darkElixirDrillTotalProductionRate;
+    cookieResources.goldStorages = $scope.goldStorages;
+    cookieResources.goldStorageTotalCapacity = $scope.goldStorageTotalCapacity;
+    cookieResources.goldStorageTotalHp = $scope.goldStorageTotalHp;
+    cookieResources.elixirStorages = $scope.elixirStorages;
+    cookieResources.elixirStorageTotalCapacity = $scope.elixirStorageTotalCapacity;
+    cookieResources.elixirStorageTotalHp = $scope.elixirStorageTotalHp;
+    cookieResources.darkElixirStorages = $scope.darkElixirStorages;
+    cookieResources.darkElixirStorageTotalCapacity = $scope.darkElixirStorageTotalCapacity;
+    cookieResources.darkElixirStorageTotalHp = $scope.darkElixirStorageTotalHp;
+    cookieResources.armyCamps = $scope.armyCamps;
+    cookieResources.armyCampTotalTroopCapacity = $scope.armyCampTotalTroopCapacity;
+    cookieResources.armyCampTotalHp = $scope.armyCampTotalHp;
+    cookieResources.barracks = $scope.barracks;
+    cookieResources.barrackTotalHp = $scope.barrackTotalHp;
+    cookieResources.barrackTotalQueueLength = $scope.barrackTotalQueueLength;
+    cookieResources.darkBarracks = $scope.darkBarracks;
+    cookieResources.darkBarrackTotalHp = $scope.darkBarrackTotalHp;
+    cookieResources.darkBarrackTotalQueueLength = $scope.darkBarrackTotalQueueLength;
+    $scope.clearHashKey(cookieResources.goldMines);
+    $scope.clearHashKey(cookieResources.elixirCollectors);
+    $scope.clearHashKey(cookieResources.darkElixirDrills);
+    $scope.clearHashKey(cookieResources.goldStorages);
+    $scope.clearHashKey(cookieResources.elixirStorages);
+    $scope.clearHashKey(cookieResources.darkElixirStorages);
+    $scope.clearHashKey(cookieResources.armyCamps);
+    $scope.clearHashKey(cookieResources.barracks);
+    $scope.clearHashKey(cookieResources.darkBarracks);
     $.cookie('resource_cookie', JSON.stringify(cookieResources));
     console.log("Saved Resources:", JSON.parse($.cookie('resource_cookie')));
-  }
+  };
+  $scope.clearHashKey = function(element) {
+    console.log(element);
+    for (i = 0; i < element.length; i++) {
+      delete element[i]['$$hashKey'];
+    }
+  };
   $scope.addResource = function(type) {
     alertify.set({delay: 1500});
     if (type === "Gold Mine") {
@@ -653,6 +716,60 @@ function($scope, $log){
       $scope.elixirCollectorTotalProductionRate += resourceInfo.elixirCollector.level[0].productionRate;
       $scope.totalResourceHp += resourceInfo.elixirCollector.level[0].hp;
       $scope.totalResourceGoldCapacity += resourceInfo.elixirCollector.level[0].capacity;
+    } else if (type === "Dark Elixir Drill") {
+      if ($scope.darkElixirDrills.length >= resourceInfo.darkElixirDrill.townhallLevelCounts[resourceInfo.darkElixirDrill.townhallLevelCounts.length-1]) {return;}
+      alertify.log("Added Dark Elixir Drill to Your Army");
+      $scope.darkElixirDrills.push({name: "Dark Elixir Drill", imageUrl: resourceInfo.darkElixirDrill.level[0].imageUrl, level: 1, capacity: resourceInfo.darkElixirDrill.level[0].capacity, hp: resourceInfo.darkElixirDrill.level[0].hp, productionRate: resourceInfo.darkElixirDrill.level[0].productionRate, upgradeCost: resourceInfo.darkElixirDrill.level[1].cost, capacityUpgrade: resourceInfo.darkElixirDrill.level[1].capacity - resourceInfo.darkElixirDrill.level[0].capacity, hpUpgrade: resourceInfo.darkElixirDrill.level[1].hp - resourceInfo.darkElixirDrill.level[0].hp, prUpgrade: resourceInfo.darkElixirDrill.level[1].productionRate - resourceInfo.darkElixirDrill.level[0].productionRate, buildTime: resourceInfo.darkElixirDrill.level[0].buildTime, maxLevel: resourceInfo.darkElixirDrill.maxLevel})
+      $scope.darkElixirDrillTotalHp += resourceInfo.darkElixirDrill.level[0].hp;
+      $scope.darkElixirDrillTotalCapacity += resourceInfo.darkElixirDrill.level[0].capacity;
+      $scope.darkElixirDrillTotalProductionRate += resourceInfo.darkElixirDrill.level[0].productionRate;
+      $scope.totalResourceHp += resourceInfo.darkElixirDrill.level[0].hp;
+      $scope.totalResourceDarkElixirCapacity += resourceInfo.darkElixirDrill.level[0].capacity;
+    } else if (type === "Gold Storage") {
+      if ($scope.goldStorages.length >= resourceInfo.goldStorage.townhallLevelCounts[resourceInfo.goldStorage.townhallLevelCounts.length-1]) {return;}
+      alertify.log("Added Gold Storage to Your Army");
+      $scope.goldStorages.push({name: "Gold Storage", imageUrl: resourceInfo.goldStorage.level[0].imageUrl, level: 1, capacity: resourceInfo.goldStorage.level[0].capacity, hp: resourceInfo.goldStorage.level[0].hp, upgradeCost: resourceInfo.goldStorage.level[1].cost, capacityUpgrade: resourceInfo.goldStorage.level[1].capacity - resourceInfo.goldStorage.level[0].capacity, hpUpgrade: resourceInfo.goldStorage.level[1].hp - resourceInfo.goldStorage.level[0].hp, buildTime: resourceInfo.goldStorage.level[0].buildTime, maxLevel: resourceInfo.goldStorage.maxLevel, percentLootable: resourceInfo.goldStorage.percentLootableTownhallLevel[0].percentStealable, lootableCap: resourceInfo.goldStorage.percentLootableTownhallLevel[0].cap })
+      $scope.goldStorageTotalHp += resourceInfo.goldStorage.level[0].hp;
+      $scope.goldStorageTotalCapacity += resourceInfo.goldStorage.level[0].capacity;
+      $scope.totalResourceHp += resourceInfo.goldStorage.level[0].hp;
+      $scope.totalResourceGoldCapacity += resourceInfo.goldStorage.level[0].capacity;
+    } else if (type === "Elixir Storage") {
+      if ($scope.elixirStorages.length >= resourceInfo.elixirStorage.townhallLevelCounts[resourceInfo.elixirStorage.townhallLevelCounts.length-1]) {return;}
+      alertify.log("Added Elixir Storage to Your Army");
+      $scope.elixirStorages.push({name: "Elixir Storage", imageUrl: resourceInfo.elixirStorage.level[0].imageUrl, level: 1, capacity: resourceInfo.elixirStorage.level[0].capacity, hp: resourceInfo.elixirStorage.level[0].hp, upgradeCost: resourceInfo.elixirStorage.level[1].cost, capacityUpgrade: resourceInfo.elixirStorage.level[1].capacity - resourceInfo.elixirStorage.level[0].capacity, hpUpgrade: resourceInfo.elixirStorage.level[1].hp - resourceInfo.elixirStorage.level[0].hp, buildTime: resourceInfo.elixirStorage.level[0].buildTime, maxLevel: resourceInfo.elixirStorage.maxLevel, percentLootable: resourceInfo.elixirStorage.percentLootableTownhallLevel[0].percentStealable, lootableCap: resourceInfo.elixirStorage.percentLootableTownhallLevel[0].cap })
+      $scope.elixirStorageTotalHp += resourceInfo.elixirStorage.level[0].hp;
+      $scope.elixirStorageTotalCapacity += resourceInfo.elixirStorage.level[0].capacity;
+      $scope.totalResourceHp += resourceInfo.elixirStorage.level[0].hp;
+      $scope.totalResourceElixirCapacity += resourceInfo.elixirStorage.level[0].capacity;
+    } else if (type === "Dark Elixir Storage") {
+      if ($scope.darkElixirStorages.length >= resourceInfo.darkElixirStorage.townhallLevelCounts[resourceInfo.darkElixirStorage.townhallLevelCounts.length-1]) {return;}
+      alertify.log("Added Dark Elixir Storage to Your Army");
+      $scope.darkElixirStorages.push({name: "Dark Elixir Storage", imageUrl: resourceInfo.darkElixirStorage.level[0].imageUrl, level: 1, capacity: resourceInfo.darkElixirStorage.level[0].capacity, hp: resourceInfo.darkElixirStorage.level[0].hp, upgradeCost: resourceInfo.darkElixirStorage.level[1].cost, capacityUpgrade: resourceInfo.darkElixirStorage.level[1].capacity - resourceInfo.darkElixirStorage.level[0].capacity, hpUpgrade: resourceInfo.darkElixirStorage.level[1].hp - resourceInfo.darkElixirStorage.level[0].hp, buildTime: resourceInfo.darkElixirStorage.level[0].buildTime, maxLevel: resourceInfo.darkElixirStorage.maxLevel, percentLootable: resourceInfo.darkElixirStorage.percentLootableTownhallLevel[0].percentStealable, lootableCap: resourceInfo.darkElixirStorage.percentLootableTownhallLevel[0].cap })
+      $scope.darkElixirStorageTotalHp += resourceInfo.darkElixirStorage.level[0].hp;
+      $scope.darkElixirStorageTotalCapacity += resourceInfo.darkElixirStorage.level[0].capacity;
+      $scope.totalResourceHp += resourceInfo.darkElixirStorage.level[0].hp;
+      $scope.totalResourceDarkElixirCapacity += resourceInfo.darkElixirStorage.level[0].capacity;
+    } else if (type === "Army Camp") {
+      if ($scope.armyCamps.length >= resourceInfo.armyCamp.townhallLevelCounts[resourceInfo.armyCamp.townhallLevelCounts.length-1]) {return;}
+      alertify.log("Added Army Camp to Your Army");
+      $scope.armyCamps.push({name: "Army Camp", imageUrl: resourceInfo.armyCamp.level[0].imageUrl, level: 1, troopCapacity: resourceInfo.armyCamp.level[0].troopCapacity, hp: resourceInfo.armyCamp.level[0].hp, upgradeCost: resourceInfo.armyCamp.level[1].cost, troopCapacityUpgrade: resourceInfo.armyCamp.level[1].troopCapacity - resourceInfo.armyCamp.level[0].troopCapacity, hpUpgrade: resourceInfo.armyCamp.level[1].hp - resourceInfo.armyCamp.level[0].hp, buildTime: resourceInfo.armyCamp.level[0].buildTime, maxLevel: resourceInfo.armyCamp.maxLevel })
+      $scope.armyCampTotalHp += resourceInfo.armyCamp.level[0].hp;
+      $scope.armyCampTotalTroopCapacity += resourceInfo.armyCamp.level[0].troopCapacity;
+      $scope.totalResourceHp += resourceInfo.armyCamp.level[0].hp;
+    } else if (type === "Barracks") {
+      if ($scope.barracks.length >= resourceInfo.barracks.townhallLevelCounts[resourceInfo.barracks.townhallLevelCounts.length-1]) {return;}
+      alertify.log("Added Barracks to Your Army");
+      $scope.barracks.push({name: "Barracks", imageUrl: resourceInfo.barracks.level[0].imageUrl, level: 1, queueLength: resourceInfo.barracks.level[0].queueLength, hp: resourceInfo.barracks.level[0].hp, upgradeCost: resourceInfo.barracks.level[1].cost, queueLengthUpgrade: resourceInfo.barracks.level[1].queueLength - resourceInfo.barracks.level[0].queueLength, hpUpgrade: resourceInfo.barracks.level[1].hp - resourceInfo.barracks.level[0].hp, buildTime: resourceInfo.barracks.level[0].buildTime, maxLevel: resourceInfo.barracks.maxLevel, unitUnlocked: resourceInfo.barracks.level[0].unitUnlocked})
+      $scope.barrackTotalHp += resourceInfo.barracks.level[0].hp;
+      $scope.barrackTotalQueueLength += resourceInfo.barracks.level[0].queueLength;
+      $scope.totalResourceHp += resourceInfo.barracks.level[0].hp;
+    } else if (type === "Dark Barracks") {
+      if ($scope.darkBarracks.length >= resourceInfo.darkBarracks.townhallLevelCounts[resourceInfo.darkBarracks.townhallLevelCounts.length-1]) {return;}
+      alertify.log("Added Dark Barracks to Your Army");
+      $scope.darkBarracks.push({name: "Dark Barracks", imageUrl: resourceInfo.darkBarracks.level[0].imageUrl, level: 1, queueLength: resourceInfo.darkBarracks.level[0].queueLength, hp: resourceInfo.darkBarracks.level[0].hp, upgradeCost: resourceInfo.darkBarracks.level[1].cost, queueLengthUpgrade: resourceInfo.darkBarracks.level[1].queueLength - resourceInfo.darkBarracks.level[0].queueLength, hpUpgrade: resourceInfo.darkBarracks.level[1].hp - resourceInfo.darkBarracks.level[0].hp, buildTime: resourceInfo.darkBarracks.level[0].buildTime, maxLevel: resourceInfo.darkBarracks.maxLevel, unitUnlocked: resourceInfo.darkBarracks.level[0].unitUnlocked})
+      $scope.darkBarrackTotalHp += resourceInfo.darkBarracks.level[0].hp;
+      $scope.darkBarrackTotalQueueLength += resourceInfo.darkBarracks.level[0].queueLength;
+      $scope.totalResourceHp += resourceInfo.darkBarracks.level[0].hp;
     } 
     $scope.cookieSaveResources();
   }
@@ -702,7 +819,7 @@ function($scope, $log){
       $scope.elixirCollectorTotalHp -= resource.hp;
       $scope.elixirCollectorTotalCapacity -= resource.capacity;
       $scope.elixirCollectorTotalProductionRate -= resource.productionRate;
-      $scope.totalResourceGoldCapacity -= resource.capacity;
+      $scope.totalResourceElixirCapacity -= resource.capacity;
       $scope.totalResourceHp -= resource.hp;
       if (resource.level === resourceInfo.elixirCollector.maxLevel) {
         console.log("you hit the max");
@@ -724,9 +841,172 @@ function($scope, $log){
       $scope.elixirCollectorTotalHp += resource.hp;
       $scope.elixirCollectorTotalCapacity += resource.capacity;
       $scope.elixirCollectorTotalProductionRate += resource.productionRate;
+      $scope.totalResourceElixirCapacity += resource.capacity;
+      $scope.totalResourceHp += resource.hp;    
+    } else if (resource.name === "Dark Elixir Drill") {
+      $scope.darkElixirDrillTotalHp -= resource.hp;
+      $scope.darkElixirDrillTotalCapacity -= resource.capacity;
+      $scope.darkElixirDrillTotalProductionRate -= resource.productionRate;
+      $scope.totalResourceDarkElixirCapacity -= resource.capacity;
+      $scope.totalResourceHp -= resource.hp;
+      if (resource.level === resourceInfo.darkElixirDrill.maxLevel) {
+        console.log("you hit the max");
+        resource.capacityUpgrade = "N/A";
+        resource.hpUpgrade = "N/A";
+        resource.prUpgrade = "N/A";
+        resource.upgradeCost = "N/A";
+      } else {
+        resource.capacityUpgrade = resourceInfo.darkElixirDrill.level[resource.level].capacity - resourceInfo.darkElixirDrill.level[resource.level - 1].capacity;
+        resource.hpUpgrade = resourceInfo.darkElixirDrill.level[resource.level].hp - resourceInfo.darkElixirDrill.level[resource.level - 1].hp;
+        resource.prUpgrade = resourceInfo.darkElixirDrill.level[resource.level].productionRate - resourceInfo.darkElixirDrill.level[resource.level - 1].productionRate;
+        resource.upgradeCost = resourceInfo.darkElixirDrill.level[resource.level].cost;
+      }
+      resource.productionRate = resourceInfo.darkElixirDrill.level[resource.level - 1].productionRate;
+      resource.capacity = resourceInfo.darkElixirDrill.level[resource.level - 1].capacity;
+      resource.hp = resourceInfo.darkElixirDrill.level[resource.level - 1].hp;
+      resource.buildTime = resourceInfo.darkElixirDrill.level[resource.level - 1].buildTime;
+      resource.imageUrl = resourceInfo.darkElixirDrill.level[resource.level - 1].imageUrl;
+      $scope.darkElixirDrillTotalHp += resource.hp;
+      $scope.darkElixirDrillTotalCapacity += resource.capacity;
+      $scope.darkElixirDrillTotalProductionRate += resource.productionRate;
+      $scope.totalResourceDarkElixirCapacity += resource.capacity;
+      $scope.totalResourceHp += resource.hp;    
+    } else if (resource.name === "Gold Storage") {
+      $scope.goldStorageTotalHp -= resource.hp;
+      $scope.goldStorageTotalCapacity -= resource.capacity;
+      $scope.totalResourceGoldCapacity -= resource.capacity;
+      $scope.totalResourceHp -= resource.hp;
+      if (resource.level === resourceInfo.goldStorage.maxLevel) {
+        console.log("you hit the max");
+        resource.capacityUpgrade = "N/A";
+        resource.hpUpgrade = "N/A";
+        resource.upgradeCost = "N/A";
+      } else {
+        resource.capacityUpgrade = resourceInfo.goldStorage.level[resource.level].capacity - resourceInfo.goldStorage.level[resource.level - 1].capacity;
+        resource.hpUpgrade = resourceInfo.goldStorage.level[resource.level].hp - resourceInfo.goldStorage.level[resource.level - 1].hp;
+        resource.upgradeCost = resourceInfo.goldStorage.level[resource.level].cost;
+      }
+      resource.capacity = resourceInfo.goldStorage.level[resource.level - 1].capacity;
+      resource.hp = resourceInfo.goldStorage.level[resource.level - 1].hp;
+      resource.buildTime = resourceInfo.goldStorage.level[resource.level - 1].buildTime;
+      resource.imageUrl = resourceInfo.goldStorage.level[resource.level - 1].imageUrl;
+      $scope.goldStorageTotalHp += resource.hp;
+      $scope.goldStorageTotalCapacity += resource.capacity;
       $scope.totalResourceGoldCapacity += resource.capacity;
       $scope.totalResourceHp += resource.hp;    
-    } 
+    } else if (resource.name === "Elixir Storage") {
+      $scope.elixirStorageTotalHp -= resource.hp;
+      $scope.elixirStorageTotalCapacity -= resource.capacity;
+      $scope.totalResourceElixirCapacity -= resource.capacity;
+      $scope.totalResourceHp -= resource.hp;
+      if (resource.level === resourceInfo.elixirStorage.maxLevel) {
+        console.log("you hit the max");
+        resource.capacityUpgrade = "N/A";
+        resource.hpUpgrade = "N/A";
+        resource.upgradeCost = "N/A";
+      } else {
+        resource.capacityUpgrade = resourceInfo.elixirStorage.level[resource.level].capacity - resourceInfo.elixirStorage.level[resource.level - 1].capacity;
+        resource.hpUpgrade = resourceInfo.elixirStorage.level[resource.level].hp - resourceInfo.elixirStorage.level[resource.level - 1].hp;
+        resource.upgradeCost = resourceInfo.elixirStorage.level[resource.level].cost;
+      }
+      resource.capacity = resourceInfo.elixirStorage.level[resource.level - 1].capacity;
+      resource.hp = resourceInfo.elixirStorage.level[resource.level - 1].hp;
+      resource.buildTime = resourceInfo.elixirStorage.level[resource.level - 1].buildTime;
+      resource.imageUrl = resourceInfo.elixirStorage.level[resource.level - 1].imageUrl;
+      $scope.elixirStorageTotalHp += resource.hp;
+      $scope.elixirStorageTotalCapacity += resource.capacity;
+      $scope.totalResourceElixirCapacity += resource.capacity;
+      $scope.totalResourceHp += resource.hp;    
+    } else if (resource.name === "Dark Elixir Storage") {
+      $scope.darkElixirStorageTotalHp -= resource.hp;
+      $scope.darkElixirStorageTotalCapacity -= resource.capacity;
+      $scope.totalResourceDarkElixirCapacity -= resource.capacity;
+      $scope.totalResourceHp -= resource.hp;
+      if (resource.level === resourceInfo.darkElixirStorage.maxLevel) {
+        console.log("you hit the max");
+        resource.capacityUpgrade = "N/A";
+        resource.hpUpgrade = "N/A";
+        resource.upgradeCost = "N/A";
+      } else {
+        resource.capacityUpgrade = resourceInfo.darkElixirStorage.level[resource.level].capacity - resourceInfo.darkElixirStorage.level[resource.level - 1].capacity;
+        resource.hpUpgrade = resourceInfo.darkElixirStorage.level[resource.level].hp - resourceInfo.darkElixirStorage.level[resource.level - 1].hp;
+        resource.upgradeCost = resourceInfo.darkElixirStorage.level[resource.level].cost;
+      }
+      resource.capacity = resourceInfo.darkElixirStorage.level[resource.level - 1].capacity;
+      resource.hp = resourceInfo.darkElixirStorage.level[resource.level - 1].hp;
+      resource.buildTime = resourceInfo.darkElixirStorage.level[resource.level - 1].buildTime;
+      resource.imageUrl = resourceInfo.darkElixirStorage.level[resource.level - 1].imageUrl;
+      $scope.darkElixirStorageTotalHp += resource.hp;
+      $scope.darkElixirStorageTotalCapacity += resource.capacity;
+      $scope.totalResourceDarkElixirCapacity += resource.capacity;
+      $scope.totalResourceHp += resource.hp;    
+    } else if (resource.name === "Army Camp") {
+      $scope.armyCampTotalHp -= resource.hp;
+      $scope.armyCampTotalTroopCapacity -= resource.troopCapacity;
+      $scope.totalResourceHp -= resource.hp;
+      if (resource.level === resourceInfo.armyCamp.maxLevel) {
+        console.log("you hit the max");
+        resource.troopCapacityUpgrade = "N/A";
+        resource.hpUpgrade = "N/A";
+        resource.upgradeCost = "N/A";
+      } else {
+        resource.troopCapacityUpgrade = resourceInfo.armyCamp.level[resource.level].troopCapacity - resourceInfo.armyCamp.level[resource.level - 1].troopCapacity;
+        resource.hpUpgrade = resourceInfo.armyCamp.level[resource.level].hp - resourceInfo.armyCamp.level[resource.level - 1].hp;
+        resource.upgradeCost = resourceInfo.armyCamp.level[resource.level].cost;
+      }
+      resource.troopCapacity = resourceInfo.armyCamp.level[resource.level - 1].troopCapacity;
+      resource.hp = resourceInfo.armyCamp.level[resource.level - 1].hp;
+      resource.buildTime = resourceInfo.armyCamp.level[resource.level - 1].buildTime;
+      resource.imageUrl = resourceInfo.armyCamp.level[resource.level - 1].imageUrl;
+      $scope.armyCampTotalHp += resource.hp;
+      $scope.armyCampTotalTroopCapacity += resource.troopCapacity;
+      $scope.totalResourceHp += resource.hp;    
+    } else if (resource.name === "Barracks") {
+      $scope.barrackTotalHp -= resource.hp;
+      $scope.barrackTotalQueueLength -= resource.queueLength;
+      $scope.totalResourceHp -= resource.hp;
+      if (resource.level === resourceInfo.barracks.maxLevel) {
+        console.log("you hit the max");
+        resource.queueLengthUpgrade = "N/A";
+        resource.hpUpgrade = "N/A";
+        resource.upgradeCost = "N/A";
+      } else {
+        resource.queueLengthUpgrade = resourceInfo.barracks.level[resource.level].queueLength - resourceInfo.barracks.level[resource.level - 1].queueLength;
+        resource.hpUpgrade = resourceInfo.barracks.level[resource.level].hp - resourceInfo.barracks.level[resource.level - 1].hp;
+        resource.upgradeCost = resourceInfo.barracks.level[resource.level].cost;
+      }
+      resource.queueLength = resourceInfo.barracks.level[resource.level - 1].queueLength;
+      resource.hp = resourceInfo.barracks.level[resource.level - 1].hp;
+      resource.buildTime = resourceInfo.barracks.level[resource.level - 1].buildTime;
+      resource.imageUrl = resourceInfo.barracks.level[resource.level - 1].imageUrl;
+      resource.unitUnlocked = resourceInfo.barracks.level[resource.level - 1].unitUnlocked;
+      $scope.barrackTotalHp += resource.hp;
+      $scope.barrackTotalQueueLength += resource.queueLength;
+      $scope.totalResourceHp += resource.hp;    
+    } else if (resource.name === "Dark Barracks") {
+      $scope.darkBarrackTotalHp -= resource.hp;
+      $scope.darkBarrackTotalQueueLength -= resource.queueLength;
+      $scope.totalResourceHp -= resource.hp;
+      if (resource.level === resourceInfo.darkBarracks.maxLevel) {
+        console.log("you hit the max");
+        resource.queueLengthUpgrade = "N/A";
+        resource.hpUpgrade = "N/A";
+        resource.upgradeCost = "N/A";
+      } else {
+        resource.queueLengthUpgrade = resourceInfo.darkBarracks.level[resource.level].queueLength - resourceInfo.darkBarracks.level[resource.level - 1].queueLength;
+        resource.hpUpgrade = resourceInfo.darkBarracks.level[resource.level].hp - resourceInfo.darkBarracks.level[resource.level - 1].hp;
+        resource.upgradeCost = resourceInfo.darkBarracks.level[resource.level].cost;
+      }
+      resource.queueLength = resourceInfo.darkBarracks.level[resource.level - 1].queueLength;
+      resource.hp = resourceInfo.darkBarracks.level[resource.level - 1].hp;
+      resource.buildTime = resourceInfo.darkBarracks.level[resource.level - 1].buildTime;
+      resource.imageUrl = resourceInfo.darkBarracks.level[resource.level - 1].imageUrl;
+      resource.unitUnlocked = resourceInfo.darkBarracks.level[resource.level - 1].unitUnlocked;
+      $scope.darkBarrackTotalHp += resource.hp;
+      $scope.darkBarrackTotalQueueLength += resource.queueLength;
+      $scope.totalResourceHp += resource.hp;    
+    }
+
     $scope.cookieSaveResources();
   }
   $scope.removeResource = function(resource) {
@@ -744,7 +1024,47 @@ function($scope, $log){
       $scope.elixirCollectorTotalHp -= resource.hp;
       $scope.elixirCollectorTotalCapacity -= resource.capacity;
       $scope.elixirCollectorTotalProductionRate -= resource.productionRate;
+      $scope.totalResourceElixirCapacity -= resource.capacity;
+      $scope.totalResourceHp -= resource.hp;
+    } else if (resource.name === "Dark Elixir Drill") {
+      $scope.darkElixirDrills.splice($scope.darkElixirDrills.indexOf(resource), 1);
+      $scope.darkElixirDrillTotalHp -= resource.hp;
+      $scope.darkElixirDrillTotalCapacity -= resource.capacity;
+      $scope.darkElixirDrillTotalProductionRate -= resource.productionRate;
+      $scope.totalResourceDarkElixirCapacity -= resource.capacity;
+      $scope.totalResourceHp -= resource.hp;
+    } else if (resource.name === "Gold Storage") {
+      $scope.goldStorages.splice($scope.goldStorages.indexOf(resource), 1);
+      $scope.goldStorageTotalHp -= resource.hp;
+      $scope.goldStorageTotalCapacity -= resource.capacity;
       $scope.totalResourceGoldCapacity -= resource.capacity;
+      $scope.totalResourceHp -= resource.hp;
+    } else if (resource.name === "Elixir Storage") {
+      $scope.elixirStorages.splice($scope.elixirStorages.indexOf(resource), 1);
+      $scope.elixirStorageTotalHp -= resource.hp;
+      $scope.elixirStorageTotalCapacity -= resource.capacity;
+      $scope.totalResourceGoldCapacity -= resource.capacity;
+      $scope.totalResourceHp -= resource.hp;
+    } else if (resource.name === "Dark Elixir Storage") {
+      $scope.darkElixirStorages.splice($scope.darkElixirStorages.indexOf(resource), 1);
+      $scope.darkElixirStorageTotalHp -= resource.hp;
+      $scope.darkElixirStorageTotalCapacity -= resource.capacity;
+      $scope.totalResourceGoldCapacity -= resource.capacity;
+      $scope.totalResourceHp -= resource.hp;
+    } else if (resource.name === "Army Camp") {
+      $scope.armyCamps.splice($scope.armyCamps.indexOf(resource), 1);
+      $scope.armyCampTotalHp -= resource.hp;
+      $scope.armyCampTotalTroopCapacity -= resource.troopCapacity;
+      $scope.totalResourceHp -= resource.hp;
+    } else if (resource.name === "Barracks") {
+      $scope.barracks.splice($scope.barracks.indexOf(resource), 1);
+      $scope.barrackTotalHp -= resource.hp;
+      $scope.barrackTotalQueueLength -= resource.queueLength;
+      $scope.totalResourceHp -= resource.hp;
+    } else if (resource.name === "Dark Barracks") {
+      $scope.darkBarracks.splice($scope.darkBarracks.indexOf(resource), 1);
+      $scope.darkBarrackTotalHp -= resource.hp;
+      $scope.darkBarrackTotalQueueLength -= resource.queueLength;
       $scope.totalResourceHp -= resource.hp;
     } 
     $scope.cookieSaveResources();

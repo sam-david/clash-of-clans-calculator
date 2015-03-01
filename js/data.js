@@ -1706,5 +1706,684 @@ var resourceInfo = {
             imageUrl: "images/resources/elixircollector/elixircollectorlevel11.png"    
             }
         ]
+    },
+    darkElixirDrill: {
+        name: "Dark Elixir Drill",
+        townhallLevelCounts: [0,0,0,0,0,0,1,2,2,3],
+        size: "3x3",
+        maxLevel: 6,
+        level: [
+            { /* Level 1 */
+            cost: 1000000,
+            buildTime: "1 Day",
+            capacity: 160,
+            productionRate: 20,
+            hp: 800,
+            townHallRequired: 7,
+            imageUrl: "images/resources/darkelixirdrill/darkelixirdrilllevel1.png"    
+            },
+            { /* Level 2 */
+            cost: 1500000,
+            buildTime: "2 Days",
+            capacity: 300,
+            productionRate: 30,
+            hp: 860,
+            townHallRequired: 7,
+            imageUrl: "images/resources/darkelixirdrill/darkelixirdrilllevel2.png"    
+            },
+            { /* Level 3 */
+            cost: 2000000,
+            buildTime: "3 Days",
+            capacity: 540,
+            productionRate: 45,
+            hp: 920,
+            townHallRequired: 7,
+            imageUrl: "images/resources/darkelixirdrill/darkelixirdrilllevel3.png"    
+            },
+            { /* Level 4 */
+            cost: 3000000,
+            buildTime: "4 Days",
+            capacity: 840,
+            productionRate: 60,
+            hp: 980,
+            townHallRequired: 9,
+            imageUrl: "images/resources/darkelixirdrill/darkelixirdrilllevel4.png"    
+            },
+            { /* Level 5 */
+            cost: 4000000,
+            buildTime: "6 Days",
+            capacity: 1280,
+            productionRate: 80,
+            hp: 1040,
+            townHallRequired: 9,
+            imageUrl: "images/resources/darkelixirdrill/darkelixirdrilllevel5.png"    
+            },
+            { /* Level 6 */
+            cost: 5000000,
+            buildTime: "8 Days",
+            capacity: 1800,
+            productionRate: 100,
+            hp: 1100,
+            townHallRequired: 9,
+            imageUrl: "images/resources/darkelixirdrill/darkelixirdrilllevel6.png"    
+            }
+        ]
+    },
+    goldStorage: {
+        name: "Gold Storage",
+        townhallLevelCounts: [1,1,2,2,2,2,2,3,4,4],
+        size: "3x3",
+        maxLevel: 11,
+        percentLootableTownhallLevel: [
+            {percentStealable: .2, cap: 200000},
+            {percentStealable: .2, cap: 200000},
+            {percentStealable: .2, cap: 200000},
+            {percentStealable: .2, cap: 200000},
+            {percentStealable: .2, cap: 200000},
+            {percentStealable: .18, cap: 200000},
+            {percentStealable: .16, cap: 250000},
+            {percentStealable: .14, cap: 300000},
+            {percentStealable: .12, cap: 350000},
+            {percentStealable: .10, cap: 400000}
+        ],
+        level: [
+            { /* Level 1 */
+            cost: 300,
+            buildTime: "1 Minute",
+            capacity: 1500,
+            hp: 400,
+            townHallRequired: 1,
+            imageUrl: "images/resources/goldstorage/goldstoragelevel1.png"    
+            },
+            { /* Level 2 */
+            cost: 750,
+            buildTime: "30 Minutes",
+            capacity: 3000,
+            hp: 600,
+            townHallRequired: 2,
+            imageUrl: "images/resources/goldstorage/goldstoragelevel2.png"    
+            },
+            { /* Level 3 */
+            cost: 1500,
+            buildTime: "1 Hour",
+            capacity: 6000,
+            hp: 800,
+            townHallRequired: 2,
+            imageUrl: "images/resources/goldstorage/goldstoragelevel3.png"    
+            },
+            { /* Level 4 */
+            cost: 3000,
+            buildTime: "2 Hours",
+            capacity: 12000,
+            hp: 1000,
+            townHallRequired: 3,
+            imageUrl: "images/resources/goldstorage/goldstoragelevel4.png"    
+            },
+            { /* Level 5 */
+            cost: 6000,
+            buildTime: "3 Hours",
+            capacity: 25000,
+            hp: 1200,
+            townHallRequired: 3,
+            imageUrl: "images/resources/goldstorage/goldstoragelevel5.png"    
+            },
+            { /* Level 6 */
+            cost: 12000,
+            buildTime: "4 Hours",
+            capacity: 50000,
+            hp: 1400,
+            townHallRequired: 3,
+            imageUrl: "images/resources/goldstorage/goldstoragelevel6.png"    
+            },
+            { /* Level 7 */
+            cost: 25000,
+            buildTime: "6 Hours",
+            capacity: 100000,
+            hp: 1600,
+            townHallRequired: 4,
+            imageUrl: "images/resources/goldstorage/goldstoragelevel7.png"    
+            },
+            { /* Level 8 */
+            cost: 50000,
+            buildTime: "8 Hours",
+            capacity: 250000,
+            hp: 1700,
+            townHallRequired: 4,
+            imageUrl: "images/resources/goldstorage/goldstoragelevel8.png"    
+            },
+            { /* Level 9 */
+            cost: 100000,
+            buildTime: "12 Hours",
+            capacity: 500000,
+            hp: 1800,
+            townHallRequired: 5,
+            imageUrl: "images/resources/goldstorage/goldstoragelevel9.png"    
+            },
+            { /* Level 10 */
+            cost: 250000,
+            buildTime: "1 Day",
+            capacity: 1000000,
+            hp: 1900,
+            townHallRequired: 6,
+            imageUrl: "images/resources/goldstorage/goldstoragelevel10.png"    
+            },
+            { /* Level 11 */
+            cost: 500000,
+            buildTime: "2 Days",
+            capacity: 2000000,
+            hp: 2000,
+            townHallRequired: 7,
+            imageUrl: "images/resources/goldstorage/goldstoragelevel11.png"    
+            }
+        ]
+    },
+    elixirStorage: {
+        name: "Elixir Storage",
+        townhallLevelCounts: [1,1,2,2,2,2,2,3,4,4],
+        size: "3x3",
+        maxLevel: 11,
+        percentLootableTownhallLevel: [
+            {percentStealable: .2, cap: 200000},
+            {percentStealable: .2, cap: 200000},
+            {percentStealable: .2, cap: 200000},
+            {percentStealable: .2, cap: 200000},
+            {percentStealable: .2, cap: 200000},
+            {percentStealable: .18, cap: 200000},
+            {percentStealable: .16, cap: 250000},
+            {percentStealable: .14, cap: 300000},
+            {percentStealable: .12, cap: 350000},
+            {percentStealable: .10, cap: 400000}
+        ],
+        level: [
+            { /* Level 1 */
+            cost: 300,
+            buildTime: "1 Minute",
+            capacity: 1500,
+            hp: 400,
+            townHallRequired: 1,
+            imageUrl: "images/resources/elixirstorage/elixirstoragelevel1.png"    
+            },
+            { /* Level 2 */
+            cost: 750,
+            buildTime: "30 Minutes",
+            capacity: 3000,
+            hp: 600,
+            townHallRequired: 2,
+            imageUrl: "images/resources/elixirstorage/elixirstoragelevel2.png"    
+            },
+            { /* Level 3 */
+            cost: 1500,
+            buildTime: "1 Hour",
+            capacity: 6000,
+            hp: 800,
+            townHallRequired: 2,
+            imageUrl: "images/resources/elixirstorage/elixirstoragelevel3.png"    
+            },
+            { /* Level 4 */
+            cost: 3000,
+            buildTime: "2 Hours",
+            capacity: 12000,
+            hp: 1000,
+            townHallRequired: 3,
+            imageUrl: "images/resources/elixirstorage/elixirstoragelevel4.png"    
+            },
+            { /* Level 5 */
+            cost: 6000,
+            buildTime: "3 Hours",
+            capacity: 25000,
+            hp: 1200,
+            townHallRequired: 3,
+            imageUrl: "images/resources/elixirstorage/elixirstoragelevel5.png"    
+            },
+            { /* Level 6 */
+            cost: 12000,
+            buildTime: "4 Hours",
+            capacity: 50000,
+            hp: 1400,
+            townHallRequired: 3,
+            imageUrl: "images/resources/elixirstorage/elixirstoragelevel6.png"    
+            },
+            { /* Level 7 */
+            cost: 25000,
+            buildTime: "6 Hours",
+            capacity: 100000,
+            hp: 1600,
+            townHallRequired: 4,
+            imageUrl: "images/resources/elixirstorage/elixirstoragelevel7.png"    
+            },
+            { /* Level 8 */
+            cost: 50000,
+            buildTime: "8 Hours",
+            capacity: 250000,
+            hp: 1700,
+            townHallRequired: 4,
+            imageUrl: "images/resources/elixirstorage/elixirstoragelevel8.png"    
+            },
+            { /* Level 9 */
+            cost: 100000,
+            buildTime: "12 Hours",
+            capacity: 500000,
+            hp: 1800,
+            townHallRequired: 5,
+            imageUrl: "images/resources/elixirstorage/elixirstoragelevel9.png"    
+            },
+            { /* Level 10 */
+            cost: 250000,
+            buildTime: "1 Day",
+            capacity: 1000000,
+            hp: 1900,
+            townHallRequired: 6,
+            imageUrl: "images/resources/elixirstorage/elixirstoragelevel10.png"    
+            },
+            { /* Level 11 */
+            cost: 500000,
+            buildTime: "2 Days",
+            capacity: 2000000,
+            hp: 2000,
+            townHallRequired: 7,
+            imageUrl: "images/resources/elixirstorage/elixirstoragelevel11.png"    
+            }
+        ]
+    },
+    darkElixirStorage: {
+        name: "Dark Elixir Storage",
+        townhallLevelCounts: [0,0,0,0,0,0,1,1,1,1],
+        size: "3x3",
+        maxLevel: 6,
+        percentLootableTownhallLevel: [
+            {percentStealable: .06, cap: 1200},
+            {percentStealable: .06, cap: 2000},
+            {percentStealable: .05, cap: 2500},
+            {percentStealable: .04, cap: 3000}
+        ],
+        level: [
+            { /* Level 1 */
+            cost: 600000,
+            buildTime: "1 Day",
+            capacity: 10000,
+            hp: 2000,
+            townHallRequired: 7,
+            imageUrl: "images/resources/darkelixirstorage/darkelixirstoragelevel1.png"    
+            },
+            { /* Level 2 */
+            cost: 1200000,
+            buildTime: "2 Days",
+            capacity: 20000,
+            hp: 2200,
+            townHallRequired: 7,
+            imageUrl: "images/resources/darkelixirstorage/darkelixirstoragelevel2.png"    
+            },
+            { /* Level 3 */
+            cost: 1800000,
+            buildTime: "3 Days",
+            capacity: 40000,
+            hp: 2400,
+            townHallRequired: 8,
+            imageUrl: "images/resources/darkelixirstorage/darkelixirstoragelevel3.png"    
+            },
+            { /* Level 4 */
+            cost: 2400000,
+            buildTime: "4 Days",
+            capacity: 80000,
+            hp: 2600,
+            townHallRequired: 8,
+            imageUrl: "images/resources/darkelixirstorage/darkelixirstoragelevel4.png"    
+            },
+            { /* Level 5 */
+            cost: 3000000,
+            buildTime: "5 Days",
+            capacity: 150000,
+            hp: 2900,
+            townHallRequired: 9,
+            imageUrl: "images/resources/darkelixirstorage/darkelixirstoragelevel5.png"    
+            },
+            { /* Level 6 */
+            cost: 3600000,
+            buildTime: "6 Days",
+            capacity: 200000,
+            hp: 3200,
+            townHallRequired: 9,
+            imageUrl: "images/resources/darkelixirstorage/darkelixirstoragelevel6.png"    
+            }
+        ]
+    },
+    armyCamp: {
+        name: "Army Camp",
+        townhallLevelCounts: [1,1,2,2,3,3,4,4,4,4],
+        size: "5x5",
+        maxLevel: 8,
+        level: [
+            { /* Level 1 */
+            cost: 250,
+            buildTime: "5 Minutes",
+            troopCapacity: 20,
+            hp: 250,
+            townHallRequired: 1,
+            imageUrl: "images/resources/armycamp/armycamplevel1.png"    
+            },
+            { /* Level 2 */
+            cost: 2500,
+            buildTime: "1 Hour",
+            troopCapacity: 30,
+            hp: 270,
+            townHallRequired: 2,
+            imageUrl: "images/resources/armycamp/armycamplevel2.png"    
+            },
+            { /* Level 3 */
+            cost: 10000,
+            buildTime: "3 Hours",
+            troopCapacity: 35,
+            hp: 290,
+            townHallRequired: 3,
+            imageUrl: "images/resources/armycamp/armycamplevel3.png"    
+            },
+            { /* Level 4 */
+            cost: 100000,
+            buildTime: "8 Hours",
+            troopCapacity: 40,
+            hp: 310,
+            townHallRequired: 4,
+            imageUrl: "images/resources/armycamp/armycamplevel4.png"    
+            },
+            { /* Level 5 */
+            cost: 250000,
+            buildTime: "1 Day",
+            troopCapacity: 45,
+            hp: 330,
+            townHallRequired: 5,
+            imageUrl: "images/resources/armycamp/armycamplevel5.png"    
+            },
+            { /* Level 6 */
+            cost: 750000,
+            buildTime: "3 Days",
+            troopCapacity: 50,
+            hp: 350,
+            townHallRequired: 6,
+            imageUrl: "images/resources/armycamp/armycamplevel6.png"    
+            },
+            { /* Level 7 */
+            cost: 2250000,
+            buildTime: "5 Days",
+            troopCapacity: 55,
+            hp: 370,
+            townHallRequired: 9,
+            imageUrl: "images/resources/armycamp/armycamplevel7.png"    
+            },
+            { /* Level 8 */
+            cost: 6750000,
+            buildTime: "10 Days",
+            troopCapacity: 60,
+            hp: 390,
+            townHallRequired: 10,
+            imageUrl: "images/resources/armycamp/armycamplevel8.png"    
+            }
+        ]
+    },
+    barracks: {
+        name: "Barracks",
+        townhallLevelCounts: [1,2,2,3,3,3,4,4,4,4],
+        size: "3x3",
+        maxLevel: 10,
+        level: [
+            { /* Level 1 */
+            cost: 200,
+            buildTime: "1 Minute",
+            queueLength: 20,
+            hp: 250,
+            townHallRequired: 1,
+            unitUnlocked: "Barbarian",
+            imageUrl: "images/resources/barracks/barrackslevel1.png"    
+            },
+            { /* Level 2 */
+            cost: 1000,
+            buildTime: "15 Minutes",
+            queueLength: 25,
+            hp: 290,
+            townHallRequired: 1,
+            unitUnlocked: "Archer",
+            imageUrl: "images/resources/barracks/barrackslevel2.png"    
+            },
+            { /* Level 3 */
+            cost: 2500,
+            buildTime: "2 Hours",
+            queueLength: 30,
+            hp: 330,
+            townHallRequired: 1,
+            unitUnlocked: "Giant",
+            imageUrl: "images/resources/barracks/barrackslevel3.png"    
+            },
+            { /* Level 4 */
+            cost: 5000,
+            buildTime: "4 Hours",
+            queueLength: 35,
+            hp: 370,
+            townHallRequired: 2,
+            unitUnlocked: "Goblin",
+            imageUrl: "images/resources/barracks/barrackslevel4.png"    
+            },
+            { /* Level 5 */
+            cost: 10000,
+            buildTime: "10 Hours",
+            queueLength: 40,
+            hp: 410,
+            townHallRequired: 3,
+            unitUnlocked: "Wall Breaker",
+            imageUrl: "images/resources/barracks/barrackslevel5.png"    
+            },
+            { /* Level 6 */
+            cost: 80000,
+            buildTime: "16 Hours",
+            queueLength: 45,
+            hp: 450,
+            townHallRequired: 4,
+            unitUnlocked: "Balloon",
+            imageUrl: "images/resources/barracks/barrackslevel6.png"    
+            },
+            { /* Level 7 */
+            cost: 240000,
+            buildTime: "1 Day",
+            queueLength: 50,
+            hp: 490,
+            townHallRequired: 5,
+            unitUnlocked: "Wizard",
+            imageUrl: "images/resources/barracks/barrackslevel7.png"    
+            },
+            { /* Level 8 */
+            cost: 700000,
+            buildTime: "2 Days",
+            queueLength: 55,
+            hp: 530,
+            townHallRequired: 6,
+            unitUnlocked: "Healer",
+            imageUrl: "images/resources/barracks/barrackslevel8.png"    
+            },
+            { /* Level 9 */
+            cost: 1500000,
+            buildTime: "4 Days",
+            queueLength: 60,
+            hp: 570,
+            townHallRequired: 7,
+            unitUnlocked: "Dragon",
+            imageUrl: "images/resources/barracks/barrackslevel9.png"    
+            },
+            { /* Level 10 */
+            cost: 2000000,
+            buildTime: "6 Days",
+            queueLength: 75,
+            hp: 610,
+            townHallRequired: 8,
+            unitUnlocked: "P.E.K.K.A",
+            imageUrl: "images/resources/barracks/barrackslevel10.png"    
+            }
+        ]
+    },
+    darkBarracks: {
+        name: "Dark Barracks",
+        townhallLevelCounts: [0,0,0,0,0,0,1,2,2,2],
+        size: "3x3",
+        maxLevel: 6,
+        level: [
+            { /* Level 1 */
+            cost: 750000,
+            buildTime: "3 Days",
+            queueLength: 40,
+            hp: 500,
+            townHallRequired: 7,
+            unitUnlocked: "Minion",
+            imageUrl: "images/resources/darkbarracks/darkbarrackslevel1.png"    
+            },
+            { /* Level 2 */
+            cost: 1250000,
+            buildTime: "5 Days",
+            queueLength: 50,
+            hp: 540,
+            townHallRequired: 7,
+            unitUnlocked: "Hog Rider",
+            imageUrl: "images/resources/darkbarracks/darkbarrackslevel2.png"    
+            },
+            { /* Level 3 */
+            cost: 1750000,
+            buildTime: "6 Days",
+            queueLength: 60,
+            hp: 580,
+            townHallRequired: 8,
+            unitUnlocked: "Valkyrie",
+            imageUrl: "images/resources/darkbarracks/darkbarrackslevel3.png"    
+            },
+            { /* Level 4 */
+            cost: 2250000,
+            buildTime: "7 Days",
+            queueLength: 70,
+            hp: 620,
+            townHallRequired: 8,
+            unitUnlocked: "Golem",
+            imageUrl: "images/resources/darkbarracks/darkbarrackslevel4.png"    
+            },
+            { /* Level 5 */
+            cost: 2750000,
+            buildTime: "8 Days",
+            queueLength: 80,
+            hp: 660,
+            townHallRequired: 9,
+            unitUnlocked: "Witch",
+            imageUrl: "images/resources/darkbarracks/darkbarrackslevel5.png"    
+            },
+            { /* Level 6 */
+            cost: 3500000,
+            buildTime: "9 Days",
+            queueLength: 90,
+            hp: 700,
+            townHallRequired: 9,
+            unitUnlocked: "Lava Hound",
+            imageUrl: "images/resources/darkbarracks/darkbarrackslevel6.png"    
+            }
+        ]
+    },
+    laboratory: {
+        name: "Laboratory",
+        townhallLevelCounts: [0,0,1,1,1,1,1,1,1,1],
+        size: "4x4",
+        maxLevel: 8,
+        level: [
+            { /* Level 1 */
+            cost: 25000,
+            buildTime: "30 Minutes",
+            hp: 500,
+            townHallRequired: 3,
+            imageUrl: "images/resources/laboratory/laboratorylevel1.png"    
+            },
+            { /* Level 2 */
+            cost: 50000,
+            buildTime: "5 Hours",
+            hp: 550,
+            townHallRequired: 4,
+            imageUrl: "images/resources/laboratory/laboratorylevel2.png"    
+            },
+            { /* Level 3 */
+            cost: 90000,
+            buildTime: "12 Hours",
+            hp: 600,
+            townHallRequired: 5,
+            imageUrl: "images/resources/laboratory/laboratorylevel3.png"    
+            },
+            { /* Level 4 */
+            cost: 270000,
+            buildTime: "1 Days",
+            hp: 650,
+            townHallRequired: 6,
+            imageUrl: "images/resources/laboratory/laboratorylevel4.png"    
+            },
+            { /* Level 5 */
+            cost: 500000,
+            buildTime: "2 Days",
+            hp: 700,
+            townHallRequired: 7,
+            imageUrl: "images/resources/laboratory/laboratorylevel5.png"    
+            },
+            { /* Level 6 */
+            cost: 1000000,
+            buildTime: "4 Days",
+            hp: 750,
+            townHallRequired: 8,
+            imageUrl: "images/resources/laboratory/laboratorylevel6.png"    
+            },
+            { /* Level 7 */
+            cost: 2500000,
+            buildTime: "5 Days",
+            hp: 800,
+            townHallRequired: 9,
+            imageUrl: "images/resources/laboratory/laboratorylevel7.png"    
+            },
+            { /* Level 8 */
+            cost: 4000000,
+            buildTime: "6 Days",
+            hp: 850,
+            townHallRequired: 10,
+            imageUrl: "images/resources/laboratory/laboratorylevel8.png"    
+            }
+        ]
+    },
+    spellFactory: {
+        name: "Spell Factory",
+        townhallLevelCounts: [0,0,0,0,1,1,1,1,1,1],
+        size: "3x3",
+        maxLevel: 5,
+        level: [
+            { /* Level 1 */
+            cost: 200000,
+            buildTime: "1 Day",
+            hp: 425,
+            townHallRequired: 5,
+            imageUrl: "images/resources/spellfactory/spellfactorylevel1.png"    
+            },
+            { /* Level 2 */
+            cost: 400000,
+            buildTime: "2 Days",
+            hp: 470,
+            townHallRequired: 6,
+            imageUrl: "images/resources/spellfactory/spellfactorylevel2.png"    
+            },
+            { /* Level 3 */
+            cost: 800000,
+            buildTime: "4 Days",
+            hp: 515,
+            townHallRequired: 7,
+            imageUrl: "images/resources/spellfactory/spellfactorylevel3.png"    
+            },
+            { /* Level 4 */
+            cost: 1600000,
+            buildTime: "5 Days",
+            hp: 565,
+            townHallRequired: 9,
+            imageUrl: "images/resources/spellfactory/spellfactorylevel4.png"    
+            },
+            { /* Level 5 */
+            cost: 3200000,
+            buildTime: "6 Days",
+            hp: 615,
+            townHallRequired: 10,
+            imageUrl: "images/resources/spellfactory/spellfactorylevel5.png"    
+            }
+        ]
     }
 }

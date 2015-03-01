@@ -318,3 +318,15 @@ body {
 .gold {
 	color: gold;
 }
+
+.gold-icon {
+	width: 7%;
+}
+
+.elixir-icon {
+	width: 5%;
+}
+
+.dark-elixir-icon {
+	width: 5%;
+}
