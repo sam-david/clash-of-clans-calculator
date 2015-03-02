@@ -968,7 +968,7 @@ var defenseInfo = {
             cost: 7500000,
             buildTime: "7 Days",
             townHallRequired: 10,
-            imageUrl: "images/defenses/cannon/cannonlevel12.png"    
+            imageUrl: "images/defenses/cannon/cannonlevel13.png"    
             }
         ]
     },
@@ -1084,7 +1084,7 @@ var defenseInfo = {
             cost: 7500000,
             buildTime: "8 Days",
             townHallRequired: 10,
-            imageUrl: "images/defenses/archertower/archertowerlevel12.png"    
+            imageUrl: "images/defenses/archertower/archertowerlevel13.png"    
             }
         ]
     },
@@ -1587,7 +1587,7 @@ var resourceInfo = {
             productionRate: 3500,
             hp: 840,
             townHallRequired: 8,
-            imageUrl: "images/resources/goldmine/goldminelevel11.png"    
+            imageUrl: "images/resources/goldmine/goldminelevel12.png"    
             }
         ]
     },
@@ -1703,7 +1703,7 @@ var resourceInfo = {
             productionRate: 3500,
             hp: 840,
             townHallRequired: 8,
-            imageUrl: "images/resources/elixircollector/elixircollectorlevel11.png"    
+            imageUrl: "images/resources/elixircollector/elixircollectorlevel12.png"    
             }
         ]
     },

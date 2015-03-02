@@ -1,4 +1,17 @@
 var app = angular.module('clashCalc', []);
+alertify.set({delay: 1600});
+
+function clearCookies() {
+  $.removeCookie('troop_cookie');
+  $.removeCookie('defense_cookie_one');
+  $.removeCookie('defense_cookie_two');
+  $.removeCookie('defense_cookie_three');
+  $.removeCookie('defense_cookie_cannons');
+  $.removeCookie('storage_resource_cookie');
+  $.removeCookie('harvest_resource_cookie');
+  $.removeCookie('troop_resource_cookie');
+  console.log("Cookies Cleared");
+}
 
 app.controller('TroopCtrl', [
 '$scope','$log',
@@ -19,48 +32,60 @@ function($scope, $log){
   }
   $scope.existingTroopsCookie = function() {
     if ($.cookie('troop_cookie') != undefined) {
-      console.log(JSON.parse($.cookie('troop_cookie')));
-      $scope.troops = JSON.parse($.cookie('troop_cookie'));
+      console.log("Existing Troops:", JSON.parse($.cookie('troop_cookie')));
+      $scope.troops = JSON.parse($.cookie('troop_cookie')).troops;
+      $scope.army = JSON.parse($.cookie('troop_cookie')).army;
     }
   }
   $scope.existingTroopsCookie();
   $scope.addTroop = function() {
     for (var i = 0; i < $scope.troops.length; i++ ) {
       if ($scope.type === $scope.troops[i].name) {
-        console.log('we got one of those');
         alertify.alert("You already have " + $scope.type + "s in your army");
         return;
       }
     }
+    alertify.log("Added " + $scope.selectedQuantity + " Level " + $scope.level + " " + $scope.type + "s To Your Army");
+    console.log("That scope level", $scope.level);
     for(var troop in troopInfo) {
-      if($scope.type === troopInfo[troop].name) {
-        console.log("Match:", $scope.type, troopInfo[troop].name);
-        alertify.log("Added " + $scope.selectedQuantity + " Level " + $scope.level + " " + $scope.type + "s To Your Army");
-        $scope.troops.push({name: troopInfo[troop].name, level: parseInt($scope.level), quantity: $scope.selectedQuantity, imageUrl: troopInfo[troop].level[$scope.level - 1].imageUrl, damagePerSecond: troopInfo[troop].level[$scope.level - 1].dps, housingSpace: troopInfo[troop].housingSpace, elixirCost: troopInfo[troop].level[$scope.level - 1].ec, trainingTime: troopInfo[troop].trainingTime, researchCost: troopInfo[troop].level[$scope.level].researchCost, damageUpgrade: troopInfo[troop].level[$scope.level].dps - troopInfo[troop].level[$scope.level - 1].dps, hp: troopInfo[troop].level[$scope.level - 1].hp, hpUpgrade: troopInfo[troop].level[$scope.level].hp - troopInfo[troop].level[$scope.level - 1].hp, researchTime: troopInfo[troop].level[$scope.level].researchTime, totalHealth: troopInfo[troop].level[$scope.level - 1].hp * $scope.selectedQuantity, totalDps: troopInfo[troop].level[$scope.level - 1].dps * $scope.selectedQuantity, totalTrainingTime: troopInfo[troop].trainingTime * $scope.selectedQuantity, totalHousingSpace: troopInfo[troop].housingSpace * $scope.selectedQuantity, totalElixirCost: troopInfo[troop].level[$scope.level - 1].ec * $scope.selectedQuantity, maxLevel: troopInfo[troop].maxLevel, darkTroop: troopInfo[troop].darkTroop});
-
+      if ($scope.type === troopInfo[troop].name && $scope.level === troopInfo[troop].level.length) {
+        console.log("max level");
+        $scope.troops.push({name: troopInfo[troop].name, level: parseInt($scope.level), quantity: $scope.selectedQuantity, imageUrl: troopInfo[troop].level[$scope.level - 1].imageUrl, damagePerSecond: troopInfo[troop].level[$scope.level - 1].dps, housingSpace: troopInfo[troop].housingSpace, elixirCost: troopInfo[troop].level[$scope.level - 1].ec, trainingTime: troopInfo[troop].trainingTime, researchCost: "", damageUpgrade: "", hp: troopInfo[troop].level[$scope.level - 1].hp, hpUpgrade: "", researchTime: "", totalHealth: troopInfo[troop].level[$scope.level - 1].hp * $scope.selectedQuantity, totalDps: troopInfo[troop].level[$scope.level - 1].dps * $scope.selectedQuantity, totalTrainingTime: troopInfo[troop].trainingTime * $scope.selectedQuantity, totalHousingSpace: troopInfo[troop].housingSpace * $scope.selectedQuantity, totalElixirCost: troopInfo[troop].level[$scope.level - 1].ec * $scope.selectedQuantity, maxLevel: troopInfo[troop].maxLevel, darkTroop: troopInfo[troop].darkTroop, isMaxLevel: true});
           $scope.army.totalDPS += troopInfo[troop].level[$scope.level - 1].dps * $scope.selectedQuantity;
           $scope.army.totalHP += troopInfo[troop].level[$scope.level - 1].hp * $scope.selectedQuantity;
           $scope.army.totalHS += troopInfo[troop].housingSpace * $scope.selectedQuantity;
           if (troopInfo[troop].darkTroop === true ) {
             $scope.army.totalDarkEC += troopInfo[troop].level[$scope.level - 1].ec * $scope.selectedQuantity;
-            console.log($scope.army.totalDarkEC);
           } else {
             $scope.army.totalEC += troopInfo[troop].level[$scope.level - 1].ec * $scope.selectedQuantity;
           }
-          $scope.army.totalTrainingTime += troopInfo[troop].trainingTime * $scope.selectedQuantity; 
+          $scope.army.totalTrainingTime += troopInfo[troop].trainingTime * $scope.selectedQuantity;
+      } else if ($scope.type === troopInfo[troop].name) {
+        console.log("normal level:", troopInfo[troop].level.length)
+        $scope.troops.push({name: troopInfo[troop].name, level: parseInt($scope.level), quantity: $scope.selectedQuantity, imageUrl: troopInfo[troop].level[$scope.level - 1].imageUrl, damagePerSecond: troopInfo[troop].level[$scope.level - 1].dps, housingSpace: troopInfo[troop].housingSpace, elixirCost: troopInfo[troop].level[$scope.level - 1].ec, trainingTime: troopInfo[troop].trainingTime, researchCost: troopInfo[troop].level[$scope.level].researchCost, damageUpgrade: troopInfo[troop].level[$scope.level].dps - troopInfo[troop].level[$scope.level - 1].dps, hp: troopInfo[troop].level[$scope.level - 1].hp, hpUpgrade: troopInfo[troop].level[$scope.level].hp - troopInfo[troop].level[$scope.level - 1].hp, researchTime: troopInfo[troop].level[$scope.level].researchTime, totalHealth: troopInfo[troop].level[$scope.level - 1].hp * $scope.selectedQuantity, totalDps: troopInfo[troop].level[$scope.level - 1].dps * $scope.selectedQuantity, totalTrainingTime: troopInfo[troop].trainingTime * $scope.selectedQuantity, totalHousingSpace: troopInfo[troop].housingSpace * $scope.selectedQuantity, totalElixirCost: troopInfo[troop].level[$scope.level - 1].ec * $scope.selectedQuantity, maxLevel: troopInfo[troop].maxLevel, darkTroop: troopInfo[troop].darkTroop, isMaxLevel: false});
+          $scope.army.totalDPS += troopInfo[troop].level[$scope.level - 1].dps * $scope.selectedQuantity;
+          $scope.army.totalHP += troopInfo[troop].level[$scope.level - 1].hp * $scope.selectedQuantity;
+          $scope.army.totalHS += troopInfo[troop].housingSpace * $scope.selectedQuantity;
+          if (troopInfo[troop].darkTroop === true ) {
+            $scope.army.totalDarkEC += troopInfo[troop].level[$scope.level - 1].ec * $scope.selectedQuantity;
+          } else {
+            $scope.army.totalEC += troopInfo[troop].level[$scope.level - 1].ec * $scope.selectedQuantity;
+          }
+          $scope.army.totalTrainingTime += troopInfo[troop].trainingTime * $scope.selectedQuantity;
       }
     }
+          
     $scope.sortTroops();
     $scope.cookieSaveTroops();
     $('.troop-level-select').prop('disabled', true);
   };
   $scope.cookieSaveTroops = function() {
-    cookieTroops = $scope.troops;
-    for (i = 0; i < cookieTroops.length; i++) {
-      delete cookieTroops[i]['$$hashKey'];
+    cookieTroops = {troops: $scope.troops, army: $scope.army};
+    for (i = 0; i < cookieTroops.troops.length; i++) {
+      delete cookieTroops.troops[i]['$$hashKey'];
     }
     $.cookie('troop_cookie', JSON.stringify(cookieTroops));
-    console.log(JSON.parse($.cookie('troop_cookie')));
+    console.log("Saved Troops:", JSON.parse($.cookie('troop_cookie')));
   }
   $scope.sortTroops = function() {
     var sortedTroops = [];
@@ -142,7 +167,7 @@ function($scope, $log){
     $scope.troops = sortedTroops;
   };
   $scope.updateTroop = function(troop) {
-    console.log('updating', troop);
+    console.log('Updating:', troop);
     $scope.army.totalDPS -= troop.totalDps;
     $scope.army.totalHP -= troop.totalHealth;
     $scope.army.totalHS -= troop.totalHousingSpace;
@@ -154,8 +179,6 @@ function($scope, $log){
     $scope.army.totalTrainingTime -= troop.totalTrainingTime;
     for (var troops in troopInfo) {
       if (troop.name === troopInfo[troops].name && troop.level === troopInfo[troops].level.length) {
-        console.log(troop.level, troopInfo[troops].level.length);
-        console.log("max reached");
         troop.damagePerSecond = troopInfo[troops].level[troop.level - 1].dps;
         troop.elixirCost = troopInfo[troops].level[troop.level - 1].ec;
         troop.hp = troopInfo[troops].level[troop.level - 1].hp;
@@ -163,6 +186,7 @@ function($scope, $log){
         troop.damageUpgrade = "N/A";
         troop.hpUpgrade = "N/A";
         troop.researchTime = "N/A";
+        troop.isMaxLevel = true;
         troop.totalHealth = troop.quantity * troop.hp;
         troop.totalElixirCost = troop.quantity * troop.elixirCost;
         troop.totalDps = troop.quantity * troop.damagePerSecond;
@@ -175,13 +199,13 @@ function($scope, $log){
         troop.damageUpgrade = troopInfo[troops].level[troop.level].dps - troopInfo[troops].level[troop.level - 1].dps;
         troop.hpUpgrade = troopInfo[troops].level[troop.level].hp - troopInfo[troops].level[troop.level - 1].hp;
         troop.researchTime = troopInfo[troops].level[troop.level].researchTime;
+        troop.isMaxLevel = false;
         troop.totalHealth = troop.quantity * troop.hp;
         troop.totalDps = troop.quantity * troop.damagePerSecond;
         troop.totalElixirCost = troop.quantity * troop.elixirCost;
         troop.totalTrainingTime = troop.quantity * troop.trainingTime;
         troop.totalHousingSpace = troop.quantity * troop.housingSpace;
         troop.imageUrl = troopInfo[troops].level[troop.level - 1].imageUrl;
-        console.log(troop.totalElixirCost);
       }
     }
     $scope.army.totalDPS += troop.totalDps;
@@ -233,16 +257,13 @@ function($scope, $log){
     $scope.updateTroop(troop);
   };
   $scope.changeTownHallLevel = function() {
-  	console.log($scope.townHall.level);
   	$scope.townHall.level = $scope.levelSelect;
     $scope.townHall.imageUrl = "images/town-hall/Town_hall" + $scope.townHall.level + ".png"
   };
   $scope.renderTroopLevels = function() {
     $scope.currentTroopLevels = [];
-    console.log($scope.type, "levels")
     for (var troops in troopInfo) {
       if ($scope.type === troopInfo[troops].name) {
-        console.log(troopInfo[troops].level.length);
         for (var i = 1; i <= troopInfo[troops].level.length; i++) {
           $scope.currentTroopLevels.push(i);
         }
@@ -297,75 +318,107 @@ function($scope, $log){
   $scope.infernoTowerTotalDps = 0;
 
   $scope.existingDefensesCookie = function() {
-    if ($.cookie('defense_cookie') != undefined) {
-      console.log('Existing Defenses:', JSON.parse($.cookie('defense_cookie')));
-      $scope.cannons = JSON.parse($.cookie('defense_cookie')).cannons;
-      $scope.archerTowers = JSON.parse($.cookie('defense_cookie')).archerTowers;
-      $scope.mortars = JSON.parse($.cookie('defense_cookie')).mortars;
-      $scope.airDefenses = JSON.parse($.cookie('defense_cookie')).airDefenses;
-      $scope.wizardTowers = JSON.parse($.cookie('defense_cookie')).wizardTowers;
-      $scope.hiddenTeslas = JSON.parse($.cookie('defense_cookie')).hiddenTeslas;
-      $scope.xbows = JSON.parse($.cookie('defense_cookie')).xbows;
-      $scope.infernoTowers = JSON.parse($.cookie('defense_cookie')).infernoTowers;
-      $scope.cannonTotalDps = JSON.parse($.cookie('defense_cookie')).cannonTotalDps;
-      $scope.cannonTotalHp = JSON.parse($.cookie('defense_cookie')).cannonTotalHp;
-      $scope.archerTowerTotalHp = JSON.parse($.cookie('defense_cookie')).archerTowerTotalHp;
-      $scope.archerTowerTotalDps = JSON.parse($.cookie('defense_cookie')).archerTowerTotalDps;
-      $scope.mortarTotalHp = JSON.parse($.cookie('defense_cookie')).mortarTotalHp;
-      $scope.mortarTotalDps = JSON.parse($.cookie('defense_cookie')).mortarTotalDps;
-      $scope.airDefenseTotalHp = JSON.parse($.cookie('defense_cookie')).airDefenseTotalHp;
-      $scope.airDefenseTotalDps = JSON.parse($.cookie('defense_cookie')).airDefenseTotalDps;
-      $scope.wizardTowerTotalHp = JSON.parse($.cookie('defense_cookie')).wizardTowerTotalHp;
-      $scope.wizardTowerTotalDps = JSON.parse($.cookie('defense_cookie')).wizardTowerTotalDps;
-      $scope.hiddenTeslaTotalHp = JSON.parse($.cookie('defense_cookie')).hiddenTeslaTotalHp;
-      $scope.hiddenTeslaTotalDps = JSON.parse($.cookie('defense_cookie')).hiddenTeslaTotalDps;
-      $scope.xbowTotalHp = JSON.parse($.cookie('defense_cookie')).xbowTotalHp;
-      $scope.xbowTotalDps = JSON.parse($.cookie('defense_cookie')).xbowTotalDps;
-      $scope.infernoTowerTotalHp = JSON.parse($.cookie('defense_cookie')).infernoTowerTotalHp;
-      $scope.infernoTowerTotalDps = JSON.parse($.cookie('defense_cookie')).infernoTowerTotalDps;
-      $scope.totalDefenseDps = JSON.parse($.cookie('defense_cookie')).totalDefenseDps;
-      $scope.totalDefenseHp = JSON.parse($.cookie('defense_cookie')).totalDefenseHp;
+    if ($.cookie('defense_cookie_one') != undefined) {
+      console.log('Existing Defenses 1:', JSON.parse($.cookie('defense_cookie_one')));
+      $scope.archerTowers = JSON.parse($.cookie('defense_cookie_one')).archerTowers;
+      $scope.mortars = JSON.parse($.cookie('defense_cookie_one')).mortars;
+      $scope.archerTowerTotalHp = JSON.parse($.cookie('defense_cookie_one')).archerTowerTotalHp;
+      $scope.archerTowerTotalDps = JSON.parse($.cookie('defense_cookie_one')).archerTowerTotalDps;
+      $scope.mortarTotalHp = JSON.parse($.cookie('defense_cookie_one')).mortarTotalHp;
+      $scope.mortarTotalDps = JSON.parse($.cookie('defense_cookie_one')).mortarTotalDps;
+    } 
+    if ($.cookie('defense_cookie_two') != undefined) {
+      console.log('Existing Defenses 2:', JSON.parse($.cookie('defense_cookie_two')));
+      $scope.airDefenses = JSON.parse($.cookie('defense_cookie_two')).airDefenses;
+      $scope.wizardTowers = JSON.parse($.cookie('defense_cookie_two')).wizardTowers;
+      $scope.hiddenTeslas = JSON.parse($.cookie('defense_cookie_two')).hiddenTeslas;
+      $scope.airDefenseTotalHp = JSON.parse($.cookie('defense_cookie_two')).airDefenseTotalHp;
+      $scope.airDefenseTotalDps = JSON.parse($.cookie('defense_cookie_two')).airDefenseTotalDps;
+      $scope.wizardTowerTotalHp = JSON.parse($.cookie('defense_cookie_two')).wizardTowerTotalHp;
+      $scope.wizardTowerTotalDps = JSON.parse($.cookie('defense_cookie_two')).wizardTowerTotalDps;
+      $scope.hiddenTeslaTotalHp = JSON.parse($.cookie('defense_cookie_two')).hiddenTeslaTotalHp;
+      $scope.hiddenTeslaTotalDps = JSON.parse($.cookie('defense_cookie_two')).hiddenTeslaTotalDps;
+    } 
+    if ($.cookie('defense_cookie_three') != undefined) {
+      console.log('Existing Defenses 3:', JSON.parse($.cookie('defense_cookie_three')));
+      $scope.xbows = JSON.parse($.cookie('defense_cookie_three')).xbows;
+      $scope.infernoTowers = JSON.parse($.cookie('defense_cookie_three')).infernoTowers;
+      $scope.xbowTotalHp = JSON.parse($.cookie('defense_cookie_three')).xbowTotalHp;
+      $scope.xbowTotalDps = JSON.parse($.cookie('defense_cookie_three')).xbowTotalDps;
+      $scope.infernoTowerTotalHp = JSON.parse($.cookie('defense_cookie_three')).infernoTowerTotalHp;
+      $scope.infernoTowerTotalDps = JSON.parse($.cookie('defense_cookie_three')).infernoTowerTotalDps;
+      $scope.totalDefenseDps = JSON.parse($.cookie('defense_cookie_three')).totalDefenseDps;
+      $scope.totalDefenseHp = JSON.parse($.cookie('defense_cookie_three')).totalDefenseHp;
+    } 
+    if ($.cookie('defense_cookie_cannons') != undefined) {
+      console.log('Existing Defenses 1b:', JSON.parse($.cookie('defense_cookie_cannons')));
+      $scope.cannons = JSON.parse($.cookie('defense_cookie_cannons')).cannons;
+      $scope.cannonTotalDps = JSON.parse($.cookie('defense_cookie_cannons')).cannonTotalDps;
+      $scope.cannonTotalHp = JSON.parse($.cookie('defense_cookie_cannons')).cannonTotalHp;
     }
   }
   $scope.existingDefensesCookie();
   $scope.cookieSaveDefenses = function() {
-    var cookieDefenses = {};
-    cookieDefenses.cannons = $scope.cannons;
-    cookieDefenses.archerTowers = $scope.archerTowers;
-    cookieDefenses.mortars = $scope.mortars;
-    cookieDefenses.airDefenses = $scope.airDefenses;
-    cookieDefenses.wizardTowers = $scope.wizardTowers;
-    cookieDefenses.hiddenTeslas = $scope.hiddenTeslas;
-    cookieDefenses.xbows = $scope.xbows;
-    cookieDefenses.infernoTowers = $scope.infernoTowers;
-    cookieDefenses.cannonTotalDps = $scope.cannonTotalDps;
-    cookieDefenses.cannonTotalHp = $scope.cannonTotalHp
-    cookieDefenses.archerTowerTotalHp = $scope.archerTowerTotalHp
-    cookieDefenses.archerTowerTotalDps = $scope.archerTowerTotalDps
-    cookieDefenses.mortarTotalHp = $scope.mortarTotalHp
-    cookieDefenses.mortarTotalDps = $scope.mortarTotalDps
-    cookieDefenses.airDefenseTotalHp = $scope.airDefenseTotalHp
-    cookieDefenses.airDefenseTotalDps = $scope.airDefenseTotalDps
-    cookieDefenses.wizardTowerTotalHp = $scope.wizardTowerTotalHp
-    cookieDefenses.wizardTowerTotalDps = $scope.wizardTowerTotalDps
-    cookieDefenses.hiddenTeslaTotalHp = $scope.hiddenTeslaTotalHp
-    cookieDefenses.hiddenTeslaTotalDps = $scope.hiddenTeslaTotalDps
-    cookieDefenses.xbowTotalHp = $scope.xbowTotalHp
-    cookieDefenses.xbowTotalDps = $scope.xbowTotalDps
-    cookieDefenses.infernoTowerTotalHp = $scope.infernoTowerTotalHp
-    cookieDefenses.infernoTowerTotalDps = $scope.infernoTowerTotalDps
-    cookieDefenses.totalDefenseDps = $scope.totalDefenseDps
-    cookieDefenses.totalDefenseHp = $scope.totalDefenseHp
-    for (var defense in cookieDefenses) {
-      for (i=0;i < cookieDefenses[defense].length; i++) {
-        delete cookieDefenses[defense][i]['$$hashKey'];
+    var cookieOneDefenses = {};
+    var cookieTwoDefenses = {};
+    var cookieThreeDefenses = {};
+    var cookieCannonDefenses = {};
+    cookieCannonDefenses.cannons = $scope.cannons;
+    cookieOneDefenses.archerTowers = $scope.archerTowers;
+    cookieOneDefenses.mortars = $scope.mortars;
+    cookieTwoDefenses.airDefenses = $scope.airDefenses;
+    cookieTwoDefenses.wizardTowers = $scope.wizardTowers;
+    cookieTwoDefenses.hiddenTeslas = $scope.hiddenTeslas;
+    cookieThreeDefenses.xbows = $scope.xbows;
+    cookieThreeDefenses.infernoTowers = $scope.infernoTowers;
+    cookieCannonDefenses.cannonTotalDps = $scope.cannonTotalDps;
+    cookieCannonDefenses.cannonTotalHp = $scope.cannonTotalHp
+    cookieOneDefenses.archerTowerTotalHp = $scope.archerTowerTotalHp
+    cookieOneDefenses.archerTowerTotalDps = $scope.archerTowerTotalDps
+    cookieOneDefenses.mortarTotalHp = $scope.mortarTotalHp
+    cookieOneDefenses.mortarTotalDps = $scope.mortarTotalDps
+    cookieTwoDefenses.airDefenseTotalHp = $scope.airDefenseTotalHp
+    cookieTwoDefenses.airDefenseTotalDps = $scope.airDefenseTotalDps
+    cookieTwoDefenses.wizardTowerTotalHp = $scope.wizardTowerTotalHp
+    cookieTwoDefenses.wizardTowerTotalDps = $scope.wizardTowerTotalDps
+    cookieTwoDefenses.hiddenTeslaTotalHp = $scope.hiddenTeslaTotalHp
+    cookieTwoDefenses.hiddenTeslaTotalDps = $scope.hiddenTeslaTotalDps
+    cookieThreeDefenses.xbowTotalHp = $scope.xbowTotalHp
+    cookieThreeDefenses.xbowTotalDps = $scope.xbowTotalDps
+    cookieThreeDefenses.infernoTowerTotalHp = $scope.infernoTowerTotalHp
+    cookieThreeDefenses.infernoTowerTotalDps = $scope.infernoTowerTotalDps
+    cookieThreeDefenses.totalDefenseDps = $scope.totalDefenseDps
+    cookieThreeDefenses.totalDefenseHp = $scope.totalDefenseHp
+    for (var defense in cookieOneDefenses) {
+      for (i=0;i < cookieOneDefenses[defense].length; i++) {
+        delete cookieOneDefenses[defense][i]['$$hashKey'];
       }
     }
-    $.cookie('defense_cookie', JSON.stringify(cookieDefenses));
-    console.log("Saved Defenses:", JSON.parse($.cookie('defense_cookie')));
+    for (var defense in cookieTwoDefenses) {
+      for (i=0;i < cookieTwoDefenses[defense].length; i++) {
+        delete cookieTwoDefenses[defense][i]['$$hashKey'];
+      }
+    }
+    for (var defense in cookieThreeDefenses) {
+      for (i=0;i < cookieThreeDefenses[defense].length; i++) {
+        delete cookieThreeDefenses[defense][i]['$$hashKey'];
+      }
+    }
+    for (var defense in cookieCannonDefenses) {
+      for (i=0;i < cookieCannonDefenses[defense].length; i++) {
+        delete cookieCannonDefenses[defense][i]['$$hashKey'];
+      }
+    }
+    $.cookie('defense_cookie_one', JSON.stringify(cookieOneDefenses));
+    $.cookie('defense_cookie_two', JSON.stringify(cookieTwoDefenses));
+    $.cookie('defense_cookie_three', JSON.stringify(cookieThreeDefenses));
+    $.cookie('defense_cookie_cannons', JSON.stringify(cookieCannonDefenses));
+    console.log("Saved Defenses 1:", JSON.parse($.cookie('defense_cookie_one')));
+    console.log("Saved Defenses 1b:", JSON.parse($.cookie('defense_cookie_cannons')));
+    console.log("Saved Defenses 2:", JSON.parse($.cookie('defense_cookie_two')));
+    console.log("Saved Defenses 3:", JSON.parse($.cookie('defense_cookie_three')));
   }
   $scope.addDefense = function(type) {
-    alertify.set({delay: 1500});
     if (type === "Cannon") {
       if ($scope.cannons.length >= defenseInfo.cannon.townhallLevelCounts[defenseInfo.cannon.townhallLevelCounts.length-1]) {return;}
       alertify.log("Added Cannon to Your Army");
@@ -399,7 +452,6 @@ function($scope, $log){
       $scope.totalDefenseDps += defenseInfo.airDefense.level[0].dps;
       $scope.totalDefenseHp += defenseInfo.airDefense.level[0].hp;
     } else if (type === "Wizard Tower") {
-      console.log("poopj",$scope.wizardTowers.length, defenseInfo.wizardTower.townhallLevelCounts[defenseInfo.wizardTower.townhallLevelCounts.length-1]);
       if ($scope.wizardTowers.length >= defenseInfo.wizardTower.townhallLevelCounts[defenseInfo.wizardTower.townhallLevelCounts.length-1]) {return;}
       alertify.log("Added Wizard Tower to Your Army");
       $scope.wizardTowers.push({name: "Wizard Tower", imageUrl: defenseInfo.wizardTower.level[0].imageUrl, level: 1, damagePerSecond: defenseInfo.wizardTower.level[0].dps, hp: defenseInfo.wizardTower.level[0].hp, upgradeCost: defenseInfo.wizardTower.level[1].cost, damageUpgrade: defenseInfo.wizardTower.level[1].dps - defenseInfo.wizardTower.level[0].dps, hpUpgrade: defenseInfo.wizardTower.level[1].hp - defenseInfo.wizardTower.level[0].hp, buildTime: defenseInfo.wizardTower.level[0].buildTime, maxLevel: defenseInfo.wizardTower.maxLevel})
@@ -477,7 +529,6 @@ function($scope, $log){
     $scope.totalDefenseHp -= defense.hp;
     for (var defenses in defenseInfo) {
       if (defense.name === defenseInfo[defenses].name && defense.level === defenseInfo[defenses].level.length) {
-        console.log("max reached");
         defense.imageUrl = defenseInfo[defenses].level[defense.level - 1].imageUrl;
         defense.damagePerSecond = defenseInfo[defenses].level[defense.level - 1].dps;
         defense.hp = defenseInfo[defenses].level[defense.level - 1].hp;
@@ -608,96 +659,99 @@ function($scope, $log){
   var cookieResources = {};
 
   $scope.existingResourcesCookie = function() {
-    if ($.cookie('resource_cookie') != undefined) {
-      console.log('Existing Resources:', JSON.parse($.cookie('resource_cookie')));
-      $scope.goldStorages = JSON.parse($.cookie('resource_cookie')).goldStorages;
-      $scope.goldMines = JSON.parse($.cookie('resource_cookie')).goldMines;
-      $scope.goldMineTotalHp = JSON.parse($.cookie('resource_cookie')).goldMineTotalHp;
-      $scope.goldMineTotalCapacity = JSON.parse($.cookie('resource_cookie')).goldMineTotalCapacity;
-      $scope.goldMineTotalProductionRate = JSON.parse($.cookie('resource_cookie')).goldMineTotalProductionRate;
-      $scope.elixirCollectors = JSON.parse($.cookie('resource_cookie')).elixirCollectors;
-      $scope.elixirCollectorTotalCapacity = JSON.parse($.cookie('resource_cookie')).elixirCollectorTotalCapacity;
-      $scope.elixirCollectorTotalHp = JSON.parse($.cookie('resource_cookie')).elixirCollectorTotalHp;
-      $scope.elixirCollectorTotalProductionRate = JSON.parse($.cookie('resource_cookie')).elixirCollectorTotalProductionRate;
-      $scope.darkElixirDrills = JSON.parse($.cookie('resource_cookie')).darkElixirDrills;
-      $scope.darkElixirDrillTotalCapacity = JSON.parse($.cookie('resource_cookie')).darkElixirDrillTotalCapacity;
-      $scope.darkElixirDrillTotalHp = JSON.parse($.cookie('resource_cookie')).darkElixirDrillTotalHp;
-      $scope.darkElixirDrillTotalProductionRate = JSON.parse($.cookie('resource_cookie')).darkElixirDrillTotalProductionRate;
-      $scope.goldStorages = JSON.parse($.cookie('resource_cookie')).goldStorages;
-      $scope.goldStorageTotalCapacity = JSON.parse($.cookie('resource_cookie')).goldStorageTotalCapacity;
-      $scope.goldStorageTotalHp = JSON.parse($.cookie('resource_cookie')).goldStorageTotalHp;
-      $scope.elixirStorages = JSON.parse($.cookie('resource_cookie')).elixirStorages;
-      $scope.elixirStorageTotalCapacity = JSON.parse($.cookie('resource_cookie')).elixirStorageTotalCapacity;
-      $scope.elixirStorageTotalHp = JSON.parse($.cookie('resource_cookie')).elixirStorageTotalHp;
-      $scope.darkElixirStorages = JSON.parse($.cookie('resource_cookie')).darkElixirStorages;
-      $scope.darkElixirStorageTotalCapacity = JSON.parse($.cookie('resource_cookie')).darkElixirStorageTotalCapacity;
-      $scope.darkElixirStorageTotalHp = JSON.parse($.cookie('resource_cookie')).darkElixirStorageTotalHp;
-      $scope.armyCamps = JSON.parse($.cookie('resource_cookie')).armyCamps;
-      $scope.armyCampTotalTroopCapacity = JSON.parse($.cookie('resource_cookie')).armyCampTotalTroopCapacity;
-      $scope.armyCampTotalHp = JSON.parse($.cookie('resource_cookie')).armyCampTotalHp;
-      $scope.barracks = JSON.parse($.cookie('resource_cookie')).barracks;
-      $scope.barrackTotalHp = JSON.parse($.cookie('resource_cookie')).barrackTotalHp;
-      $scope.barrackTotalQueueLength = JSON.parse($.cookie('resource_cookie')).barrackTotalQueueLength;
-      $scope.darkBarracks = JSON.parse($.cookie('resource_cookie')).darkBarracks;
-      $scope.darkBarrackTotalHp = JSON.parse($.cookie('resource_cookie')).darkBarrackTotalHp;
-      $scope.darkBarrackTotalQueueLength = JSON.parse($.cookie('resource_cookie')).darkBarrackTotalQueueLength;
+    if ($.cookie('harvest_resource_cookie') != undefined || $.cookie('storage_resource_cookie') != undefined || $.cookie('troop_resource_cookie') != undefined) {
+      console.log('Existing Harvest Resources:', JSON.parse($.cookie('harvest_resource_cookie')));
+      console.log('Existing Storage Resources:', JSON.parse($.cookie('storage_resource_cookie')));
+      console.log('Existing Troop Resources:', JSON.parse($.cookie('troop_resource_cookie')));
+      $scope.goldMines = JSON.parse($.cookie('harvest_resource_cookie')).goldMines;
+      $scope.goldMineTotalHp = JSON.parse($.cookie('harvest_resource_cookie')).goldMineTotalHp;
+      $scope.goldMineTotalCapacity = JSON.parse($.cookie('harvest_resource_cookie')).goldMineTotalCapacity;
+      $scope.goldMineTotalProductionRate = JSON.parse($.cookie('harvest_resource_cookie')).goldMineTotalProductionRate;
+      $scope.elixirCollectors = JSON.parse($.cookie('harvest_resource_cookie')).elixirCollectors;
+      $scope.elixirCollectorTotalCapacity = JSON.parse($.cookie('harvest_resource_cookie')).elixirCollectorTotalCapacity;
+      $scope.elixirCollectorTotalHp = JSON.parse($.cookie('harvest_resource_cookie')).elixirCollectorTotalHp;
+      $scope.elixirCollectorTotalProductionRate = JSON.parse($.cookie('harvest_resource_cookie')).elixirCollectorTotalProductionRate;
+      $scope.darkElixirDrills = JSON.parse($.cookie('harvest_resource_cookie')).darkElixirDrills;
+      $scope.darkElixirDrillTotalCapacity = JSON.parse($.cookie('harvest_resource_cookie')).darkElixirDrillTotalCapacity;
+      $scope.darkElixirDrillTotalHp = JSON.parse($.cookie('harvest_resource_cookie')).darkElixirDrillTotalHp;
+      $scope.darkElixirDrillTotalProductionRate = JSON.parse($.cookie('harvest_resource_cookie')).darkElixirDrillTotalProductionRate;
+      $scope.goldStorages = JSON.parse($.cookie('storage_resource_cookie')).goldStorages;
+      $scope.goldStorageTotalCapacity = JSON.parse($.cookie('storage_resource_cookie')).goldStorageTotalCapacity;
+      $scope.goldStorageTotalHp = JSON.parse($.cookie('storage_resource_cookie')).goldStorageTotalHp;
+      $scope.elixirStorages = JSON.parse($.cookie('storage_resource_cookie')).elixirStorages;
+      $scope.elixirStorageTotalCapacity = JSON.parse($.cookie('storage_resource_cookie')).elixirStorageTotalCapacity;
+      $scope.elixirStorageTotalHp = JSON.parse($.cookie('storage_resource_cookie')).elixirStorageTotalHp;
+      $scope.darkElixirStorages = JSON.parse($.cookie('storage_resource_cookie')).darkElixirStorages;
+      $scope.darkElixirStorageTotalCapacity = JSON.parse($.cookie('storage_resource_cookie')).darkElixirStorageTotalCapacity;
+      $scope.darkElixirStorageTotalHp = JSON.parse($.cookie('storage_resource_cookie')).darkElixirStorageTotalHp;
+      $scope.armyCamps = JSON.parse($.cookie('troop_resource_cookie')).armyCamps;
+      $scope.armyCampTotalTroopCapacity = JSON.parse($.cookie('troop_resource_cookie')).armyCampTotalTroopCapacity;
+      $scope.armyCampTotalHp = JSON.parse($.cookie('troop_resource_cookie')).armyCampTotalHp;
+      $scope.barracks = JSON.parse($.cookie('troop_resource_cookie')).barracks;
+      $scope.barrackTotalHp = JSON.parse($.cookie('troop_resource_cookie')).barrackTotalHp;
+      $scope.barrackTotalQueueLength = JSON.parse($.cookie('troop_resource_cookie')).barrackTotalQueueLength;
+      $scope.darkBarracks = JSON.parse($.cookie('troop_resource_cookie')).darkBarracks;
+      $scope.darkBarrackTotalHp = JSON.parse($.cookie('troop_resource_cookie')).darkBarrackTotalHp;
+      $scope.darkBarrackTotalQueueLength = JSON.parse($.cookie('troop_resource_cookie')).darkBarrackTotalQueueLength;
     }
   }
   $scope.existingResourcesCookie();
   $scope.cookieSaveResources = function() {
-    cookieResources.goldStorages = $scope.goldStorages;
-    cookieResources.goldMines = $scope.goldMines;
-    cookieResources.goldStorageTotalCapacity = $scope.goldStorageTotalCapacity;
-    cookieResources.goldStorageTotalHp = $scope.goldStorageTotalHp;
-    cookieResources.goldMineTotalHp = $scope.goldMineTotalHp;
-    cookieResources.goldMineTotalCapacity = $scope.goldMineTotalCapacity;
-    cookieResources.goldMineTotalProductionRate = $scope.goldMineTotalProductionRate;
-    cookieResources.elixirCollectors = $scope.elixirCollectors;
-    cookieResources.elixirCollectorTotalCapacity = $scope.elixirCollectorTotalCapacity;
-    cookieResources.elixirCollectorTotalHp = $scope.elixirCollectorTotalHp;
-    cookieResources.elixirCollectorTotalProductionRate = $scope.elixirCollectorTotalProductionRate;
-    cookieResources.darkElixirDrills = $scope.darkElixirDrills;
-    cookieResources.darkElixirDrillTotalCapacity = $scope.darkElixirDrillTotalCapacity;
-    cookieResources.darkElixirDrillTotalHp = $scope.darkElixirDrillTotalHp;
-    cookieResources.darkElixirDrillTotalProductionRate = $scope.darkElixirDrillTotalProductionRate;
-    cookieResources.goldStorages = $scope.goldStorages;
-    cookieResources.goldStorageTotalCapacity = $scope.goldStorageTotalCapacity;
-    cookieResources.goldStorageTotalHp = $scope.goldStorageTotalHp;
-    cookieResources.elixirStorages = $scope.elixirStorages;
-    cookieResources.elixirStorageTotalCapacity = $scope.elixirStorageTotalCapacity;
-    cookieResources.elixirStorageTotalHp = $scope.elixirStorageTotalHp;
-    cookieResources.darkElixirStorages = $scope.darkElixirStorages;
-    cookieResources.darkElixirStorageTotalCapacity = $scope.darkElixirStorageTotalCapacity;
-    cookieResources.darkElixirStorageTotalHp = $scope.darkElixirStorageTotalHp;
-    cookieResources.armyCamps = $scope.armyCamps;
-    cookieResources.armyCampTotalTroopCapacity = $scope.armyCampTotalTroopCapacity;
-    cookieResources.armyCampTotalHp = $scope.armyCampTotalHp;
-    cookieResources.barracks = $scope.barracks;
-    cookieResources.barrackTotalHp = $scope.barrackTotalHp;
-    cookieResources.barrackTotalQueueLength = $scope.barrackTotalQueueLength;
-    cookieResources.darkBarracks = $scope.darkBarracks;
-    cookieResources.darkBarrackTotalHp = $scope.darkBarrackTotalHp;
-    cookieResources.darkBarrackTotalQueueLength = $scope.darkBarrackTotalQueueLength;
-    $scope.clearHashKey(cookieResources.goldMines);
-    $scope.clearHashKey(cookieResources.elixirCollectors);
-    $scope.clearHashKey(cookieResources.darkElixirDrills);
-    $scope.clearHashKey(cookieResources.goldStorages);
-    $scope.clearHashKey(cookieResources.elixirStorages);
-    $scope.clearHashKey(cookieResources.darkElixirStorages);
-    $scope.clearHashKey(cookieResources.armyCamps);
-    $scope.clearHashKey(cookieResources.barracks);
-    $scope.clearHashKey(cookieResources.darkBarracks);
-    $.cookie('resource_cookie', JSON.stringify(cookieResources));
-    console.log("Saved Resources:", JSON.parse($.cookie('resource_cookie')));
+    var harvestResources = {};
+    var storageResources = {};
+    var troopResources = {};
+    harvestResources.goldMines = $scope.goldMines;
+    harvestResources.goldMineTotalHp = $scope.goldMineTotalHp;
+    harvestResources.goldMineTotalCapacity = $scope.goldMineTotalCapacity;
+    harvestResources.goldMineTotalProductionRate = $scope.goldMineTotalProductionRate;
+    harvestResources.elixirCollectors = $scope.elixirCollectors;
+    harvestResources.elixirCollectorTotalCapacity = $scope.elixirCollectorTotalCapacity;
+    harvestResources.elixirCollectorTotalHp = $scope.elixirCollectorTotalHp;
+    harvestResources.elixirCollectorTotalProductionRate = $scope.elixirCollectorTotalProductionRate;
+    harvestResources.darkElixirDrills = $scope.darkElixirDrills;
+    harvestResources.darkElixirDrillTotalCapacity = $scope.darkElixirDrillTotalCapacity;
+    harvestResources.darkElixirDrillTotalHp = $scope.darkElixirDrillTotalHp;
+    harvestResources.darkElixirDrillTotalProductionRate = $scope.darkElixirDrillTotalProductionRate;
+    storageResources.goldStorages = $scope.goldStorages;
+    storageResources.goldStorageTotalCapacity = $scope.goldStorageTotalCapacity;
+    storageResources.goldStorageTotalHp = $scope.goldStorageTotalHp;
+    storageResources.elixirStorages = $scope.elixirStorages;
+    storageResources.elixirStorageTotalCapacity = $scope.elixirStorageTotalCapacity;
+    storageResources.elixirStorageTotalHp = $scope.elixirStorageTotalHp;
+    storageResources.darkElixirStorages = $scope.darkElixirStorages;
+    storageResources.darkElixirStorageTotalCapacity = $scope.darkElixirStorageTotalCapacity;
+    storageResources.darkElixirStorageTotalHp = $scope.darkElixirStorageTotalHp;
+    troopResources.armyCamps = $scope.armyCamps;
+    troopResources.armyCampTotalTroopCapacity = $scope.armyCampTotalTroopCapacity;
+    troopResources.armyCampTotalHp = $scope.armyCampTotalHp;
+    troopResources.barracks = $scope.barracks;
+    troopResources.barrackTotalHp = $scope.barrackTotalHp;
+    troopResources.barrackTotalQueueLength = $scope.barrackTotalQueueLength;
+    troopResources.darkBarracks = $scope.darkBarracks;
+    troopResources.darkBarrackTotalHp = $scope.darkBarrackTotalHp;
+    troopResources.darkBarrackTotalQueueLength = $scope.darkBarrackTotalQueueLength;
+    $scope.clearHashKey(harvestResources.goldMines);
+    $scope.clearHashKey(harvestResources.elixirCollectors);
+    $scope.clearHashKey(harvestResources.darkElixirDrills);
+    $scope.clearHashKey(storageResources.goldStorages);
+    $scope.clearHashKey(storageResources.elixirStorages);
+    $scope.clearHashKey(storageResources.darkElixirStorages);
+    $scope.clearHashKey(troopResources.armyCamps);
+    $scope.clearHashKey(troopResources.barracks);
+    $scope.clearHashKey(troopResources.darkBarracks);
+    $.cookie('harvest_resource_cookie', JSON.stringify(harvestResources));
+    $.cookie('storage_resource_cookie', JSON.stringify(storageResources));
+    $.cookie('troop_resource_cookie', JSON.stringify(troopResources));
+    console.log("Saved Harvest Resources:", JSON.parse($.cookie('harvest_resource_cookie')));
+    console.log("Saved Storage Resources:", JSON.parse($.cookie('storage_resource_cookie')));
+    console.log("Saved Troop Resources:", JSON.parse($.cookie('troop_resource_cookie')));
   };
   $scope.clearHashKey = function(element) {
-    console.log(element);
     for (i = 0; i < element.length; i++) {
       delete element[i]['$$hashKey'];
     }
   };
   $scope.addResource = function(type) {
-    alertify.set({delay: 1500});
     if (type === "Gold Mine") {
       if ($scope.goldMines.length >= resourceInfo.goldMine.townhallLevelCounts[resourceInfo.goldMine.townhallLevelCounts.length-1]) {return;}
       alertify.log("Added Gold Mine to Your Army");
@@ -774,19 +828,17 @@ function($scope, $log){
     $scope.cookieSaveResources();
   }
   $scope.levelUpResource = function(resource) {
-    console.log('level up', resource);
     if(resource.level === resource.maxLevel) {return;}
     resource.level += 1;
     $scope.updateResource(resource);
   }
   $scope.levelDownResource = function(resource) {
-    console.log('level down', resource);
     if(resource.level <= 1) {return;}
     resource.level -= 1;
     $scope.updateResource(resource);
   }
   $scope.updateResource = function(resource) {
-    console.log("updating", resource);
+    console.log("Updating:", resource);
     if (resource.name === "Gold Mine") {
       $scope.goldMineTotalHp -= resource.hp;
       $scope.goldMineTotalCapacity -= resource.capacity;
@@ -794,7 +846,6 @@ function($scope, $log){
       $scope.totalResourceGoldCapacity -= resource.capacity;
       $scope.totalResourceHp -= resource.hp;
       if (resource.level === resourceInfo.goldMine.maxLevel) {
-        console.log("you hit the max");
         resource.capacityUpgrade = "N/A";
         resource.hpUpgrade = "N/A";
         resource.prUpgrade = "N/A";
@@ -822,7 +873,6 @@ function($scope, $log){
       $scope.totalResourceElixirCapacity -= resource.capacity;
       $scope.totalResourceHp -= resource.hp;
       if (resource.level === resourceInfo.elixirCollector.maxLevel) {
-        console.log("you hit the max");
         resource.capacityUpgrade = "N/A";
         resource.hpUpgrade = "N/A";
         resource.prUpgrade = "N/A";
@@ -850,7 +900,6 @@ function($scope, $log){
       $scope.totalResourceDarkElixirCapacity -= resource.capacity;
       $scope.totalResourceHp -= resource.hp;
       if (resource.level === resourceInfo.darkElixirDrill.maxLevel) {
-        console.log("you hit the max");
         resource.capacityUpgrade = "N/A";
         resource.hpUpgrade = "N/A";
         resource.prUpgrade = "N/A";
@@ -877,7 +926,6 @@ function($scope, $log){
       $scope.totalResourceGoldCapacity -= resource.capacity;
       $scope.totalResourceHp -= resource.hp;
       if (resource.level === resourceInfo.goldStorage.maxLevel) {
-        console.log("you hit the max");
         resource.capacityUpgrade = "N/A";
         resource.hpUpgrade = "N/A";
         resource.upgradeCost = "N/A";
@@ -900,7 +948,6 @@ function($scope, $log){
       $scope.totalResourceElixirCapacity -= resource.capacity;
       $scope.totalResourceHp -= resource.hp;
       if (resource.level === resourceInfo.elixirStorage.maxLevel) {
-        console.log("you hit the max");
         resource.capacityUpgrade = "N/A";
         resource.hpUpgrade = "N/A";
         resource.upgradeCost = "N/A";
@@ -923,7 +970,6 @@ function($scope, $log){
       $scope.totalResourceDarkElixirCapacity -= resource.capacity;
       $scope.totalResourceHp -= resource.hp;
       if (resource.level === resourceInfo.darkElixirStorage.maxLevel) {
-        console.log("you hit the max");
         resource.capacityUpgrade = "N/A";
         resource.hpUpgrade = "N/A";
         resource.upgradeCost = "N/A";
@@ -945,7 +991,6 @@ function($scope, $log){
       $scope.armyCampTotalTroopCapacity -= resource.troopCapacity;
       $scope.totalResourceHp -= resource.hp;
       if (resource.level === resourceInfo.armyCamp.maxLevel) {
-        console.log("you hit the max");
         resource.troopCapacityUpgrade = "N/A";
         resource.hpUpgrade = "N/A";
         resource.upgradeCost = "N/A";
@@ -966,7 +1011,6 @@ function($scope, $log){
       $scope.barrackTotalQueueLength -= resource.queueLength;
       $scope.totalResourceHp -= resource.hp;
       if (resource.level === resourceInfo.barracks.maxLevel) {
-        console.log("you hit the max");
         resource.queueLengthUpgrade = "N/A";
         resource.hpUpgrade = "N/A";
         resource.upgradeCost = "N/A";
@@ -988,7 +1032,6 @@ function($scope, $log){
       $scope.darkBarrackTotalQueueLength -= resource.queueLength;
       $scope.totalResourceHp -= resource.hp;
       if (resource.level === resourceInfo.darkBarracks.maxLevel) {
-        console.log("you hit the max");
         resource.queueLengthUpgrade = "N/A";
         resource.hpUpgrade = "N/A";
         resource.upgradeCost = "N/A";

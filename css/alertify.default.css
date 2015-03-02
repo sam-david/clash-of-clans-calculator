@@ -3,7 +3,7 @@
  */
 .alertify,
 .alertify-log {
-	font-family: sans-serif;
+	font-family: 'Fredoka One', cursive !important;
 }
 .alertify {
 	background: #FFF;
