@@ -656,43 +656,56 @@ function($scope, $log){
   $scope.darkBarracks = [];
   $scope.darkBarrackTotalHp = 0;
   $scope.darkBarrackTotalQueueLength = 0;
+  $scope.laboratory = [];
+  $scope.spellFactory = [];
   var cookieResources = {};
 
   $scope.existingResourcesCookie = function() {
-    if ($.cookie('harvest_resource_cookie') != undefined || $.cookie('storage_resource_cookie') != undefined || $.cookie('troop_resource_cookie') != undefined) {
-      console.log('Existing Harvest Resources:', JSON.parse($.cookie('harvest_resource_cookie')));
-      console.log('Existing Storage Resources:', JSON.parse($.cookie('storage_resource_cookie')));
-      console.log('Existing Troop Resources:', JSON.parse($.cookie('troop_resource_cookie')));
-      $scope.goldMines = JSON.parse($.cookie('harvest_resource_cookie')).goldMines;
-      $scope.goldMineTotalHp = JSON.parse($.cookie('harvest_resource_cookie')).goldMineTotalHp;
-      $scope.goldMineTotalCapacity = JSON.parse($.cookie('harvest_resource_cookie')).goldMineTotalCapacity;
-      $scope.goldMineTotalProductionRate = JSON.parse($.cookie('harvest_resource_cookie')).goldMineTotalProductionRate;
-      $scope.elixirCollectors = JSON.parse($.cookie('harvest_resource_cookie')).elixirCollectors;
-      $scope.elixirCollectorTotalCapacity = JSON.parse($.cookie('harvest_resource_cookie')).elixirCollectorTotalCapacity;
-      $scope.elixirCollectorTotalHp = JSON.parse($.cookie('harvest_resource_cookie')).elixirCollectorTotalHp;
-      $scope.elixirCollectorTotalProductionRate = JSON.parse($.cookie('harvest_resource_cookie')).elixirCollectorTotalProductionRate;
-      $scope.darkElixirDrills = JSON.parse($.cookie('harvest_resource_cookie')).darkElixirDrills;
-      $scope.darkElixirDrillTotalCapacity = JSON.parse($.cookie('harvest_resource_cookie')).darkElixirDrillTotalCapacity;
-      $scope.darkElixirDrillTotalHp = JSON.parse($.cookie('harvest_resource_cookie')).darkElixirDrillTotalHp;
-      $scope.darkElixirDrillTotalProductionRate = JSON.parse($.cookie('harvest_resource_cookie')).darkElixirDrillTotalProductionRate;
-      $scope.goldStorages = JSON.parse($.cookie('storage_resource_cookie')).goldStorages;
-      $scope.goldStorageTotalCapacity = JSON.parse($.cookie('storage_resource_cookie')).goldStorageTotalCapacity;
-      $scope.goldStorageTotalHp = JSON.parse($.cookie('storage_resource_cookie')).goldStorageTotalHp;
-      $scope.elixirStorages = JSON.parse($.cookie('storage_resource_cookie')).elixirStorages;
-      $scope.elixirStorageTotalCapacity = JSON.parse($.cookie('storage_resource_cookie')).elixirStorageTotalCapacity;
-      $scope.elixirStorageTotalHp = JSON.parse($.cookie('storage_resource_cookie')).elixirStorageTotalHp;
-      $scope.darkElixirStorages = JSON.parse($.cookie('storage_resource_cookie')).darkElixirStorages;
-      $scope.darkElixirStorageTotalCapacity = JSON.parse($.cookie('storage_resource_cookie')).darkElixirStorageTotalCapacity;
-      $scope.darkElixirStorageTotalHp = JSON.parse($.cookie('storage_resource_cookie')).darkElixirStorageTotalHp;
-      $scope.armyCamps = JSON.parse($.cookie('troop_resource_cookie')).armyCamps;
-      $scope.armyCampTotalTroopCapacity = JSON.parse($.cookie('troop_resource_cookie')).armyCampTotalTroopCapacity;
-      $scope.armyCampTotalHp = JSON.parse($.cookie('troop_resource_cookie')).armyCampTotalHp;
-      $scope.barracks = JSON.parse($.cookie('troop_resource_cookie')).barracks;
-      $scope.barrackTotalHp = JSON.parse($.cookie('troop_resource_cookie')).barrackTotalHp;
-      $scope.barrackTotalQueueLength = JSON.parse($.cookie('troop_resource_cookie')).barrackTotalQueueLength;
-      $scope.darkBarracks = JSON.parse($.cookie('troop_resource_cookie')).darkBarracks;
-      $scope.darkBarrackTotalHp = JSON.parse($.cookie('troop_resource_cookie')).darkBarrackTotalHp;
-      $scope.darkBarrackTotalQueueLength = JSON.parse($.cookie('troop_resource_cookie')).darkBarrackTotalQueueLength;
+    if ($.cookie('harvest_resource_cookie') != undefined || $.cookie('storage_resource_cookie') != undefined || $.cookie('troop_resource_cookie') != undefined || $.cookie('other_resource_cookie')) {
+      if ($.cookie('harvest_resource_cookie') != undefined) {
+        console.log('Existing Harvest Resources:', JSON.parse($.cookie('harvest_resource_cookie')));
+        $scope.goldMines = JSON.parse($.cookie('harvest_resource_cookie')).goldMines;
+        $scope.goldMineTotalHp = JSON.parse($.cookie('harvest_resource_cookie')).goldMineTotalHp;
+        $scope.goldMineTotalCapacity = JSON.parse($.cookie('harvest_resource_cookie')).goldMineTotalCapacity;
+        $scope.goldMineTotalProductionRate = JSON.parse($.cookie('harvest_resource_cookie')).goldMineTotalProductionRate;
+        $scope.elixirCollectors = JSON.parse($.cookie('harvest_resource_cookie')).elixirCollectors;
+        $scope.elixirCollectorTotalCapacity = JSON.parse($.cookie('harvest_resource_cookie')).elixirCollectorTotalCapacity;
+        $scope.elixirCollectorTotalHp = JSON.parse($.cookie('harvest_resource_cookie')).elixirCollectorTotalHp;
+        $scope.elixirCollectorTotalProductionRate = JSON.parse($.cookie('harvest_resource_cookie')).elixirCollectorTotalProductionRate;
+        $scope.darkElixirDrills = JSON.parse($.cookie('harvest_resource_cookie')).darkElixirDrills;
+        $scope.darkElixirDrillTotalCapacity = JSON.parse($.cookie('harvest_resource_cookie')).darkElixirDrillTotalCapacity;
+        $scope.darkElixirDrillTotalHp = JSON.parse($.cookie('harvest_resource_cookie')).darkElixirDrillTotalHp;
+        $scope.darkElixirDrillTotalProductionRate = JSON.parse($.cookie('harvest_resource_cookie')).darkElixirDrillTotalProductionRate;
+      }
+      if ($.cookie('storage_resource_cookie') != undefined) {
+        console.log('Existing Storage Resources:', JSON.parse($.cookie('storage_resource_cookie')));
+        $scope.goldStorages = JSON.parse($.cookie('storage_resource_cookie')).goldStorages;
+        $scope.goldStorageTotalCapacity = JSON.parse($.cookie('storage_resource_cookie')).goldStorageTotalCapacity;
+        $scope.goldStorageTotalHp = JSON.parse($.cookie('storage_resource_cookie')).goldStorageTotalHp;
+        $scope.elixirStorages = JSON.parse($.cookie('storage_resource_cookie')).elixirStorages;
+        $scope.elixirStorageTotalCapacity = JSON.parse($.cookie('storage_resource_cookie')).elixirStorageTotalCapacity;
+        $scope.elixirStorageTotalHp = JSON.parse($.cookie('storage_resource_cookie')).elixirStorageTotalHp;
+        $scope.darkElixirStorages = JSON.parse($.cookie('storage_resource_cookie')).darkElixirStorages;
+        $scope.darkElixirStorageTotalCapacity = JSON.parse($.cookie('storage_resource_cookie')).darkElixirStorageTotalCapacity;
+        $scope.darkElixirStorageTotalHp = JSON.parse($.cookie('storage_resource_cookie')).darkElixirStorageTotalHp;
+      }
+      if ($.cookie('troop_resource_cookie') != undefined) { 
+        console.log('Existing Troop Resources:', JSON.parse($.cookie('troop_resource_cookie')));
+        $scope.armyCamps = JSON.parse($.cookie('troop_resource_cookie')).armyCamps;
+        $scope.armyCampTotalTroopCapacity = JSON.parse($.cookie('troop_resource_cookie')).armyCampTotalTroopCapacity;
+        $scope.armyCampTotalHp = JSON.parse($.cookie('troop_resource_cookie')).armyCampTotalHp;
+        $scope.barracks = JSON.parse($.cookie('troop_resource_cookie')).barracks;
+        $scope.barrackTotalHp = JSON.parse($.cookie('troop_resource_cookie')).barrackTotalHp;
+        $scope.barrackTotalQueueLength = JSON.parse($.cookie('troop_resource_cookie')).barrackTotalQueueLength;
+        $scope.darkBarracks = JSON.parse($.cookie('troop_resource_cookie')).darkBarracks;
+        $scope.darkBarrackTotalHp = JSON.parse($.cookie('troop_resource_cookie')).darkBarrackTotalHp;
+        $scope.darkBarrackTotalQueueLength = JSON.parse($.cookie('troop_resource_cookie')).darkBarrackTotalQueueLength;
+      }
+      if ($.cookie('troop_resource_cookie') != undefined) { 
+        console.log('Existing Other Resources:', JSON.parse($.cookie('other_resource_cookie')));
+        $scope.spellFactory = JSON.parse($.cookie('other_resource_cookie')).spellFactory;
+        $scope.laboratory = JSON.parse($.cookie('other_resource_cookie')).laboratory;
+      }
     }
   }
   $scope.existingResourcesCookie();
@@ -700,6 +713,7 @@ function($scope, $log){
     var harvestResources = {};
     var storageResources = {};
     var troopResources = {};
+    var otherResources = {};
     harvestResources.goldMines = $scope.goldMines;
     harvestResources.goldMineTotalHp = $scope.goldMineTotalHp;
     harvestResources.goldMineTotalCapacity = $scope.goldMineTotalCapacity;
@@ -730,6 +744,8 @@ function($scope, $log){
     troopResources.darkBarracks = $scope.darkBarracks;
     troopResources.darkBarrackTotalHp = $scope.darkBarrackTotalHp;
     troopResources.darkBarrackTotalQueueLength = $scope.darkBarrackTotalQueueLength;
+    otherResources.spellFactory = $scope.spellFactory;
+    otherResources.laboratory = $scope.laboratory;
     $scope.clearHashKey(harvestResources.goldMines);
     $scope.clearHashKey(harvestResources.elixirCollectors);
     $scope.clearHashKey(harvestResources.darkElixirDrills);
@@ -739,12 +755,20 @@ function($scope, $log){
     $scope.clearHashKey(troopResources.armyCamps);
     $scope.clearHashKey(troopResources.barracks);
     $scope.clearHashKey(troopResources.darkBarracks);
+    if (troopResources.spellFactory != undefined) {
+      delete troopResources.spellFactory[0]['$$hashKey'];
+    }
+    if (troopResources.laboratory != undefined) {
+      delete troopResources.laboratory[0]['$$hashKey'];
+    }
     $.cookie('harvest_resource_cookie', JSON.stringify(harvestResources));
     $.cookie('storage_resource_cookie', JSON.stringify(storageResources));
     $.cookie('troop_resource_cookie', JSON.stringify(troopResources));
+    $.cookie('other_resource_cookie', JSON.stringify(otherResources));
     console.log("Saved Harvest Resources:", JSON.parse($.cookie('harvest_resource_cookie')));
     console.log("Saved Storage Resources:", JSON.parse($.cookie('storage_resource_cookie')));
     console.log("Saved Troop Resources:", JSON.parse($.cookie('troop_resource_cookie')));
+    console.log("Saved Other Resources:", JSON.parse($.cookie('other_resource_cookie')));
   };
   $scope.clearHashKey = function(element) {
     for (i = 0; i < element.length; i++) {
@@ -824,7 +848,17 @@ function($scope, $log){
       $scope.darkBarrackTotalHp += resourceInfo.darkBarracks.level[0].hp;
       $scope.darkBarrackTotalQueueLength += resourceInfo.darkBarracks.level[0].queueLength;
       $scope.totalResourceHp += resourceInfo.darkBarracks.level[0].hp;
-    } 
+    } else if (type === "Laboratory") {
+      if ($scope.laboratory.length === 1) {return;}
+      alertify.log("Added Laboratory to Your Army");
+      $scope.laboratory.push({name: "Laboratory", imageUrl: resourceInfo.laboratory.level[0].imageUrl, level: 1, hp: resourceInfo.laboratory.level[0].hp, upgradeCost: resourceInfo.laboratory.level[1].cost, hpUpgrade: resourceInfo.laboratory.level[1].hp - resourceInfo.laboratory.level[0].hp, buildTime: resourceInfo.laboratory.level[0].buildTime, maxLevel: resourceInfo.laboratory.maxLevel})
+      $scope.totalResourceHp += resourceInfo.laboratory.level[0].hp;
+    } else if (type === "Spell Factory") {
+      if ($scope.spellFactory.length === 1) {return;}
+      alertify.log("Added Spell Factory to Your Army");
+      $scope.spellFactory.push({name: "Spell Factory", imageUrl: resourceInfo.spellFactory.level[0].imageUrl, level: 1, hp: resourceInfo.spellFactory.level[0].hp, upgradeCost: resourceInfo.spellFactory.level[1].cost, hpUpgrade: resourceInfo.spellFactory.level[1].hp - resourceInfo.spellFactory.level[0].hp, buildTime: resourceInfo.spellFactory.level[0].buildTime, maxLevel: resourceInfo.spellFactory.maxLevel, spellUnlocked: resourceInfo.spellFactory.level[0].spellUnlocked});
+      $scope.totalResourceHp += resourceInfo.spellFactory.level[0].hp;
+    }
     $scope.cookieSaveResources();
   }
   $scope.levelUpResource = function(resource) {
@@ -1048,6 +1082,33 @@ function($scope, $log){
       $scope.darkBarrackTotalHp += resource.hp;
       $scope.darkBarrackTotalQueueLength += resource.queueLength;
       $scope.totalResourceHp += resource.hp;    
+    } else if (resource.name === "Laboratory") {
+      $scope.totalResourceHp -= resource.hp;
+      if (resource.level === resourceInfo.laboratory.maxLevel) {
+        resource.hpUpgrade = "N/A";
+        resource.upgradeCost = "N/A";
+      } else {
+        resource.hpUpgrade = resourceInfo.laboratory.level[resource.level].hp - resourceInfo.laboratory.level[resource.level - 1].hp;
+        resource.upgradeCost = resourceInfo.laboratory.level[resource.level].cost;
+      }
+      resource.hp = resourceInfo.laboratory.level[resource.level - 1].hp;
+      resource.buildTime = resourceInfo.laboratory.level[resource.level - 1].buildTime;
+      resource.imageUrl = resourceInfo.laboratory.level[resource.level - 1].imageUrl;
+      $scope.totalResourceHp += resource.hp;    
+    } else if (resource.name === "Spell Factory") {
+      $scope.totalResourceHp -= resource.hp;
+      if (resource.level === resourceInfo.spellFactory.maxLevel) {
+        resource.hpUpgrade = "N/A";
+        resource.upgradeCost = "N/A";
+      } else {
+        resource.hpUpgrade = resourceInfo.spellFactory.level[resource.level].hp - resourceInfo.spellFactory.level[resource.level - 1].hp;
+        resource.upgradeCost = resourceInfo.spellFactory.level[resource.level].cost;
+      }
+      resource.spellUnlocked = resourceInfo.spellFactory.level[resource.level - 1].spellUnlocked;
+      resource.hp = resourceInfo.spellFactory.level[resource.level - 1].hp;
+      resource.buildTime = resourceInfo.spellFactory.level[resource.level - 1].buildTime;
+      resource.imageUrl = resourceInfo.spellFactory.level[resource.level - 1].imageUrl;
+      $scope.totalResourceHp += resource.hp;    
     }
 
     $scope.cookieSaveResources();
@@ -1108,6 +1169,12 @@ function($scope, $log){
       $scope.darkBarracks.splice($scope.darkBarracks.indexOf(resource), 1);
       $scope.darkBarrackTotalHp -= resource.hp;
       $scope.darkBarrackTotalQueueLength -= resource.queueLength;
+      $scope.totalResourceHp -= resource.hp;
+    } else if (resource.name === "Laboratory") {
+      $scope.laboratory = [];
+      $scope.totalResourceHp -= resource.hp;
+    } else if (resource.name === "Spell Factory") {
+      $scope.spellFactory = [];
       $scope.totalResourceHp -= resource.hp;
     } 
     $scope.cookieSaveResources();

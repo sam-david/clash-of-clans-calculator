@@ -11,6 +11,16 @@
     <link href="css/alertify.core.css" rel="stylesheet" type="text/css" />
     <link href="css/alertify.default.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49226266-1', 'auto');
+  ga('send', 'pageview');
+
+  </script> 
     <script src="js/data.js"></script>
     <script src="js/jquery-2.1.0.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
@@ -52,21 +62,10 @@
         <img src="images/pageitems/coc-header.jpg" class="header-image">
       </div>
     </div>
-    <!-- <div class="row townhall-row">
-      <div class="large-4 medium-3 large-offset-2 columns townhall-text-box">
-        <h1 class="townhall-text">Select Town Hall Level:</h1>
-      </div>
-      <div class="large-2 medium-2 columns townhall-select-box">
-        <select ng-model="levelSelect" ng-change="changeTownHallLevel()" ng-options="level for level in townHallLevels" class="townhall-select">
-          <option value="">-- Level --</option>
-        </select>
-      </div>
-      <div class="large-3 medium-3 columns left">
-        <img class="townhall-image" src="{{ townHall.imageUrl }}">
-      </div>
-    </div> -->
     <div class="row">
-      <p class="header-text">Welcome to Clash of Clans Calculator! This website was made as a tool to help you learn more about your Troops, Defenses, and Resources. Play around with the sections below to customize to YOUR army. We have recently improved our site and are alway interested in feedback from Clash of Clans players. Note: If you have cookies enabled your army will be saved to come back to later.
+      <div class="large-12 columns">
+        <p class="header-text">Welcome to Clash of Clans Calculator! This website was made as a tool to help you learn more about your Troops, Defenses, and Resources. Play around with the sections below to customize and learn more about YOUR army. We have recently improved our site and are alway interested in feedback from Clash of Clans players. Note: If you have cookies enabled your army will be saved to come back to later.
+      </div>
     </div>
     <a name="troop-section"></a>
     <div ng-controller="TroopCtrl">
@@ -77,161 +76,161 @@
     </div>
     <div class="row troop-select-row">
       <form>
-        <div class="large-4 columns">
+        <div class="large-4 medium-4 columns">
           <select ng-model="type" ng-change="renderTroopLevels()">
             <option value="">-- Choose Troop --</option>
             <option ng-repeat="troopType in troopTypes" value="{{troopType}}">- {{troopType}} -</option>
           </select>
         </div>
-        <div class="large-3 columns">
+        <div class="large-3 medium-3 columns">
           <select disabled ng-model="level" ng-options="level for level in currentTroopLevels" class="troop-level-select">
             <option value="">-- Troop Level --</option>
           </select>
         </div>
-        <div class="large-3 columns troop-quantity-box">
+        <div class="large-3 medium-3 columns troop-quantity-box">
           <div class="row">
-            <div class="large-10 columns">
+            <div class="large-10 medium-10 small-10 columns">
               <p class="troop-quantity-text">- Quantity -</p>
               <input class="troop-quantity-input" type="range" value="1" min="0" max="40" step="1" ng-model="selectedQuantity">
             </div>
-            <div class="large-2 columns">
+            <div class="large-2 medium-2 small-2 columns">
               <h4 class="troop-quantity-number">{{ selectedQuantity }} </h4>
             </div>
           </div>
         </div>
-        <div class="large-2 columns right" ng-click="addTroop()">
+        <div class="large-2 medium-2 small-12 columns right" ng-click="addTroop()">
           <i class="fi-plus defense-add"></i>
         </div>
       </form>
     </div>
     <div ng-repeat="troop in troops">
       <div class="row troop-tile">
-        <div class="large-2 columns troop-image-border">
+        <div class="large-2 medium-2 columns troop-image-border">
           <div class="row">
-            <div class="large-12 columns image-container">
+            <div class="large-12 medium-12 small-12 columns image-container">
               <img src="{{troop.imageUrl}}" class="troop-image">
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h4 class="troop-header-text"> {{troop.name}} </h4>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns troop-remove-box" ng-click="removeTroop(troop)">
+            <div class="large-12 medium-12 small-12 columns troop-remove-box" ng-click="removeTroop(troop)">
               <h4 class="troop-remove-text">Remove <i class="fi-x troop-close-icon"></i></h4>
             </div>
           </div>
         </div>
-        <div class="large-2 columns">
+        <div class="large-2 medium-2 columns">
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="level-header-text"> Level </h5>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h2 class="troop-level-text"> {{troop.level}} </h2>
             </div>
           </div>
           <div class="row">
-            <div class="large-6 columns icon-box">
+            <div class="large-6 medium-6 small-6 columns icon-box">
               <i ng-click="levelUp(troop)" class="fi-arrow-up arrow-icon up right"></i>
             </div>
-            <div class="large-6 columns icon-box">
+            <div class="large-6 medium-6 small-6 columns icon-box">
               <i ng-click="levelDown(troop)" class="fi-arrow-down arrow-icon down"></i>
             </div>
           </div>
         </div>
-        <div class="large-2 columns">
+        <div class="large-2 medium-2 columns">
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h4 class="troop-text-padding"><span class="troop-text-medium">DPS: </span> <span class="troop-text-big">{{troop.damagePerSecond}}</span></h4>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h4 class="troop-text-padding"><span class="troop-text-medium">HS: </span> <span class="troop-text-big">{{troop.housingSpace}} </span></h4>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h4 class="troop-text-padding"><span class="troop-text-medium">EC: </span> <span class="troop-text-big elixir-text">{{troop.elixirCost}} </span></h4>
             </div>
           </div>
         </div>
-        <div class="large-2 columns">
+        <div class="large-2 medium-2 columns">
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-text-small-heading">Totals</h5>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-text-box"><span class="troop-text-small">Health:  </span><span class="troop-text-stat">{{troop.totalHealth | number}}</span></h5>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-text-box"><span class="troop-text-small">Housing:</span><span class="troop-text-stat"> {{troop.totalHousingSpace | number}}</span></h5>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-text-box"><span class="troop-text-small">DPS: </span> <span class="troop-text-stat">{{troop.totalDps | number}}</span></h5>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-text-box"><span class="troop-text-small">Training:</span><span class="troop-text-stat"> {{troop.totalTrainingTime | number}} </span></h5>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-text-box"><span class="troop-text-small">EC: </span> <span class="elixir-text troop-text-stat">{{troop.totalElixirCost | number}}</span> </h5>
             </div>
           </div>
         </div>
-        <div ng-hide="troop.isMaxLevel" class="large-2 columns">
+        <div ng-hide="troop.isMaxLevel" class="large-2 medium-2 columns">
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-text-small-heading">Upgrades</h5>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-text-box"><span class="troop-text-small">Res. Cost: </span>  <span class="elixir-text troop-text-stat">{{troop.researchCost | number}} </span></h5>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-text-box"><span class="troop-text-small">Damage Upgrade:  </span><span class="troop-text-stat">{{troop.damageUpgrade}} </span> <i class="fi-arrow-up upgrade-up"></i></h5>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-text-box"><span class="troop-text-small">HP Upgrade: </span><span class="troop-text-stat">{{troop.hpUpgrade}} </span> <i class="fi-arrow-up upgrade-up"></i></h5>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-text-box"><span class="troop-text-small">Res. Time: </span><span class="troop-text-stat">{{troop.researchTime}}</span></h5>
             </div>
           </div>
         </div>
-        <div class="large-2 columns">
+        <div class="large-2 medium-2 columns">
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-header-text">Quantity</h5>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-level-text">{{troop.quantity}}</h5>
             </div>
           </div>
           <div class="row">
-            <div class="large-12 columns">
+            <div class="large-12 medium-12 small-12 columns">
               <input  type="range" value="0" min="0" max="40" step="1"ng-model="troop.quan" ng-change="changeTroopQuantity(troop)">
             </div>
           </div>
@@ -243,24 +242,24 @@
         <h2 class="troop-total-heading">Troop Totals</h2> 
       </div>
       <div class="row"> 
-        <div class="large-4 columns">
+        <div class="large-4 medium-4 small-4 columns">
           <h2 class="troop-total-text">Damage/Second: <span class="troop-total-number">{{ army.totalDPS | number }}</span></h2>
         </div>
-        <div class="large-4 columns">
+        <div class="large-4 medium-4 small-4 columns">
           <h2 class="troop-total-text">Health Point: <span class="troop-total-number">{{ army.totalHP | number}}</span></h2>
         </div>
-        <div class="large-4 columns">
+        <div class="large-4 medium-4 small-4 columns">
           <h2 class="troop-total-text">Housing Space: <span class="troop-total-number">{{ army.totalHS }}</span></h2>
         </div>
       </div>
       <div class="row">
-        <div class="large-4 columns">
+        <div class="large-4 medium-4 small-4 columns">
           <h2 class="troop-total-text">Elixir Cost: <span class="elixir-text troop-total-number">{{ army.totalEC | number}}  </span></h2>
         </div>
-        <div class="large-4 columns">
+        <div class="large-4 medium-4 small-4 columns">
           <h2 class="troop-total-text">Dark Elixir Cost: <span class="troop-total-number">{{ army.totalDarkEC | number}} </span</h2>
         </div>
-        <div class="large-4 columns">
+        <div class="large-4 medium-4 small-4 columns">
           <h2 class="troop-total-text">Training Time: <span class="troop-total-number">{{ army.totalTrainingTime }} </span>seconds</h2>
         </div>
       </div>
@@ -1306,6 +1305,102 @@
           <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ darkBarrack.buildTime }}</span></p>
         </div>
         <div class="large-2 columns defense-text-padding" ng-click="removeResource(darkBarrack)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Laboratory </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/resources/laboratory/laboratorytopimage.png">
+          </div>
+        </div>
+      </div>
+      <div ng-click="addResource('Laboratory')" class="large-2 columns add-box">
+        <i class="fi-plus defense-add"></i>
+      </div>
+    </div>
+    <div ng-repeat="laboratory in laboratory">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ laboratory.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ laboratory.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpResource(laboratory)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownResource(laboratory)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Hp Upgrade:</span> <span class="defense-upgrade-text">{{ laboratory.hpUpgrade }}</span> <i class="fi-arrow-up upgrade-up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text elixir-text"> {{ laboratory.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ laboratory.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeResource(laboratory)">
+          <i class="fi-x defense-remove-icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row defense-heading-row">
+      <div class="large-4 columns">
+        <div class="row">
+          <div class="large-8 columns">
+            <p class="defense-title"> Spell Factory </p>
+          </div>
+          <div class="large-4 columns">
+            <img class="defense-top-image left" src="images/resources/spellfactory/spellfactorytopimage.png">
+          </div>
+        </div>
+      </div>
+      <div ng-click="addResource('Spell Factory')" class="large-2 columns add-box">
+        <i class="fi-plus defense-add"></i>
+      </div>
+    </div>
+    <div ng-repeat="spellFactory in spellFactory">
+      <div class="row defense-tile">
+        <div class="large-1 columns defense-image-box">
+          <img class="defense-image" src="{{ spellFactory.imageUrl }}">
+        </div>
+        <div class="large-2 columns">
+          <div class="row defense-level-row">
+            <div class="large-4 columns">
+              <p class="defense-text"> Level: </p>
+              <p class="defense-level-text"> {{ spellFactory.level }}</p>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelUpResource(spellFactory)" class="fi-arrow-up arrow-icon up"></i>
+            </div>
+            <div class="large-4 columns defense-arrow-padding">
+              <i ng-click="levelDownResource(spellFactory)" class="fi-arrow-down arrow-icon down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="large-3 columns defense-text-padding">
+          <p class="defense-text-small">Spell Unlocked:</p>
+          <p class="defense-level-text">{{ spellFactory.spellUnlocked }}</p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"> <span class="defense-text-small">Hp Upgrade:</span> <span class="defense-upgrade-text">{{ spellFactory.hpUpgrade }}</span> <i class="fi-arrow-up upgrade-up"></i></p>
+        </div>
+        <div class="large-2 columns">
+          <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text elixir-text"> {{ spellFactory.upgradeCost | number}}</span></p>
+          <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ spellFactory.buildTime }}</span></p>
+        </div>
+        <div class="large-2 columns defense-text-padding" ng-click="removeResource(spellFactory)">
           <i class="fi-x defense-remove-icon"></i>
         </div>
       </div>

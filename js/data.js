@@ -2354,6 +2354,7 @@ var resourceInfo = {
             buildTime: "1 Day",
             hp: 425,
             townHallRequired: 5,
+            spellUnlocked: "Lightning Spell",
             imageUrl: "images/resources/spellfactory/spellfactorylevel1.png"    
             },
             { /* Level 2 */
@@ -2361,6 +2362,7 @@ var resourceInfo = {
             buildTime: "2 Days",
             hp: 470,
             townHallRequired: 6,
+            spellUnlocked: "Healing Spell",
             imageUrl: "images/resources/spellfactory/spellfactorylevel2.png"    
             },
             { /* Level 3 */
@@ -2368,6 +2370,7 @@ var resourceInfo = {
             buildTime: "4 Days",
             hp: 515,
             townHallRequired: 7,
+            spellUnlocked: "Rage Spell",
             imageUrl: "images/resources/spellfactory/spellfactorylevel3.png"    
             },
             { /* Level 4 */
@@ -2375,6 +2378,7 @@ var resourceInfo = {
             buildTime: "5 Days",
             hp: 565,
             townHallRequired: 9,
+            spellUnlocked: "Jump Spell",
             imageUrl: "images/resources/spellfactory/spellfactorylevel4.png"    
             },
             { /* Level 5 */
@@ -2382,6 +2386,7 @@ var resourceInfo = {
             buildTime: "6 Days",
             hp: 615,
             townHallRequired: 10,
+            spellUnlocked: "Freeze Spell",
             imageUrl: "images/resources/spellfactory/spellfactorylevel5.png"    
             }
         ]

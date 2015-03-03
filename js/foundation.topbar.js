@@ -1,6 +1,5 @@
 ;(function ($, window, document, undefined) {
   'use strict';
-  console.log('top bar loaded')
   Foundation.libs.topbar = {
     name : 'topbar',
 
