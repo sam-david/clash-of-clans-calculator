@@ -273,62 +273,62 @@
       </div>
     </div>
     <div class="row defense-heading-row">
-      <div class="large-4 columns">
+      <div class="large-4 medium-4 columns">
         <div class="row">
-          <div class="large-8 columns">
+          <div class="large-8 medium-8 small-8 columns">
             <p class="defense-title"> Cannon </p>
           </div>
-          <div class="large-4 columns">
+          <div class="large-4 medium-4 small-4 columns">
             <img class="defense-top-image left" src="images/defenses/cannon/cannontopimage.png">
           </div>
         </div>
       </div>
-      <div class="large-2 columns">
+      <div class="large-2 medium-2 small-4 columns">
         <p class="defense-sum-heading" ng-show="cannonTotalDps"> Total DPS: {{ cannonTotalDps }} </p>
       </div>
-      <div class="large-2 columns">
+      <div class="large-2 medium-2 small-4 columns">
         <p class="defense-sum-heading" ng-show="cannonTotalHp"> Total HP: {{ cannonTotalHp }} </p>
       </div>
-      <div ng-click="addDefense('Cannon')" class="large-2 columns add-box">
+      <div ng-click="addDefense('Cannon')" class="large-2 medium-2 small-4 columns add-box">
         <i class="fi-plus defense-add"></i>
       </div>
     </div>
     <div ng-repeat="cannon in cannons">
       <div class="row defense-tile">
-        <div class="large-1 columns defense-image-box">
+        <div class="large-1 medium-1 small-12 columns defense-image-box">
           <img class="defense-image" src="{{ cannon.imageUrl }}">
         </div>
-        <div class="large-2 columns">
+        <div class="large-2 medium-2 small-12 columns">
           <div class="row defense-level-row">
-            <div class="large-4 columns">
+            <div class="large-4  medium-4 small-4 columns">
               <p class="defense-text"> Level: </p>
               <p class="defense-level-text"> {{ cannon.level }}</p>
             </div>
-            <div class="large-4 columns defense-arrow-padding">
+            <div class="large-4 medium-4 small-4 columns defense-arrow-padding">
               <i ng-click="levelUpDefense(cannon)" class="fi-arrow-up arrow-icon up"></i>
             </div>
-            <div class="large-4 columns defense-arrow-padding">
+            <div class="large-4 medium-4 small-4 columns defense-arrow-padding">
               <i ng-click="levelDownDefense(cannon)" class="fi-arrow-down arrow-icon down"></i>
             </div>
           </div>
         </div>
-        <div class="large-1 columns defense-text-padding">
+        <div class="large-1 medium-1 small-6 columns defense-text-padding">
           <p class="defense-text-small">DPS:</p>
           <p class="defense-level-text">{{ cannon.damagePerSecond }}</p>
         </div>
-        <div class="large-1 columns defense-text-padding">
+        <div class="large-1 medium-1 small-6 columns defense-text-padding">
           <p class="defense-text-small">HP:</p>
           <p class="defense-level-text">{{ cannon.hp }}</p>
         </div>
-        <div class="large-2 columns">
+        <div class="large-2 medium-2 small-4 columns">
           <p class="defense-text"> <span class="defense-text-small">Damage Upgrade:</span> <span class="defense-upgrade-text">{{ cannon.damageUpgrade }}</span> <i class="fi-arrow-up upgrade-up"></i></p>
           <p class="defense-text"><span class="defense-text-small">HP Upgrade:</span><span class="defense-upgrade-text"> {{ cannon.hpUpgrade }}</span> <i class="fi-arrow-up upgrade-up"></i></p>
         </div>
-        <div class="large-2 columns">
+        <div class="large-2 medium-2 small-6 columns">
           <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text gold"> {{ cannon.upgradeCost}}</span></p>
           <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ cannon.buildTime }}</span></p>
         </div>
-        <div class="large-2 columns defense-text-padding" ng-click="removeDefense(cannon)">
+        <div class="large-2 medium-2 small-2 columns defense-text-padding" ng-click="removeDefense(cannon)">
           <i class="fi-x defense-remove-icon"></i>
         </div>
       </div>
