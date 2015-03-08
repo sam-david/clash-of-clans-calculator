@@ -76,18 +76,18 @@
     </div>
     <div class="row troop-select-row">
       <form>
-        <div class="large-4 medium-4 columns">
+        <div class="large-4 medium-4 small-12 columns">
           <select ng-model="type" ng-change="renderTroopLevels()">
             <option value="">-- Choose Troop --</option>
             <option ng-repeat="troopType in troopTypes" value="{{troopType}}">- {{troopType}} -</option>
           </select>
         </div>
-        <div class="large-3 medium-3 columns">
+        <div class="large-3 medium-3 small-12 columns">
           <select disabled ng-model="level" ng-options="level for level in currentTroopLevels" class="troop-level-select">
             <option value="">-- Troop Level --</option>
           </select>
         </div>
-        <div class="large-3 medium-3 columns troop-quantity-box">
+        <div class="large-3 medium-3 small-10 columns troop-quantity-box">
           <div class="row">
             <div class="large-10 medium-10 small-10 columns">
               <p class="troop-quantity-text">- Quantity -</p>
@@ -98,14 +98,14 @@
             </div>
           </div>
         </div>
-        <div class="large-2 medium-2 small-12 columns right" ng-click="addTroop()">
+        <div class="large-2 medium-2 small-2 columns right" ng-click="addTroop()">
           <i class="fi-plus defense-add"></i>
         </div>
       </form>
     </div>
     <div ng-repeat="troop in troops">
       <div class="row troop-tile">
-        <div class="large-2 medium-2 columns troop-image-border">
+        <div class="large-2 medium-2 small-6 columns troop-image-border">
           <div class="row">
             <div class="large-12 medium-12 small-12 columns image-container">
               <img src="{{troop.imageUrl}}" class="troop-image">
@@ -122,7 +122,7 @@
             </div>
           </div>
         </div>
-        <div class="large-2 medium-2 columns">
+        <div class="large-2 medium-2 small-6 columns">
           <div class="row">
             <div class="large-12 medium-12 small-12 columns">
               <h5 class="level-header-text"> Level </h5>
@@ -142,7 +142,7 @@
             </div>
           </div>
         </div>
-        <div class="large-2 medium-2 columns">
+        <div class="large-2 medium-2 small-12 columns statbox1">
           <div class="row">
             <div class="large-12 medium-12 small-12 columns">
               <h4 class="troop-text-padding"><span class="troop-text-medium">DPS: </span> <span class="troop-text-big">{{troop.damagePerSecond}}</span></h4>
@@ -159,7 +159,7 @@
             </div>
           </div>
         </div>
-        <div class="large-2 medium-2 columns">
+        <div class="large-2 medium-2 small-6 columns">
           <div class="row">
             <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-text-small-heading">Totals</h5>
@@ -191,7 +191,7 @@
             </div>
           </div>
         </div>
-        <div ng-hide="troop.isMaxLevel" class="large-2 medium-2 columns">
+        <div ng-hide="troop.isMaxLevel" class="large-2 medium-2 small-6 columns">
           <div class="row">
             <div class="large-12 medium-12 small-12 columns">
               <h5 class="troop-text-small-heading">Upgrades</h5>
@@ -225,13 +225,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="large-12 medium-12 small-12 columns">
-              <h5 class="troop-level-text">{{troop.quantity}}</h5>
-            </div>
           </div>
           <div class="row">
-            <div class="large-12 medium-12 small-12 columns">
-              <input  type="range" value="0" min="0" max="80" step="1"ng-model="troop.quan" ng-change="changeTroopQuantity(troop)">
+            <div class="large-12 medium-12 small-4 columns">
+              <h5 class="troop-level-text">{{troop.quantity}}</h5>
+            </div>
+            <div class="large-12 medium-12 small-8 slider-box columns">
+              <input  type="range" value="0" min="0" max="80" step="1"ng-model="troop.quan" class="troop-quantity-slider" ng-change="changeTroopQuantity(troop)">
             </div>
           </div>
         </div>
@@ -242,24 +242,24 @@
         <h2 class="troop-total-heading">Troop Totals</h2> 
       </div>
       <div class="row"> 
-        <div class="large-4 medium-4 small-4 columns">
+        <div class="large-4 medium-4 small-12 columns">
           <h2 class="troop-total-text">Damage/Second: <span class="troop-total-number">{{ army.totalDPS | number }}</span></h2>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
+        <div class="large-4 medium-4 small-12 columns">
           <h2 class="troop-total-text">Health Point: <span class="troop-total-number">{{ army.totalHP | number}}</span></h2>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
+        <div class="large-4 medium-4 small-12 columns">
           <h2 class="troop-total-text">Housing Space: <span class="troop-total-number">{{ army.totalHS }}</span></h2>
         </div>
       </div>
       <div class="row">
-        <div class="large-4 medium-4 small-4 columns">
+        <div class="large-4 medium-4 small-12 columns">
           <h2 class="troop-total-text">Elixir Cost: <span class="elixir-text troop-total-number">{{ army.totalEC | number}}  </span></h2>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
+        <div class="large-4 medium-4 small-12 columns">
           <h2 class="troop-total-text">Dark Elixir Cost: <span class="troop-total-number">{{ army.totalDarkEC | number}} </span</h2>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
+        <div class="large-4 medium-4 small-12 columns">
           <h2 class="troop-total-text">Training Time: <span class="troop-total-number">{{ army.totalTrainingTime }} </span>seconds</h2>
         </div>
       </div>
@@ -295,24 +295,24 @@
     </div>
     <div ng-repeat="cannon in cannons">
       <div class="row defense-tile">
-        <div class="large-1 medium-1 small-12 columns defense-image-box">
+        <div class="large-1 medium-1 small-6 columns defense-image-box">
           <img class="defense-image" src="{{ cannon.imageUrl }}">
         </div>
-        <div class="large-2 medium-2 small-12 columns">
+        <div class="large-2 medium-2 small-6 columns">
           <div class="row defense-level-row">
-            <div class="large-4  medium-4 small-4 columns">
+            <div class="large-4  medium-4 small-12 columns">
               <p class="defense-text"> Level: </p>
               <p class="defense-level-text"> {{ cannon.level }}</p>
             </div>
-            <div class="large-4 medium-4 small-4 columns defense-arrow-padding">
+            <div class="large-4 medium-4 small-6 columns defense-arrow-padding">
               <i ng-click="levelUpDefense(cannon)" class="fi-arrow-up arrow-icon up"></i>
             </div>
-            <div class="large-4 medium-4 small-4 columns defense-arrow-padding">
+            <div class="large-4 medium-4 small-6 columns defense-arrow-padding">
               <i ng-click="levelDownDefense(cannon)" class="fi-arrow-down arrow-icon down"></i>
             </div>
           </div>
         </div>
-        <div class="large-1 medium-1 small-6 columns defense-text-padding">
+        <div class="large-1 medium-1 small-12 columns defense-text-padding">
           <p class="defense-text-small">DPS:</p>
           <p class="defense-level-text">{{ cannon.damagePerSecond }}</p>
         </div>
@@ -320,76 +320,76 @@
           <p class="defense-text-small">HP:</p>
           <p class="defense-level-text">{{ cannon.hp }}</p>
         </div>
-        <div class="large-2 medium-2 small-4 columns">
+        <div ng-hide="cannon.damageUpgrade == 'N/A'" class="large-2 medium-2 small-6 columns">
           <p class="defense-text"> <span class="defense-text-small">Damage Upgrade:</span> <span class="defense-upgrade-text">{{ cannon.damageUpgrade }}</span> <i class="fi-arrow-up upgrade-up"></i></p>
           <p class="defense-text"><span class="defense-text-small">HP Upgrade:</span><span class="defense-upgrade-text"> {{ cannon.hpUpgrade }}</span> <i class="fi-arrow-up upgrade-up"></i></p>
         </div>
-        <div class="large-2 medium-2 small-6 columns">
+        <div ng-hide="cannon.damageUpgrade == 'N/A'" class="large-2 medium-2 small-6 columns">
           <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text gold"> {{ cannon.upgradeCost}}</span></p>
           <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ cannon.buildTime }}</span></p>
         </div>
-        <div class="large-2 medium-2 small-2 columns defense-text-padding" ng-click="removeDefense(cannon)">
+        <div class="large-2 medium-2 small-4 columns defense-text-padding" ng-click="removeDefense(cannon)">
           <i class="fi-x defense-remove-icon"></i>
         </div>
       </div>
     </div>
     <div class="row defense-heading-row">
-      <div class="large-4 columns">
+      <div class="large-4 medium-4 columns">
         <div class="row">
-          <div class="large-8 columns">
+          <div class="large-8 medium-8 small-8 columns">
             <p class="defense-title"> Archer Tower </p>
           </div>
-          <div class="large-4 columns">
+          <div class="large-4 medium-4 small-4 columns">
             <img class="defense-top-image left" src="images/defenses/archertower/archertowertopimage.png">
           </div>
         </div>
       </div>
-      <div class="large-2 columns">
+      <div class="large-2 medium-2 small-4 columns">
         <p class="defense-sum-heading" ng-show="archerTowerTotalDps"> Total DPS: {{ archerTowerTotalDps }} </p>
       </div>
-      <div class="large-2 columns">
+      <div class="large-2 medium-2 small-4 columns">
         <p class="defense-sum-heading" ng-show="archerTowerTotalHp"> Total HP: {{ archerTowerTotalHp }} </p>
       </div>
-      <div ng-click="addDefense('Archer Tower')" class="large-2 columns add-box">
+      <div ng-click="addDefense('Archer Tower')" class="large-2 medium-2 small-4 columns columns add-box">
         <i class="fi-plus defense-add"></i>
       </div>
     </div>
     <div ng-repeat="archerTower in archerTowers">
       <div class="row defense-tile">
-        <div class="large-1 columns defense-image-box">
+        <div class="large-1 medium-1 small-12 columns defense-image-box">
           <img class="defense-image" src="{{ archerTower.imageUrl }}">
         </div>
-        <div class="large-2 columns">
+        <div class="large-2 medium-2 small-12 columns">
           <div class="row defense-level-row">
-            <div class="large-4 columns">
+            <div class="large-4 medium-4 small-4 columns">
               <p class="defense-text"> Level: </p>
               <p class="defense-level-text"> {{ archerTower.level }}</p>
             </div>
-            <div class="large-4 columns defense-arrow-padding">
+            <div class="large-4 medium-4 small-4 columns defense-arrow-padding">
               <i ng-click="levelUpDefense(archerTower)" class="fi-arrow-up arrow-icon up"></i>
             </div>
-            <div class="large-4 columns defense-arrow-padding">
+            <div class="large-4 medium-4 small-4 columns defense-arrow-padding">
               <i ng-click="levelDownDefense(archerTower)" class="fi-arrow-down arrow-icon down"></i>
             </div>
           </div>
         </div>
-        <div class="large-1 columns defense-text-padding">
+        <div class="large-1 medium-1 small-6 columns defense-text-padding">
           <p class="defense-text-small">DPS:</p>
           <p class="defense-level-text">{{ archerTower.damagePerSecond }}</p>
         </div>
-        <div class="large-1 columns defense-text-padding">
+        <div class="large-1 medium-1 small-6 columns defense-text-padding">
           <p class="defense-text-small">HP:</p>
           <p class="defense-level-text">{{ archerTower.hp }}</p>
         </div>
-        <div class="large-2 columns">
+        <div class="large-2 medium-2 small-4 columns">
           <p class="defense-text"> <span class="defense-text-small">Damage Upgrade:</span> <span class="defense-upgrade-text">{{ archerTower.damageUpgrade }}</span> <i class="fi-arrow-up upgrade-up"></i></p>
           <p class="defense-text"><span class="defense-text-small">HP Upgrade:</span><span class="defense-upgrade-text"> {{ archerTower.hpUpgrade }}</span> <i class="fi-arrow-up upgrade-up"></i></p>
         </div>
-        <div class="large-2 columns">
+        <div class="large-2 medium-2 small-6 columns">
           <p class="defense-text"><span class="defense-text-small"> Upgrade Cost: </span><span class="defense-upgrade-text gold"> {{ archerTower.upgradeCost | number}}</span></p>
           <p class="defense-text"> <span class="defense-text-small">Build Time: </span> <span class="defense-upgrade-text">{{ archerTower.buildTime }}</span></p>
         </div>
-        <div class="large-2 columns defense-text-padding" ng-click="removeDefense(archerTower)">
+        <div class="large-2 medium-2 small-2 columns defense-text-padding" ng-click="removeDefense(archerTower)">
           <i class="fi-x defense-remove-icon"></i>
         </div>
       </div>

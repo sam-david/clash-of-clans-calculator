@@ -201,6 +201,7 @@ input[type=range] {
 
 .troop-header-text {
 	text-align: center;
+	font-weight: bold;
 	margin-bottom: 0px;
 	margin-top: 0px;
 }
@@ -231,6 +232,7 @@ input[type=range] {
 }
 .troop-text-small-heading {
 	font-size: .9em;
+	font-weight: bold;
 	text-align: center;
 	margin-bottom: 0px;
 	margin-top: 0px;
@@ -537,5 +539,39 @@ input[type=range] {
 
 .link-description-box {
 	padding-top: 2%;
+}
+
+@media only screen and (max-width: 40em) {
+	.troop-text-box {
+		text-align: center;
+	}
+	.statbox1 {
+		text-align: center;
+	}
+	.troop-header-text {
+		padding-bottom: 1%;
+		padding-top: 1%;
+	}
+	.troop-quantity-slider {
+		margin-top: 2%;
+	}
+	.defense-sum-heading {
+		text-align: center;
+	}
+	.defense-remove-icon {
+		margin-left: 0px;
+	}
+	.slider-box {
+		padding-top: 4%;
+	}
+	.defense-title {
+		padding-top: 2%;
+	}
+	.defense-top-image {
+		padding-top: 2%;
+	}
+	.defense-add {
+		margin-left: 25%;
+	}
 }
 
